@@ -8,8 +8,8 @@ const ListCards = () => {
 
   return (
     <div className="w-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
-      {venues.map((venues) => (
-        <Link to="/venues/:id">
+      {venues?.map((venues) => (
+        <Link to="/venues/:id" key={venues.id}>
           <div className="full-w rounded overflow-hidden shadow-md ">
             <div
               className="relative overflow-hidden bg-no-repeat h-80"
@@ -26,7 +26,9 @@ const ListCards = () => {
               </div>
             </div>
             <div className="px-3 py-4">
-              <h3 className="mb-2 h3">Placencia Village, Belize</h3>
+              <h3 className="mb-2 h3">
+                {venues.location.city}, {venues.location.country}
+              </h3>
               <div className="flex flex-row gap-3">
                 <img
                   className="icon"
@@ -34,7 +36,7 @@ const ListCards = () => {
                   alt="Night icon"
                 ></img>
 
-                <p>48 668 NOK</p>
+                <p>{venues.price} NOK</p>
               </div>
               <div className="flex flex-row gap-3">
                 <img
@@ -42,7 +44,7 @@ const ListCards = () => {
                   src="/images/people-icon.svg"
                   alt="Guests"
                 ></img>
-                <p>2</p>
+                <p>{venues.maxGuests}</p>
               </div>
             </div>
           </div>
