@@ -10,7 +10,7 @@ const BookingCard = () => {
         <div class="w-full rounded overflow-hidden shadow-md ">
           <div className="relative overflow-hidden bg-cover bg-center bg-no-repeat max-h-80">
             <img
-              classname="w-full"
+              className="w-full"
               src="https://images.unsplash.com/photo-1414510451013-d0a41fea512e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
               alt="Sunset in the mountains"
             ></img>
