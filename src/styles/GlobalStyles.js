@@ -76,7 +76,7 @@ main {
     font-weight: 500;
 }
 
-.nav-link:hover {
+.nav-link:hover, .medium-icon:hover {
     opacity: 0.6;
 }
 
