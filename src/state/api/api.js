@@ -15,9 +15,23 @@ export const api = createApi({
     getProfiles: build.query({
       query: () => `profiles`,
     }),
+
     getVenues: build.query({
       query: () => `venues?_owner=true`,
     }),
+
+    getVenueById: build.query({
+      query: (id) => `venues/${id}`,
+    }),
+
+    register: build.mutation({
+      query: (credentials) => ({
+        url: `auth/register`,
+        method: "POST",
+        body: credentials,
+      }),
+    }),
+
     login: build.mutation({
       query: (credentials) => ({
         url: `auth/login`,
@@ -28,5 +42,11 @@ export const api = createApi({
   }),
 });
 
-export const { useGetProfilesQuery, useGetVenuesQuery, useLoginMutation } = api;
+export const {
+  useGetProfilesQuery,
+  useGetVenuesQuery,
+  useGetVenueByIdQuery,
+  useRegisterMutation,
+  useLoginMutation,
+} = api;
 export const loginEndpoint = api.endpoints.login;

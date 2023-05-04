@@ -1,7 +1,18 @@
 import React from "react";
 import { HeroContainer, ImgNoText } from "./styles";
+import { useGetVenueByIdQuery } from "../../state/api/api";
+import { useParams } from "react-router-dom";
 
 const HeroVenue = () => {
+  const { id } = useParams();
+
+  const { data, isLoading, error } = useGetVenueByIdQuery(id);
+  console.log(useGetVenueByIdQuery());
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <HeroContainer className="relative">

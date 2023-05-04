@@ -14,7 +14,7 @@ const FeaturedVenues = () => {
     <div>
       <div className="w-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
         {list?.slice(0, 6).map((venue) => (
-          <Link to="/venues/:id" key={venue.id}>
+          <Link to={"/venues/" + venue.id} key={venue.id}>
             <div className="full-w rounded overflow-hidden shadow-md ">
               <div
                 className="relative overflow-hidden bg-no-repeat h-80"
