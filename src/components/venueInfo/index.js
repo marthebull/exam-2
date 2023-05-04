@@ -17,7 +17,7 @@ const VenueInfo = () => {
     return <div>Something wrong</div>;
   }
   return (
-    <InfoContainer className=" pb-8 my-10 mx-auto w-100 max-w-lg md:mx-0 md:px-8 lg:ps-14 md:w-1/2">
+    <InfoContainer className=" pb-8 my-10 mx-auto w-100 max-w-lg md:mx-0 md:px-8 md:pb-0 lg:ps-14 md:w-1/2">
       <h1 className="h1 mb-1">{data.name}</h1>
       <h2 className="h5 mb-8">
         {data.location.city}, {data.location.country}
@@ -38,12 +38,6 @@ const VenueInfo = () => {
         villa.
       </p>
 
-      <h3 className="h5 mb-2">Address</h3>
-      <p className="p mb-1">{data.location.address}</p>
-      <p className="p  mb-10">
-        {data.location.city}, {data.location.country} The sunset glory of the
-        seascape will await you upon your return to this impressive villa.
-      </p>
       <div className="flex flex-col gap-2 mb-10">
         <div className="flex flex-row gap-3">
           <img
@@ -98,6 +92,12 @@ const VenueInfo = () => {
           <p className="h5">wifi</p>
         </div>
       </div>
+      <h3 className="h5 mb-2">Address</h3>
+      <p className="p mb-1">{data.location.address}</p>
+      <p className="p  mb-10">
+        {data.location.city}, {data.location.country} The sunset glory of the
+        seascape will await you upon your return to this impressive villa.
+      </p>
       <div className="flex flex-row items-center gap-2">
         <div className="h-full">
           <img

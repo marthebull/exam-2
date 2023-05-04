@@ -11,11 +11,11 @@ const Footer = () => {
       <FooterCont className="mt-10">
         <FooterInner>
           <BrandInfo>
-            <Link to="/" className="link">
-              <Logo src="/images/logo-holidaze.svg"></Logo>
+            <Link to="/" className="link flex justify-center md:justify-start">
+              <Logo src="/images/logo-holidaze.svg" className="mb-4"></Logo>
             </Link>
-            <p>+47 234 54 000</p>
-            <p>book@holidaze.co</p>
+            <p className="p">+47 234 54 000</p>
+            <p className="p">book@holidaze.co</p>
           </BrandInfo>
           <FooterNav>
             <Link to="/venues" className="link nav-link">

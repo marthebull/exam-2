@@ -8,6 +8,10 @@ export const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
+
+  @media screen and (max-width: 900px) {
+    margin: 5px 0;
+  }
 `;
 
 export const NavMenu = styled.ul`
