@@ -36,7 +36,7 @@ main {
     min-height: 70vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
 }
 
 .h1 {
