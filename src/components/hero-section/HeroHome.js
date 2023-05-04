@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const HeroHome = () => {
   return (
     <>
-      <HeroContainer className="mb-4">
+      <HeroContainer className="mb-10">
         <TextHero
           style={{
             backgroundImage: `url(images/hero-bg-home.jpg)`,
@@ -18,7 +18,7 @@ const HeroHome = () => {
             src="images/logo-holidaze-white.svg"
             className="pb-6"
           ></HeroLogo>
-          <h1 className="white h4">
+          <h1 className="white h4 mx-3">
             discover, book and enjoy the most exquisite accommodations.
           </h1>
           <p className="white">

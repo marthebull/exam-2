@@ -102,7 +102,11 @@ const VenueInfo = () => {
         <div className="h-full">
           <img
             className="icon rounded-full h-8"
-            src="/images/placeholder-avatar.svg"
+            src={
+              data.owner.avatar
+                ? data.owner.avatar
+                : "/images/placeholder-avatar.svg"
+            }
             alt={data.owner + "'s profilepicture"}
             style={{ height: "46px", width: "auto" }}
           ></img>

@@ -40,13 +40,13 @@ main {
 }
 
 .h1 {
-  font-size: 2.25rem;
+  font-size: 2.1rem;
   font-weight: 600;
   line-height: 120%;
 }
 
 .h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
   line-height: 130%;
 }
@@ -81,7 +81,7 @@ main {
 }
 
 .link-white {
-font-size: 1.25rem;
+font-size: 1rem;
   font-weight: 400;
   line-height: 150%;
   text-decoration: underline;
@@ -188,7 +188,7 @@ height: auto;
 @media screen and (max-width: 600px){
 
   .h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 130%;
   }
   
@@ -200,8 +200,8 @@ height: auto;
     font-size: 1.4rem;
   }
   
-  .h4 {
-    font-size: 1.25rem;
+  .h4  {
+    font-size: 1.2rem;
     line-height: 150%;
   }
   
