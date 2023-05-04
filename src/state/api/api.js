@@ -21,7 +21,7 @@ export const api = createApi({
     }),
 
     getVenueById: build.query({
-      query: (id) => `venues/${id}`,
+      query: (id) => `venues/${id}?_owner=true&_bookings=true`,
     }),
 
     register: build.mutation({
