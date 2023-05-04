@@ -6,11 +6,15 @@ import { useParams } from "react-router-dom";
 const HeroVenue = () => {
   const { id } = useParams();
 
-  const { data, isLoading, error } = useGetVenueByIdQuery(id);
-  console.log(useGetVenueByIdQuery());
+  const { data, isLoading, isError } = useGetVenueByIdQuery(id);
+  console.log(useGetVenueByIdQuery(id));
 
   if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Something wrong</div>;
   }
 
   return (
