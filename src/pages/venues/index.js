@@ -1,9 +1,6 @@
 import React from "react";
 import { Container } from "../../styles/GlobalStyles";
-import Searchbar from "../../components/search-filter/Searchbar";
-import Filters from "../../components/search-filter/Filters";
-import ListCards from "../../components/cards/list";
-import ListVenuesGrid from "../../components/grids/ListVenuesGrid";
+import ListVenuesGrid from "../../components/cards/list";
 
 const Venues = () => {
   return (

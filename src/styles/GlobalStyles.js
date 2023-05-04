@@ -157,6 +157,12 @@ input[type=checkbox] {
   margin-right: 10px;
 }
 
+.icon-row {
+  height: 17px;
+  width: auto;
+
+}
+
 .medium-icon {
     height: 56px;
   width: auto;
