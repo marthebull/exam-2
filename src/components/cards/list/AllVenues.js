@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useGetVenuesQuery } from "../../../state/api/api";
-import { FilterWrapper } from "../../search-filter/styles";
+import { FilterWrapper } from "./styles";
 import { Link } from "react-router-dom";
 import { ButtonOutlineWhite } from "../../../styles/GlobalStyles";
 
-const ListVenuesGrid = () => {
+const ListAllVenues = () => {
   const { data: list, isLoading } = useGetVenuesQuery();
   console.log(useGetVenuesQuery());
   const [criteria, setCriteria] = useState({
@@ -161,4 +161,4 @@ const ListVenuesGrid = () => {
   );
 };
 
-export default ListVenuesGrid;
+export default ListAllVenues;
