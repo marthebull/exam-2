@@ -8,7 +8,7 @@ const ListVenuesGrid = () => {
     parking: false,
     breakfast: false,
     wifi: false,
-    petsAllowed: false,
+    pets: false,
   });
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,7 +24,7 @@ const ListVenuesGrid = () => {
     if (criteria.parking && !item.meta.parking) return false;
     if (criteria.breakfast && !item.meta.breakfast) return false;
     if (criteria.wifi && !item.meta.wifi) return false;
-    if (criteria.petsAllowed && !item.meta.petsAllowed) return false;
+    if (criteria.pets && !item.meta.pets) return false;
     if (searchQuery) {
       const searchLower = searchQuery.toLowerCase();
       if (
@@ -65,9 +65,9 @@ const ListVenuesGrid = () => {
         />
         <img
           src={"/images/pets.svg"}
-          alt="Pets Allowed"
-          style={{ cursor: "pointer", opacity: criteria.petsAllowed ? 1 : 0.5 }}
-          onClick={() => handleCriteriaChange("petsAllowed")}
+          alt="Pets"
+          style={{ cursor: "pointer", opacity: criteria.pets ? 1 : 0.5 }}
+          onClick={() => handleCriteriaChange("pets")}
         />
         <input
           type="text"
@@ -79,10 +79,11 @@ const ListVenuesGrid = () => {
       <ul>
         {filteredList?.map((item) => (
           <li key={item.id}>
-            {item.name} - {item.city}, {item.country} - Parking:{" "}
-            {item.parking ? "Yes" : "No"}, Breakfast:{" "}
-            {item.breakfast ? "Yes" : "No"}, Wifi: {item.wifi ? "Yes" : "No"},
-            Pets Allowed: {item.petsAllowed ? "Yes" : "No"}
+            {item.name} - {item.location.city}, {item.location.country} -
+            Parking: {item.meta.parking ? "Yes" : "No"}, Breakfast:{" "}
+            {item.meta.breakfast ? "Yes" : "No"}, Wifi:{" "}
+            {item.meta.wifi ? "Yes" : "No"}, Pets Allowed:{" "}
+            {item.meta.pets ? "Yes" : "No"}
           </li>
         ))}
       </ul>
