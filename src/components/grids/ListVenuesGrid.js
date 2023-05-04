@@ -28,9 +28,10 @@ const ListVenuesGrid = () => {
     if (searchQuery) {
       const searchLower = searchQuery.toLowerCase();
       if (
-        !item.name.toLowerCase().includes(searchLower) &&
-        !item.city.toLowerCase().includes(searchLower) &&
-        !item.country.toLowerCase().includes(searchLower)
+        !item.name?.toLowerCase().includes(searchLower) &&
+        !item.owner.name?.toLowerCase().includes(searchLower) &&
+        !item.location.city?.toLowerCase().includes(searchLower) &&
+        !item.location.country?.toLowerCase().includes(searchLower)
       )
         return false;
     }

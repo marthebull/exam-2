@@ -16,7 +16,7 @@ export const api = createApi({
       query: () => `profiles`,
     }),
     getVenues: build.query({
-      query: () => `venues`,
+      query: () => `venues?_owner=true`,
     }),
     login: build.mutation({
       query: (credentials) => ({
