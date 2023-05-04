@@ -130,9 +130,10 @@ button {
   margin: 10px auto;
 }
 
-input, textarea {
+input[type=text], input[type=email], input[type=password], textarea {
   height: 50px;
   width: 100%;
+  min-width: 450px;
   max-width: 500px;
   padding: 12px;
   border-radius: 2px;
@@ -145,11 +146,12 @@ input::placeholder {
   letter-spacing: 0.03rem;
 }
 
-input[type=checkbox] {
+input[type=checkbox].check {
   width: 22px;
   height: 22px;
   margin-right: 10px;
-}
+  accent-color: var(--dark-grey);
+  border: 2px solid var(--dark-grey);}
 
 .icon {
   height: auto;
@@ -217,6 +219,10 @@ height: auto;
   small {
     font-size: 0.8rem;
   }
+
+  input, textarea {
+  min-width: 300px;
+}
   
 }
 

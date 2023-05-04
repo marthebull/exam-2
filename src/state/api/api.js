@@ -40,6 +40,9 @@ export const api = createApi({
       }),
     }),
   }),
+  onError: (error, query) => {
+    console.error("API request failed", { error, query });
+  },
 });
 
 export const {
