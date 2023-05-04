@@ -1,10 +1,10 @@
 import React from "react";
-import HeroVenue from "../../components/hero-section/HeroVenue";
+import HeroGallery from "../../components/hero-section/HeroGallery";
 
 const Venue = () => {
   return (
     <div>
-      <HeroVenue />
+      <HeroGallery />
     </div>
   );
 };
