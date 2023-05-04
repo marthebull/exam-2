@@ -47,11 +47,12 @@ const HeroGallery = () => {
           ))}
         </div>
       </HeroContainer>
+
       {data.media.length > 1 && (
         <div className=" flex gap-6 mb-4 items-center justify-center mt-3">
           <div
             onClick={handlePrevClick}
-            className="inline-flex me-1 items-center rounded-full text-gray-700 hover:text-gray-300 "
+            className="inline-flex me-1 items-center rounded-full cursor-pointer text-gray-700 hover:text-gray-300 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +72,7 @@ const HeroGallery = () => {
               <button
                 key={i}
                 onClick={() => handleIndicatorClick(i)}
-                className={`w-3 h-3 mx-1 rounded-full ${
+                className={`w-3 h-3 mx-1 rounded-full cursor-pointer ${
                   i === index
                     ? "ring-2 ring-inset ring-gray-700 bg-gray-700"
                     : "ring-2 ring-inset ring-gray-700 bg-white"
@@ -81,7 +82,7 @@ const HeroGallery = () => {
           </div>
           <div
             onClick={handleNextClick}
-            className="inline-flex ms-1 items-center rounded-full text-gray-700 hover:text-gray-300 "
+            className="inline-flex ms-1 items-center rounded-full cursor-pointer text-gray-700 hover:text-gray-300 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
