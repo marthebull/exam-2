@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { useRegisterMutation } from "../../state/api/api";
 import { ButtonSolidDark } from "../../styles/GlobalStyles";
+import { useNavigate } from "react-router-dom";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -39,6 +40,8 @@ const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [register] = useRegisterMutation();
 
+  let navigate = useNavigate();
+
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     setRegisterCredentials((prevState) => ({
@@ -53,8 +56,9 @@ const RegisterForm = () => {
     try {
       await RegisterSchema.validate(registerCredentials, { abortEarly: false });
       const response = await register(registerCredentials);
-      console.log(response);
-      window.location.href = "/sign-in";
+      //console.log(response);
+      navigate("/sign-in");
+
       // handle success
     } catch (error) {
       console.error(error);
