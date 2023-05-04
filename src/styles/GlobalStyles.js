@@ -29,7 +29,7 @@ body {
   font-size: 1rem;
   color: var(--dark-grey);
   background-color: var(--white);
-  letter-spacing: 0.05rem;
+  
 }
 
 main {
@@ -63,7 +63,7 @@ main {
   line-height: 130%;
 }
 
-.link, button {
+.link, button, .h5 {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 150%;
@@ -104,9 +104,9 @@ a {
   letter-spacing: 0;
 }
 
-p {
-  font-size: 1.13rem;
-  font-weight: 400;
+.p {
+  font-size: 1.1rem;
+  font-weight: 300;
   line-height: 160%;
   letter-spacing: 0;
 }
@@ -188,7 +188,7 @@ height: auto;
 @media screen and (max-width: 900px){
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 130%;
   }
   

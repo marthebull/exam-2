@@ -4,8 +4,6 @@ import { useGetVenueByIdQuery } from "../../state/api/api";
 import { HeroContainer } from "./styles";
 
 const HeroGallery = () => {
-  const { id } = useParams();
-
   const [index, setIndex] = useState(0);
 
   const handleIndicatorClick = (i) => {
@@ -19,6 +17,8 @@ const HeroGallery = () => {
   const handleNextClick = () => {
     setIndex((index + 1) % data.media.length);
   };
+
+  const { id } = useParams();
 
   const { data, isLoading, isError } = useGetVenueByIdQuery(id);
   console.log(useGetVenueByIdQuery(id));
@@ -58,7 +58,7 @@ const HeroGallery = () => {
               xmlns="http://www.w3.org/2000/svg"
               className="w-4 h-4"
               viewBox="0 0 24 24"
-              strokeWidth="4"
+              strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
@@ -88,7 +88,7 @@ const HeroGallery = () => {
               xmlns="http://www.w3.org/2000/svg"
               className="w-4 h-4"
               viewBox="0 0 24 24"
-              strokeWidth="4"
+              strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
