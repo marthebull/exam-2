@@ -158,7 +158,7 @@ input[type=checkbox] {
 }
 
 .medium-icon {
-    height: 30px;
+    height: 56px;
   width: auto;
 }
 
@@ -213,6 +213,13 @@ height: auto;
   }
   
 }
+@media screen and (max-width: 350px){
+  .medium-icon {
+    height: 40px;
+}
+
+}
+
 `;
 
 export const Logo = styled.img`

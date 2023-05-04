@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useGetVenuesQuery } from "../../state/api/api";
 import { FilterWrapper } from "../search-filter/styles";
+import { Link } from "react-router-dom";
+import { ButtonOutlineWhite } from "../../styles/GlobalStyles";
 
 const ListVenuesGrid = () => {
   const { data: list, isLoading } = useGetVenuesQuery();
@@ -21,18 +23,18 @@ const ListVenuesGrid = () => {
     }));
   }
 
-  const filteredList = list?.filter((item) => {
-    if (criteria.parking && !item.meta.parking) return false;
-    if (criteria.breakfast && !item.meta.breakfast) return false;
-    if (criteria.wifi && !item.meta.wifi) return false;
-    if (criteria.pets && !item.meta.pets) return false;
+  const filteredList = list?.filter((venues) => {
+    if (criteria.parking && !venues.meta.parking) return false;
+    if (criteria.breakfast && !venues.meta.breakfast) return false;
+    if (criteria.wifi && !venues.meta.wifi) return false;
+    if (criteria.pets && !venues.meta.pets) return false;
     if (searchQuery) {
       const searchLower = searchQuery.toLowerCase();
       if (
-        !item.name?.toLowerCase().includes(searchLower) &&
-        !item.owner.name?.toLowerCase().includes(searchLower) &&
-        !item.location.city?.toLowerCase().includes(searchLower) &&
-        !item.location.country?.toLowerCase().includes(searchLower)
+        !venues.name?.toLowerCase().includes(searchLower) &&
+        !venues.owner.name?.toLowerCase().includes(searchLower) &&
+        !venues.location.city?.toLowerCase().includes(searchLower) &&
+        !venues.location.country?.toLowerCase().includes(searchLower)
       )
         return false;
     }
@@ -56,40 +58,77 @@ const ListVenuesGrid = () => {
         <img
           src="/images/breakfast.svg"
           alt="Breakfast filter icon"
+          className="medium-icon"
           style={{ cursor: "pointer", opacity: criteria.breakfast ? 1 : 0.5 }}
           onClick={() => handleCriteriaChange("breakfast")}
         ></img>
         <img
           src="/images/parking.svg"
           alt="Parking filter icon"
+          className="medium-icon"
           style={{ cursor: "pointer", opacity: criteria.parking ? 1 : 0.5 }}
           onClick={() => handleCriteriaChange("parking")}
         ></img>
         <img
           src="/images/pets.svg"
           alt="Pets filter icon"
+          className="medium-icon"
           style={{ cursor: "pointer", opacity: criteria.pets ? 1 : 0.5 }}
           onClick={() => handleCriteriaChange("pets")}
         ></img>
         <img
           src="/images/wifi.svg"
           alt="Wifi filter icon"
+          className="medium-icon"
           style={{ cursor: "pointer", opacity: criteria.wifi ? 1 : 0.5 }}
           onClick={() => handleCriteriaChange("wifi")}
         ></img>
       </FilterWrapper>
 
-      <ul>
-        {filteredList?.map((item) => (
-          <li key={item.id}>
-            {item.name} - {item.location.city}, {item.location.country} -
-            Parking: {item.meta.parking ? "Yes" : "No"}, Breakfast:{" "}
-            {item.meta.breakfast ? "Yes" : "No"}, Wifi:{" "}
-            {item.meta.wifi ? "Yes" : "No"}, Pets:{" "}
-            {item.meta.pets ? "Yes" : "No"}
-          </li>
+      <div className="w-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
+        {filteredList?.map((venue) => (
+          <Link to="/venues/:id" key={venue.id}>
+            <div className="full-w rounded overflow-hidden shadow-md ">
+              <div
+                className="relative overflow-hidden bg-no-repeat h-80"
+                style={{
+                  backgroundImage: `url(${venue.media})`,
+                  backgroundPosition: `center`,
+                  backgroundSize: `cover`,
+                }}
+              >
+                <div className="flex flex-col justify-center align-middle absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-dark bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100">
+                  <ButtonOutlineWhite className="opacity-1">
+                    view venue
+                  </ButtonOutlineWhite>
+                </div>
+              </div>
+              <div className="px-3 py-4">
+                <h3 className="mb-2 h3">
+                  {venue.location.city}, {venue.location.country}
+                </h3>
+                <div className="flex flex-row gap-3">
+                  <img
+                    className="icon"
+                    src="/images/moon-sea-icon.svg"
+                    alt="Night icon"
+                  ></img>
+
+                  <p>{venue.price} NOK</p>
+                </div>
+                <div className="flex flex-row gap-3">
+                  <img
+                    className="icon"
+                    src="/images/people-icon.svg"
+                    alt="Guests"
+                  ></img>
+                  <p>{venue.maxGuests}</p>
+                </div>
+              </div>
+            </div>
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
