@@ -56,7 +56,7 @@ const RegisterForm = () => {
     try {
       await RegisterSchema.validate(registerCredentials, { abortEarly: false });
       const response = await register(registerCredentials);
-      //console.log(response);
+      console.log(response);
       navigate("/sign-in");
 
       // handle success

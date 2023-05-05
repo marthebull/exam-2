@@ -2,6 +2,7 @@ import React from "react";
 import HeroGallery from "../../components/hero-section/HeroGallery";
 import VenueInfo from "../../components/venueInfo";
 import { Container } from "../../styles/GlobalStyles";
+import BookVenue from "../../components/book-venue";
 
 const Venue = () => {
   return (
@@ -9,7 +10,7 @@ const Venue = () => {
       <HeroGallery />
       <Container className="flex flex-col justify-center md:flex-row">
         <VenueInfo />
-        <VenueInfo />
+        <BookVenue />
       </Container>
     </div>
   );

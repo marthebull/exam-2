@@ -21,10 +21,10 @@ export const loginUser = createAsyncThunk(
           dispatch(login(data.accessToken));
         }
       } else {
-        return rejectWithValue("YOUU shall not pass.....Wroong credentials");
+        return rejectWithValue("Something's not right");
       }
     } catch (error) {
-      return rejectWithValue(`Login fild with errr: ${error.message}`);
+      return rejectWithValue(`An error occurred ${error.message}`);
     }
   }
 );

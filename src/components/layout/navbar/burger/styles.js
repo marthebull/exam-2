@@ -41,10 +41,10 @@ export const BurgerMenu = styled.div`
 
 export const MenuOverlay = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 105vh;
   background-color: rgba(66, 66, 66, 0.3);
   position: absolute;
-  top: 0;
+  top: -5px;
   left: 0;
   z-index: 1;
 

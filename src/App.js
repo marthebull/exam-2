@@ -10,10 +10,23 @@ import ManageBooking from "./pages/manage-booking";
 import ManageVenue from "./pages/manage-venue";
 import PageNotFound from "./pages/page-not-found";
 import Layout from "./components/layout";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
