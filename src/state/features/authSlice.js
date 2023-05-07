@@ -5,7 +5,7 @@ const initialState = {
   name: "",
   email: "",
   avatar: "",
-  isVenueManager: "",
+  isVenueManager: "false",
   accessToken: "",
 };
 
@@ -21,10 +21,10 @@ export const loginUser = createAsyncThunk(
           dispatch(login(data.accessToken));
         }
       } else {
-        return rejectWithValue("YOUU shall not pass.....Wroong credentials");
+        return rejectWithValue("Incorrect credentials");
       }
     } catch (error) {
-      return rejectWithValue(`Login fild with errr: ${error.message}`);
+      return rejectWithValue(`Login failed with error: ${error.message}`);
     }
   }
 );
@@ -42,7 +42,7 @@ const authSlice = createSlice({
       state.name = "";
       state.email = "";
       state.avatar = "";
-      state.isVenueManager = "";
+      state.isVenueManager = "false";
     },
   },
   extraReducers: (builder) => {

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
 import { HeroContainer } from "./styles";
-import { CenterContainer } from "../../styles/GlobalStyles";
 import HeroSpinner from "../loaders/HeroSpinner";
 
 const HeroGallery = () => {
