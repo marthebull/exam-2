@@ -90,14 +90,16 @@ font-size: 1rem;
 }
 
 h5, label, input {
-  font-size: 1.25rem;
+  font-size: 1.20rem;
   font-weight: 400;
   line-height: 150%;
   display: block;
+  text-align: start;
+  letter-spacing: normal;
 }
 
 a {
-  font-size: 1.13rem;
+  font-size: 1.1rem;
   font-weight: 500;
   line-height: 160%;
  
@@ -149,7 +151,7 @@ input::placeholder {
 input[type=checkbox].check {
   width: 22px;
   height: 22px;
-  margin-right: 10px;
+  margin-right: 20px;
   accent-color: var(--dark-grey);
   border: 2px solid var(--dark-grey);}
 
@@ -169,6 +171,7 @@ input[type=checkbox].check {
     height: 56px;
   width: auto;
 }
+
 
 .big-icon {
 height: auto;
@@ -220,7 +223,7 @@ height: auto;
     font-size: 0.8rem;
   }
 
-  input, textarea {
+  input[type=text], input[type=email], input[type=password], textarea {
   min-width: 300px;
 }
   
@@ -269,6 +272,11 @@ export const ButtonSolidDark = styled.button`
     border: 2px solid var(--dark-grey);
     color: var(--dark-grey);
   }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--dark-grey);
+  }
 `;
 
 export const ButtonSolidWhite = styled.button`
@@ -280,6 +288,10 @@ export const ButtonSolidWhite = styled.button`
     background-color: var(--white-transparent);
     color: var(--white);
   }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0);
+  }
 `;
 
 export const ButtonOutlineDark = styled.button`
@@ -290,6 +302,10 @@ export const ButtonOutlineDark = styled.button`
   &:hover {
     background-color: var(--dark-grey-transparent);
   }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0);
+  }
 `;
 
 export const ButtonOutlineWhite = styled.button`
@@ -299,6 +315,10 @@ export const ButtonOutlineWhite = styled.button`
 
   &:hover {
     background-color: var(--white-transparent);
+  }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0);
   }
 `;
 

@@ -12,6 +12,7 @@ const MenuItems = () => {
             venues
           </Link>
         </NavItem>
+
         <NavItem>
           <Link to="/dashboard" className="link nav-link">
             dashboard

@@ -21,10 +21,10 @@ export const loginUser = createAsyncThunk(
           dispatch(login(data.accessToken));
         }
       } else {
-        return rejectWithValue("Something's not right");
+        return rejectWithValue("YOUU shall not pass.....Wroong credentials");
       }
     } catch (error) {
-      return rejectWithValue(`An error occurred ${error.message}`);
+      return rejectWithValue(`Login fild with errr: ${error.message}`);
     }
   }
 );
@@ -35,7 +35,7 @@ const authSlice = createSlice({
   reducers: {
     login(state, action) {
       console.log(action.payload);
-      state.accessToken = action.payload;
+      state.accessToken = action.payload.accessToken;
     },
     logout(state) {
       state.accessToken = "";

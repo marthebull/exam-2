@@ -17,7 +17,7 @@ const RegisterSchema = Yup.object().shape({
     .url("Invalid URL")
     .test("is-image-url", "Avatar must be a valid image URL", (value) => {
       if (!value) {
-        return true; // allow empty value
+        return true; // allowing empty value
       }
       return /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(value);
     }),
@@ -76,62 +76,70 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-start">
-      <label htmlFor="name" className="mb-1">
-        Name
-      </label>
-      <input
-        id="name"
-        name="name"
-        type="text"
-        onChange={handleChange}
-        value={registerCredentials.name}
-        placeholder="user_name"
-        className="mb-4"
-      />
-      {errors.name && <div>{errors.name}</div>}
+    <form onSubmit={handleSubmit} className="flex flex-col ">
+      <div className="gap-2 mb-6 ">
+        <label htmlFor="name" className="mb-1 ">
+          name
+        </label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          onChange={handleChange}
+          value={registerCredentials.name}
+          placeholder="user_name"
+          className="mb-2"
+        />
+        {errors.name && <div>{errors.name}</div>}
+      </div>
 
-      <label htmlFor="email" className="mb-1">
-        Email Address
-      </label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        onChange={handleChange}
-        value={registerCredentials.email}
-        placeholder="example@noroff.no"
-        className="mb-4"
-      />
-      {errors.email && <div>{errors.email}</div>}
+      <div className="gap-2 mb-6 items-start">
+        <label htmlFor="email" className="mb-1">
+          email address
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          onChange={handleChange}
+          value={registerCredentials.email}
+          placeholder="example@noroff.no"
+          className="mb-2"
+        />
+        {errors.email && <div>{errors.email}</div>}
+      </div>
 
-      <label htmlFor="avatar" className="mb-1">
-        Avatar URL
-      </label>
-      <input
-        id="avatar"
-        name="avatar"
-        type="text"
-        onChange={handleChange}
-        value={registerCredentials.avatar}
-        placeholder="example.url.gif"
-        className="mb-4"
-      />
-      {errors.avatar && <div>{errors.avatar}</div>}
+      <div className="gap-2 mb-6 items-start">
+        <label htmlFor="avatar" className="mb-1">
+          avatar URL
+        </label>
+        <input
+          id="avatar"
+          name="avatar"
+          type="text"
+          onChange={handleChange}
+          value={registerCredentials.avatar}
+          placeholder="example.url.gif"
+          className="mb-2"
+        />
+        {errors.avatar && <div>{errors.avatar}</div>}
+      </div>
 
-      <label htmlFor="password" className="mb-1">
-        Password
-      </label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        onChange={handleChange}
-        value={registerCredentials.password}
-        placeholder="********"
-        className="mb-6"
-      />
-      {errors.password && <div>{errors.password}</div>}
+      <div className="gap-2 mb-6 items-start">
+        <label htmlFor="password" className="mb-1">
+          password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          onChange={handleChange}
+          value={registerCredentials.password}
+          placeholder="********"
+          className="mb-2"
+        />
+        {errors.password && <div>{errors.password}</div>}
+      </div>
 
       <div className="flex flex-row items-center mb-6">
         <input
