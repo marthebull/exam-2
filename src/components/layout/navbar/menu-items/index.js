@@ -18,6 +18,7 @@ const MenuItems = () => {
             dashboard
           </Link>
         </NavItem>
+
         <NavItem>
           <Link to="/sign-in" className="link nav-link">
             log out

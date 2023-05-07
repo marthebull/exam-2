@@ -1,13 +1,20 @@
 import { useGetVenuesQuery } from "../../../state/api/api";
 import { Link } from "react-router-dom";
 import { ButtonOutlineWhite } from "../../../styles/GlobalStyles";
+import CardLoader from "../../loaders/CardLoader";
 
 const FeaturedVenues = () => {
   const { data: list, isLoading } = useGetVenuesQuery();
   console.log(useGetVenuesQuery());
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
+        <CardLoader />
+        <CardLoader />
+        <CardLoader />
+      </div>
+    );
   }
 
   return (

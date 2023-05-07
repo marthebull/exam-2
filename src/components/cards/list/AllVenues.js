@@ -3,6 +3,7 @@ import { useGetVenuesQuery } from "../../../state/api/api";
 import { FilterWrapper } from "./styles";
 import { Link } from "react-router-dom";
 import { ButtonOutlineWhite } from "../../../styles/GlobalStyles";
+import CardLoader from "../../loaders/CardLoader";
 
 const ListAllVenues = () => {
   const { data: list, isLoading } = useGetVenuesQuery();
@@ -42,7 +43,13 @@ const ListAllVenues = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
+        <CardLoader />
+        <CardLoader />
+        <CardLoader />
+      </div>
+    );
   }
 
   return (
