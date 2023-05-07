@@ -10,7 +10,7 @@ const VenueInfo = () => {
   console.log(useGetVenueByIdQuery(id));
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>loading...</div>;
   }
 
   if (isError) {
@@ -24,19 +24,7 @@ const VenueInfo = () => {
       </h2>
       <p className="h3 mb-8">{data.price} NOK / night</p>
       <h3 className="h5 mb-1">Description</h3>
-      <p className="p mb-10">
-        {data.description} Located on the outskirts of the historic town of
-        Lagos, guests are within easy reach of the natural attractions of this
-        part of the Algarve. Soak up the shimmer of the sun on the sea during a
-        refreshing cliff walk, with numerous secluded beaches awaiting below.
-        Get even closer to the natural beauty of the area via a refreshing
-        cruise, sea-kayaking lesson or diving outing under the blue waves of the
-        Atlantic. Visit miles of tranquil beaches and peaceful lighthouses to
-        the national park to the west, before returning to Lagos for a delicious
-        evening meal at one of the renowned local restaurants. The sunset glory
-        of the seascape will await you upon your return to this impressive
-        villa.
-      </p>
+      <p className="p mb-10">{data.description}</p>
 
       <div className="flex flex-col gap-2 mb-10">
         <div className="flex flex-row gap-3">
@@ -95,8 +83,7 @@ const VenueInfo = () => {
       <h3 className="h5 mb-2">Address</h3>
       <p className="p mb-1">{data.location.address}</p>
       <p className="p  mb-10">
-        {data.location.city}, {data.location.country} The sunset glory of the
-        seascape will await you upon your return to this impressive villa.
+        {data.location.city}, {data.location.country}
       </p>
       <div className="flex flex-row items-center gap-2">
         <div className="h-full">

@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ButtonSolidDark } from "../../styles/GlobalStyles";
 import { loginUser } from "../../state/features/authSlice";
-import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+  const { accessToken } = useSelector((state) => state.auth);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await dispatch(loginUser({ credentials: { email, password }, navigate }));
-    } catch (error) {
-      setError(error.error.message);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(credentials));
+  };
+
+  const handleChange = (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -33,8 +36,8 @@ const LoginForm = () => {
             id="email"
             name="email"
             type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            value={credentials.email}
+            onChange={handleChange}
             placeholder="example@noroff.no"
             className="mb-2"
           />
@@ -48,13 +51,13 @@ const LoginForm = () => {
             id="password"
             name="password"
             type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            value={credentials.password}
+            onChange={handleChange}
             placeholder="********"
             className="mb-2"
           />
         </div>
-        {error && <p className="text-red-500">{error}</p>}
+        {accessToken && <p>Access token: {accessToken}</p>}
 
         <ButtonSolidDark type="submit">sign in</ButtonSolidDark>
       </form>
