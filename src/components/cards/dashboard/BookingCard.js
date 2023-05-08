@@ -6,8 +6,8 @@ const BookingCard = () => {
   return (
     <>
       <Link>
-        <h3 class="mb-2">2023.06.12 - 2023.06.25</h3>
-        <div class="w-full rounded overflow-hidden shadow-md ">
+        <h3 className="mb-2">2023.06.12 - 2023.06.25</h3>
+        <div classname="w-full rounded overflow-hidden shadow-md ">
           <div className="relative overflow-hidden bg-cover bg-center bg-no-repeat max-h-80">
             <img
               className="w-full"
@@ -23,7 +23,7 @@ const BookingCard = () => {
             </div>
           </div>
           <div className="px-3 py-4">
-            <h4 class="mb-2 h3">Placencia Village, Belize</h4>
+            <h4 className="mb-2 h3">Placencia Village, Belize</h4>
             <div className="flex flex-row gap-3">
               <img
                 classname="icon"

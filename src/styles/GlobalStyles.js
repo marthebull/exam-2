@@ -98,6 +98,12 @@ h5, label, input {
   letter-spacing: normal;
 }
 
+.label {
+  font-size: 1.20rem;
+  font-weight: 400;
+
+}
+
 a {
   font-size: 1.1rem;
   font-weight: 500;
@@ -141,6 +147,10 @@ input[type=text], input[type=textarea], input[type=email], input[type=password] 
   border-radius: 2px;
   border: 2px solid var(--dark-grey);
   cursor: pointer;
+}
+
+form {
+  max-width: 500px;
 }
 
 textarea {

@@ -33,7 +33,7 @@ const VenueInfo = () => {
             src="/images/star-icon.svg"
             alt="Rating star icon"
           ></img>
-          <p className="h5">{data.rating}.0</p>
+          <p className="h5">{data.rating}/5</p>
         </div>
         <div className="flex flex-row gap-3">
           <img
