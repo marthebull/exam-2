@@ -21,7 +21,7 @@ export const api = createApi({
     }),
 
     getVenues: build.query({
-      query: () => `venues?owner=true`,
+      query: () => `venues?sort=price&sortOrder=desc&_owner=true`,
     }),
 
     getVenueById: build.query({
