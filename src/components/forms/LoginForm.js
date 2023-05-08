@@ -15,7 +15,7 @@ const LoginForm = () => {
     (state) => state.persisted.auth.loginErrorMessage
   );
 
-  const accessToken = useSelector((state) => state.persisted.auth.accessToken);
+  const { accessToken, name } = useSelector((state) => state.persisted.auth);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const LoginForm = () => {
   };
 
   if (accessToken.length > 0) {
-    navigate("/");
+    navigate(`/dashboard/${name}`);
   }
 
   return (

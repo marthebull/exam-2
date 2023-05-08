@@ -54,12 +54,11 @@ const RegisterForm = () => {
     event.preventDefault();
     setIsLoading(true);
     try {
+      // handle success
       await RegisterSchema.validate(registerCredentials, { abortEarly: false });
       const response = await register(registerCredentials);
       console.log(response);
       navigate("/sign-in");
-
-      // handle success
     } catch (error) {
       console.error(error);
       if (error.inner) {

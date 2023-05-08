@@ -43,6 +43,14 @@ export const api = createApi({
         body: credentials,
       }),
     }),
+
+    newVenue: build.mutation({
+      query: (credentials) => ({
+        url: `venues`,
+        method: "POST",
+        body: credentials,
+      }),
+    }),
   }),
   onError: (error, query) => {
     console.error("API request failed", { error, query });
@@ -56,5 +64,6 @@ export const {
   useGetVenueByIdQuery,
   useRegisterMutation,
   useLoginMutation,
+  useNewVenueMutation,
 } = api;
 export const loginEndpoint = api.endpoints.login;
