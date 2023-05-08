@@ -1,7 +1,12 @@
 import React from "react";
 import { useGetProfileByNameQuery } from "../../state/api/api";
-import { CenterContainer, DashAvatar } from "../../styles/GlobalStyles";
+import {
+  ButtonOutlineDark,
+  CenterContainer,
+  DashAvatar,
+} from "../../styles/GlobalStyles";
 import { Edit } from "./styles";
+import { Link } from "react-router-dom";
 
 const UserInfo = ({ username }) => {
   const {
@@ -9,6 +14,7 @@ const UserInfo = ({ username }) => {
     isLoading: isUserLoading,
     isError: isUserError,
   } = useGetProfileByNameQuery(username);
+  console.log(user);
 
   return (
     <>
@@ -16,15 +22,23 @@ const UserInfo = ({ username }) => {
         <div className="relative">
           <Edit>edit</Edit>
           <DashAvatar
-            src={user ? user.avatar : "/images/placeholder-avatar.svg"}
+            src={user?.avatar ? user.avatar : "/images/placeholder-avatar.svg"}
           ></DashAvatar>
         </div>
         <h1 className="h3 pb-1">{user?.name}</h1>
-        <div className="flex flex-row gap-3">
-          <img src="/images/sun-sea-icon.svg" alt="Guests"></img>
-          <img src="/images/house-icon.svg" alt="Guests"></img>
-          {user?.venueManager ? <p>guest</p> : <p>host</p>}
+        <div className="flex flex-row gap-3 pb-6">
+          {user?.venueManager ? (
+            <img src="/images/house-icon.svg" alt="Host icon"></img>
+          ) : (
+            <img src="/images/sun-sea-icon.svg" alt="Guests icon"></img>
+          )}
+          {user?.venueManager ? <p>host</p> : <p>guest</p>}
         </div>
+        {user?.venueManager && (
+          <Link to="/create-new-venue" className="link">
+            <ButtonOutlineDark>+ new venue</ButtonOutlineDark>
+          </Link>
+        )}
       </CenterContainer>
     </>
   );

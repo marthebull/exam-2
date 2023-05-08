@@ -5,7 +5,7 @@ import ListAllVenues from "../../components/cards/list/AllVenues";
 const Venues = () => {
   return (
     <>
-      <Container className="flex flex-col my-6 gap-6">
+      <Container className="flex flex-col my-6 gap-6 pt-3 lsm:pt-8">
         <ListAllVenues />
       </Container>
     </>

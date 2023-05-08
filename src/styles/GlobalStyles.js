@@ -273,10 +273,10 @@ export const InfoContainer = styled.div`
 
 export const DashAvatar = styled.img`
   border-radius: 50%;
-  height: 200px;
-  width: 200px;
+  height: 180px;
+  width: 180px;
   object-fit: cover;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const ButtonSolidDark = styled.button`

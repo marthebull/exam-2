@@ -36,16 +36,24 @@ const HeroGallery = () => {
     <>
       <HeroContainer className="relative">
         <div className="relative w-full h-full">
-          {data.media.map((image, i) => (
+          {data.media.length > 0 ? (
+            data.media.map((image, i) => (
+              <img
+                key={i}
+                src={image}
+                alt={` ${i}`}
+                className={`absolute top-0 left-0 w-full h-full object-center object-cover ${
+                  i === index ? "opacity-100" : "opacity-0"
+                } transition-opacity duration-500`}
+              />
+            ))
+          ) : (
             <img
-              key={i}
-              src={image}
-              alt={` ${i}`}
-              className={`absolute top-0 left-0 w-full h-full object-center object-cover ${
-                i === index ? "opacity-100" : "opacity-0"
-              } transition-opacity duration-500`}
+              src="/images/placeholder-image.svg"
+              alt="Placeholder"
+              className="absolute top-0 left-0 w-full h-full object-center object-cover"
             />
-          ))}
+          )}
         </div>
       </HeroContainer>
 

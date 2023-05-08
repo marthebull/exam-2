@@ -6,12 +6,12 @@ const NoVenuesYet = () => {
   return (
     <div className="flex flex-col items-center mx-auto">
       <img
-        src="images/house-icon.svg"
+        src="/images/house-icon.svg"
         className="big-icon"
-        alt="Broken heart icon"
+        alt="Venues icon"
       ></img>
       <h2 className="text-center">
-        register as venuemanager to create and manage your own venues
+        no venues yet, register as host to create and manage your own venues
       </h2>
 
       <Link to="/register" className="link pt-6">

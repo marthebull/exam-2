@@ -26,7 +26,10 @@ const FeaturedVenues = () => {
               <div
                 className="relative overflow-hidden bg-no-repeat h-80"
                 style={{
-                  backgroundImage: `url(${venue.media})`,
+                  backgroundImage:
+                    venue.media.length > 0
+                      ? `url(${venue.media[0]})`
+                      : `url(/images/placeholder-image.svg)`,
                   backgroundPosition: `center`,
                   backgroundSize: `cover`,
                 }}

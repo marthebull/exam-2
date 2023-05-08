@@ -2,11 +2,19 @@ import React from "react";
 import { NavAvatar, NavItem } from "./styles";
 import { Link } from "react-router-dom";
 import { NavMenu } from "../styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../../state/features/authSlice";
 
 const MenuItems = () => {
-  const accessToken = useSelector((state) => state.persisted.auth.accessToken);
-  const username = useSelector((state) => state.persisted.auth.name);
+  const { accessToken, name, avatar } = useSelector(
+    (state) => state.persisted.auth
+  );
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <>
@@ -19,28 +27,33 @@ const MenuItems = () => {
 
         {accessToken.length > 0 && (
           <NavItem>
-            <Link to={"/dashboard/" + username.value} className="link nav-link">
+            <Link to={"/dashboard/" + name} className="link nav-link">
               dashboard
+            </Link>
+          </NavItem>
+        )}
+
+        {accessToken.length > 0 ? (
+          <NavItem>
+            <Link to="/" className="link nav-link" onClick={handleLogout}>
+              log out
+            </Link>
+          </NavItem>
+        ) : (
+          <NavItem>
+            <Link to="/sign-in" className="link nav-link">
+              sign in
             </Link>
           </NavItem>
         )}
 
         {accessToken.length > 0 && (
           <NavItem>
-            <Link to="/dashboard" className="link nav-link">
-              dashboard
+            <Link to={"/dashboard/" + name}>
+              <NavAvatar src={avatar}></NavAvatar>
             </Link>
           </NavItem>
         )}
-
-        <NavItem>
-          <Link to="/sign-in" className="link nav-link">
-            log out
-          </Link>
-        </NavItem>
-        <NavItem>
-          <NavAvatar src="/images/placeholder-avatar.svg"></NavAvatar>
-        </NavItem>
       </NavMenu>
     </>
   );

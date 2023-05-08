@@ -7,7 +7,7 @@ import Burger from "./burger";
 
 const Navbar = () => {
   return (
-    <div className="sticky py-0.5 top-0 z-50 bg-white">
+    <div className="sticky py-0.5 top-0 z-50 bg-white shadow-sm">
       <Container>
         <Nav>
           <Link to="/" className="link">

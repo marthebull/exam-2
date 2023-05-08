@@ -19,7 +19,10 @@ export const loginUser = createAsyncThunk(
 
     if (data) {
       if (data.accessToken !== "") {
-        dispatch(login(data.accessToken));
+        const accessToken = data.accessToken;
+        const name = data.name;
+        const avatar = data.avatar;
+        dispatch(login({ accessToken, name, avatar }));
       }
     } else {
       // Set loginError in state to error message from API whenever login fails.
@@ -34,11 +37,11 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
-      state.accessToken = action.payload;
-      state.name = action.payload;
-      state.email = action.payload;
-      state.avatar = action.payload;
-      state.isVenueManager = action.payload;
+      state.accessToken = action.payload.accessToken;
+      state.name = action.payload.name;
+      //state.email = action.payload;
+      state.avatar = action.payload.avatar;
+      //state.isVenueManager = action.payload;
       state.loginErrorMessage = "";
     },
     logout(state) {
@@ -46,7 +49,7 @@ const authSlice = createSlice({
       state.name = "";
       state.email = "";
       state.avatar = "";
-      state.isVenueManager = "false";
+      state.isVenueManager = false;
     },
     loginErrorMessage(state, action) {
       state.loginErrorMessage = action.payload;
