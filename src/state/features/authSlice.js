@@ -5,26 +5,26 @@ const initialState = {
   name: "",
   email: "",
   avatar: "",
-  isVenueManager: "false",
+  isVenueManager: false,
   accessToken: "",
+  loginErrorMessage: "",
 };
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials, { dispatch, rejectWithValue }) => {
-    try {
-      const { data } = await dispatch(
-        api.endpoints.login.initiate(credentials)
-      );
-      if (data) {
-        if (data.accessToken !== "") {
-          dispatch(login(data.accessToken));
-        }
-      } else {
-        return rejectWithValue("Incorrect credentials");
+    const { data, error } = await dispatch(
+      api.endpoints.login.initiate(credentials)
+    );
+
+    if (data) {
+      if (data.accessToken !== "") {
+        dispatch(login(data.accessToken));
       }
-    } catch (error) {
-      return rejectWithValue(`Login failed with error: ${error.message}`);
+    } else {
+      // Set loginError in state to error message from API whenever login fails.
+      // Use this string to output front end.
+      dispatch(loginErrorMessage(error.data.errors[0].message));
     }
   }
 );
@@ -34,8 +34,12 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
-      console.log(action.payload);
-      state.accessToken = action.payload.accessToken;
+      state.accessToken = action.payload;
+      state.name = action.payload;
+      state.email = action.payload;
+      state.avatar = action.payload;
+      state.isVenueManager = action.payload;
+      state.loginErrorMessage = "";
     },
     logout(state) {
       state.accessToken = "";
@@ -43,6 +47,9 @@ const authSlice = createSlice({
       state.email = "";
       state.avatar = "";
       state.isVenueManager = "false";
+    },
+    loginErrorMessage(state, action) {
+      state.loginErrorMessage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -52,5 +59,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, loginErrorMessage } = authSlice.actions;
 export default authSlice.reducer;

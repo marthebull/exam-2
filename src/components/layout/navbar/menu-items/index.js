@@ -2,8 +2,12 @@ import React from "react";
 import { NavAvatar, NavItem } from "./styles";
 import { Link } from "react-router-dom";
 import { NavMenu } from "../styles";
+import { useSelector } from "react-redux";
 
 const MenuItems = () => {
+  const accessToken = useSelector((state) => state.persisted.auth.accessToken);
+  const username = useSelector((state) => state.persisted.auth.name);
+
   return (
     <>
       <NavMenu>
@@ -13,11 +17,21 @@ const MenuItems = () => {
           </Link>
         </NavItem>
 
-        <NavItem>
-          <Link to="/dashboard" className="link nav-link">
-            dashboard
-          </Link>
-        </NavItem>
+        {accessToken.length > 0 && (
+          <NavItem>
+            <Link to={"/dashboard/" + username.value} className="link nav-link">
+              dashboard
+            </Link>
+          </NavItem>
+        )}
+
+        {accessToken.length > 0 && (
+          <NavItem>
+            <Link to="/dashboard" className="link nav-link">
+              dashboard
+            </Link>
+          </NavItem>
+        )}
 
         <NavItem>
           <Link to="/sign-in" className="link nav-link">
