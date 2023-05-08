@@ -138,20 +138,21 @@ const NewVenueForm = () => {
         <label htmlFor="description" className="mb-1 ">
           description
         </label>
-        <input
+        <textarea
           id="description"
           name="description"
-          type="text"
+          rows="4"
           onChange={handleChange}
           value={newVenueDetails.description}
-          placeholder="describe venue and location"
+          placeholder="describe the venue and location"
           className="mb-2"
+          style={{ color: "#d3d3d3" }}
         />
         {errors.description && <div>{errors.description}</div>}
       </div>
 
       <ButtonSolidDark type="submit" disabled={isLoading}>
-        {isLoading ? "Loading..." : "sign up"}
+        {isLoading ? "Loading..." : "submit"}
       </ButtonSolidDark>
     </form>
   );

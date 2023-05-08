@@ -132,7 +132,7 @@ button {
   margin: 10px auto;
 }
 
-input[type=text], input[type=email], input[type=password], textarea {
+input[type=text], input[type=textarea], input[type=email], input[type=password] {
   height: 50px;
   width: 100%;
   min-width: 450px;
@@ -143,9 +143,23 @@ input[type=text], input[type=email], input[type=password], textarea {
   cursor: pointer;
 }
 
-input::placeholder {
+textarea {
+  width: 100%;
+  min-height: 70px;
+  min-width: 450px;
+  max-width: 500px;
+  padding: 12px;
+  border-radius: 2px;
+  border: 2px solid var(--dark-grey);
+  cursor: pointer;
+}
+
+input::placeholder, textarea::placeholder {
   color: var(--light-grey);
   letter-spacing: 0.03rem;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 150%;
 }
 
 input[type=checkbox].check {
