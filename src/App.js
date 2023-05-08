@@ -35,7 +35,7 @@ function App() {
           <Route path="/create-new-venue" element={<CreateNewVenue />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/:username" element={<Dashboard />} />
           <Route path="/manage-booking" element={<ManageBooking />} />
           <Route path="/manage-venue" element={<ManageVenue />} />
           <Route path="*" element={<PageNotFound />} />

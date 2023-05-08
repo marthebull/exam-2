@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
-import { InfoContainer } from "./styles";
+import { InfoContainer } from "../../styles/GlobalStyles";
 
 const VenueInfo = () => {
   const { id } = useParams();

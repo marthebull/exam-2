@@ -1,12 +1,16 @@
-import React from 'react'
+import React from "react";
+import UserInfo from "../../components/dashboard/UserInfo";
+import UserOverview from "../../components/dashboard/UserOverview";
+import { useParams } from "react-router-dom";
 
 const Dashboard = () => {
+  const { username } = useParams();
   return (
     <div>
-        <h1>Dashboard</h1>
-      
+      <UserInfo username={username} />
+      <UserOverview username={username} />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

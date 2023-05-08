@@ -174,8 +174,8 @@ input[type=checkbox].check {
 
 
 .big-icon {
-height: auto;
-  width: 100px;
+height: 80px;
+  width: auto;
   margin: 30px 0;
 }
 
@@ -260,6 +260,23 @@ export const CenterContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+`;
+
+export const InfoContainer = styled.div`
+  border-right: 1px solid #d3d3d3;
+
+  @media screen and (max-width: 700px) {
+    border-right: none;
+    border-bottom: 1px solid #d3d3d3;
+  }
+`;
+
+export const DashAvatar = styled.img`
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
 `;
 
 export const ButtonSolidDark = styled.button`

@@ -16,8 +16,12 @@ export const api = createApi({
       query: () => `profiles`,
     }),
 
+    getProfileByName: build.query({
+      query: (username) => `profiles/${username}?_bookings=true&_venues=true`,
+    }),
+
     getVenues: build.query({
-      query: () => `venues?_owner=true`,
+      query: () => `venues?sortOrder=desc&_owner=true`,
     }),
 
     getVenueById: build.query({
@@ -47,6 +51,7 @@ export const api = createApi({
 
 export const {
   useGetProfilesQuery,
+  useGetProfileByNameQuery,
   useGetVenuesQuery,
   useGetVenueByIdQuery,
   useRegisterMutation,
