@@ -104,11 +104,10 @@ h5, label, input {
 
 }
 
-a {
+a, .a {
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 160%;
- 
   letter-spacing: 0;
 }
 

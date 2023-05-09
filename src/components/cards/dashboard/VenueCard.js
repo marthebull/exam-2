@@ -34,7 +34,7 @@ const VenueCards = ({ user }) => {
                   alt="Night icon"
                 ></img>
 
-                <p className="p">{venue.price} NOK</p>
+                <p className="a">{venue.price} NOK</p>
               </div>
               <div className="flex flex-row gap-3">
                 <img
@@ -42,7 +42,7 @@ const VenueCards = ({ user }) => {
                   src="/images/people-icon.svg"
                   alt="Guests"
                 ></img>
-                <p className="p">max {venue.maxGuests} guests</p>
+                <p className="a">max {venue.maxGuests} guests</p>
               </div>
 
               <div className="flex flex-row md:pt-8 lg:pt-1 justify-end">
