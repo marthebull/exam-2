@@ -109,7 +109,6 @@ a, .a {
   line-height: 160%;
   letter-spacing: 0;
 }
-
 .p {
   font-size: 1.1rem;
   font-weight: 300;
