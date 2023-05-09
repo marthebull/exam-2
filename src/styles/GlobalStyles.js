@@ -138,7 +138,7 @@ button {
   margin: 10px auto;
 }
 
-input[type=text], input[type=textarea], input[type=email], input[type=password] {
+input[type=text], input[type=number], input[type=textarea], input[type=email], input[type=password] {
   height: 50px;
   width: 100%;
   min-width: 450px;
@@ -247,7 +247,7 @@ height: 80px;
     font-size: 0.8rem;
   }
 
-  input[type=text], input[type=email], input[type=password], textarea {
+  input[type=text], input[type=number], input[type=email], input[type=password], textarea {
   min-width: 300px;
 }
   
@@ -289,7 +289,7 @@ export const CenterContainer = styled.div`
 export const InfoContainer = styled.div`
   border-right: 1px solid #d3d3d3;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 768px) {
     border-right: none;
     border-bottom: 1px solid #d3d3d3;
   }

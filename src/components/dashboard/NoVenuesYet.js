@@ -10,9 +10,20 @@ const NoVenuesYet = ({ user }) => {
         className="big-icon"
         alt="Venues icon"
       ></img>
-      <h2 className="text-center">
-        register as host to create and manage your own venues
-      </h2>
+
+      {user?.venueManager ? (
+        <>
+          <h2 className="text-center">no venues to manage.</h2>
+          <h2 className="text-center">
+            start hosting by creating your first venue
+          </h2>
+        </>
+      ) : (
+        <>
+          <h2 className="text-center">no venues to manage.</h2>
+          <h2 className="text-center">register as host to add new venues</h2>
+        </>
+      )}
 
       {user?.venueManager ? (
         <Link to="/create-new-venue" className="link pt-6">

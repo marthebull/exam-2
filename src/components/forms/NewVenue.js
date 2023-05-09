@@ -49,10 +49,10 @@ const NewVenueForm = () => {
   const [newVenueDetails, setNewVenueDetails] = useState({
     name: "",
     description: "",
-    media: "",
-    price: 899,
-    maxGuests: 16,
-    rating: 5,
+    media: [],
+    price: 0,
+    maxGuests: 0,
+    rating: 0,
     meta: {
       wifi: false,
       parking: false,
@@ -87,6 +87,8 @@ const NewVenueForm = () => {
           [name.slice(5)]: checked, // update the corresponding property in the meta object
         },
       }));
+      console.log(value);
+      console.log(newVenueDetails);
     } else if (name.includes("location")) {
       // if the input name includes a dot ('.'), treat it as a nested property
       const [parent, child] = name.split(".");
@@ -97,12 +99,16 @@ const NewVenueForm = () => {
           [child]: value,
         },
       }));
+      console.log(value);
+      console.log(newVenueDetails);
     } else {
       // for all other inputs, update the state directly
       setNewVenueDetails((prevState) => ({
         ...prevState,
         [name]: type === "checkbox" ? checked : value,
       }));
+      console.log(value);
+      console.log(newVenueDetails);
     }
   };
 
@@ -112,13 +118,19 @@ const NewVenueForm = () => {
     try {
       // handle success
       await NewVenueSchema.validate(newVenueDetails, { abortEarly: false });
-      const response = await data(newVenueDetails);
+      const response = await data({
+        ...newVenueDetails,
+        price: parseFloat(newVenueDetails.price), // parse as number
+        maxGuests: parseInt(newVenueDetails.maxGuests), // parse as number
+        rating: parseFloat(newVenueDetails.rating), // parse as number
+      });
       console.log(response);
       if (!response.error) {
         navigate("/venues");
       }
     } catch (error) {
       console.error(error);
+      console.log(useNewVenueMutation);
       if (error.inner) {
         const formErrors = error.inner.reduce((acc, err) => {
           acc[err.path] = err.message;
@@ -129,6 +141,7 @@ const NewVenueForm = () => {
         console.log(formErrors);
         console.log(error.inner);
         console.log(data);
+        console.log(newVenueDetails);
       }
       // handle error
     } finally {
@@ -204,7 +217,7 @@ const NewVenueForm = () => {
         <input
           id="price"
           name="price"
-          type="text"
+          type="number"
           onChange={handleChange}
           value={newVenueDetails.price}
           placeholder="899"
@@ -220,7 +233,7 @@ const NewVenueForm = () => {
         <input
           id="maxGuests"
           name="maxGuests"
-          type="text"
+          type="number"
           onChange={handleChange}
           value={newVenueDetails.maxGuests}
           placeholder="16"
@@ -236,7 +249,7 @@ const NewVenueForm = () => {
         <input
           id="rating"
           name="rating"
-          type="text"
+          type="number"
           onChange={handleChange}
           value={newVenueDetails.rating}
           placeholder="5"
@@ -323,6 +336,38 @@ const NewVenueForm = () => {
           className="mb-1"
         />
         {errors.continent && <div>{errors.continent}</div>}
+      </div>
+
+      <div className="gap-2 mb-3 ">
+        <label htmlFor="lat" className="mb-1 ">
+          lat
+        </label>
+        <input
+          id="lat"
+          name="location.lat"
+          type="text"
+          onChange={handleChange}
+          value={newVenueDetails.lat}
+          placeholder="38.8951"
+          className="mb-1"
+        />
+        {errors.lat && <div>{errors.lat}</div>}
+      </div>
+
+      <div className="gap-2 mb-3 ">
+        <label htmlFor="lng" className="mb-1 ">
+          lng
+        </label>
+        <input
+          id="lng"
+          name="location.lng"
+          type="text"
+          onChange={handleChange}
+          value={newVenueDetails.lng}
+          placeholder="-77.0364"
+          className="mb-1"
+        />
+        {errors.lng && <div>{errors.lng}</div>}
       </div>
 
       <div className="flex flex-col gap-2 py-4">

@@ -44,6 +44,35 @@ const VenueCards = ({ user }) => {
                 ></img>
                 <p className="p">max {venue.maxGuests} guests</p>
               </div>
+
+              <div className="flex flex-row md:pt-8 lg:pt-1 justify-end">
+                <div className="flex flex-row gap-4 content-center">
+                  <img
+                    className="icon-row opacity-50 my-auto"
+                    style={{ opacity: venue.meta.breakfast ? 1 : 0.3 }}
+                    src="/images/coffe-cup-icon.svg"
+                    alt="Guests"
+                  ></img>
+                  <img
+                    className="icon-row opacity-50 my-auto"
+                    style={{ opacity: venue.meta.parking ? 1 : 0.3 }}
+                    src="/images/car-icon.svg"
+                    alt="Guests"
+                  ></img>
+                  <img
+                    className="icon-row opacity-50 my-auto"
+                    style={{ opacity: venue.meta.pets ? 1 : 0.3 }}
+                    src="/images/paw-icon.svg"
+                    alt="Guests"
+                  ></img>
+                  <img
+                    className="icon-row my-auto"
+                    style={{ opacity: venue.meta.wifi ? 1 : 0.3 }}
+                    src="/images/wifi-icon.svg"
+                    alt="Guests"
+                  ></img>
+                </div>
+              </div>
             </div>
           </div>
         </div>
