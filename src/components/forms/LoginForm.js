@@ -28,7 +28,6 @@ const LoginForm = () => {
 
   return (
     <>
-      {accessToken}
       <form onSubmit={handleLogin} className="flex flex-col items-start">
         <div className="gap-2 mb-6 items-start">
           <label htmlFor="email" className="mb-1">

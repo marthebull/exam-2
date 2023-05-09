@@ -14,11 +14,10 @@ const UserInfo = ({ username }) => {
     isLoading: isUserLoading,
     isError: isUserError,
   } = useGetProfileByNameQuery(username);
-  console.log(user);
 
   return (
     <>
-      <CenterContainer className="pt-8">
+      <CenterContainer className="pt-12">
         <div className="relative">
           <Edit>edit</Edit>
           <DashAvatar
