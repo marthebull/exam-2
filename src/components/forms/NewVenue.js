@@ -8,15 +8,6 @@ const NewVenueSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   description: Yup.string().required("Description is required"),
 
-  media: Yup.string()
-    .url("Invalid URL")
-    .test("is-image-url", "Image must be a valid image URL", (value) => {
-      if (!value) {
-        return true; // allowing empty value
-      }
-      return /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(value);
-    }),
-
   price: Yup.number().required("Price is required"),
   maxGuests: Yup.number()
     .required("Max guests is required")
@@ -78,7 +69,14 @@ const NewVenueForm = () => {
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
-    if (name.startsWith("meta.")) {
+    if (name === "media") {
+      const newValue = value.replace(/"/g, ""); // remove all quotes from value
+      setNewVenueDetails((prevState) => ({
+        ...prevState,
+        media: [value],
+      }));
+      console.log(newVenueDetails);
+    } else if (name.startsWith("meta.")) {
       // if the checkbox name starts with 'meta.'
       setNewVenueDetails((prevState) => ({
         ...prevState,
