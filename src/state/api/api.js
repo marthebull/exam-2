@@ -20,6 +20,14 @@ export const api = createApi({
       query: (username) => `profiles/${username}?_bookings=true&_venues=true`,
     }),
 
+    updateAvatar: build.mutation({
+      query: (credentials, username) => ({
+        url: `profiles/${username}/media`,
+        method: "PUT",
+        body: credentials,
+      }),
+    }),
+
     getVenues: build.query({
       query: () => `venues?sortOrder=desc&_owner=true`,
     }),
@@ -60,6 +68,7 @@ export const api = createApi({
 export const {
   useGetProfilesQuery,
   useGetProfileByNameQuery,
+  useUpdateAvatarMutation,
   useGetVenuesQuery,
   useGetVenueByIdQuery,
   useRegisterMutation,

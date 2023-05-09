@@ -17,7 +17,7 @@ const VenueInfo = () => {
     return <div>Something wrong</div>;
   }
   return (
-    <InfoContainer className=" pb-8 my-10 mx-auto w-100 max-w-lg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
+    <InfoContainer className=" pb-8 my-10 w-100 md:max-w-lg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
       <h1 className="h1 mb-1">{data.name}</h1>
       <h2 className="h5 mb-8">
         {data.location.city}, {data.location.country}

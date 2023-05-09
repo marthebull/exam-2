@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGetProfileByNameQuery } from "../../state/api/api";
 import {
   ButtonOutlineDark,
@@ -7,6 +7,8 @@ import {
 } from "../../styles/GlobalStyles";
 import { Edit } from "./styles";
 import { Link } from "react-router-dom";
+import Modal from "../modal/Modal";
+import UpdateAvatar from "../forms/UpdateAvatar";
 
 const UserInfo = ({ username }) => {
   const {
@@ -15,11 +17,15 @@ const UserInfo = ({ username }) => {
     isError: isUserError,
   } = useGetProfileByNameQuery(username);
 
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <CenterContainer className="pt-12">
         <div className="relative">
-          <Edit>edit</Edit>
+          <Edit showModal={showModal} onClick={() => setShowModal(!showModal)}>
+            edit
+          </Edit>
           <DashAvatar
             src={user?.avatar ? user.avatar : "/images/placeholder-avatar.svg"}
           ></DashAvatar>
@@ -39,6 +45,10 @@ const UserInfo = ({ username }) => {
           </Link>
         )}
       </CenterContainer>
+      <Modal user={user} showModal={showModal} setShowModal={setShowModal}>
+        <h1 className="h2 pt-4 pb-8 text-center">update avatar</h1>
+        <UpdateAvatar />
+      </Modal>
     </>
   );
 };

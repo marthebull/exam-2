@@ -212,6 +212,14 @@ height: 80px;
   flex-direction: column;
 }
 
+.modal {
+  z-index: 1200;
+}
+
+.modal-bg {
+  z-index: 1100;
+}
+
 @media screen and (max-width: 600px){
 
   .h1 {

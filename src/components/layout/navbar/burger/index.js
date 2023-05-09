@@ -11,7 +11,7 @@ const Burger = () => {
         <div />
         <div />
       </BurgerMenu>
-      <RightMenu open={open} />
+      <RightMenu open={open} setOpen={setOpen} />
       <MenuOverlay open={open} onClick={() => setOpen(!open)} />
     </>
   );
