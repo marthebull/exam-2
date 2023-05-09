@@ -101,7 +101,6 @@ h5, label, input {
 .label {
   font-size: 1.20rem;
   font-weight: 400;
-
 }
 
 a, .a {
