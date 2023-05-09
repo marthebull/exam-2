@@ -47,7 +47,7 @@ const UserInfo = ({ username }) => {
       </CenterContainer>
       <Modal user={user} showModal={showModal} setShowModal={setShowModal}>
         <h1 className="h2 pt-4 pb-8 text-center">update avatar</h1>
-        <UpdateAvatar />
+        <UpdateAvatar username={username} />
       </Modal>
     </>
   );

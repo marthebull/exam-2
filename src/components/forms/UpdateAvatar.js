@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import {
-  useRegisterMutation,
+  useGetAvatarByNameQuery,
   useUpdateAvatarMutation,
 } from "../../state/api/api";
 import { ButtonSolidDark, DashAvatar } from "../../styles/GlobalStyles";
@@ -17,10 +17,19 @@ const UpdateAvatarSchema = Yup.object().shape({
     }),
 });
 
-const UpdateAvatar = ({ user }) => {
-  const [avatarUrl, setAvatarUrl] = useState({
-    avatar: "",
-  });
+const UpdateAvatar = ({ username }) => {
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    isError: isUserError,
+  } = useGetAvatarByNameQuery(username);
+
+  const [avatarUrl, setAvatarUrl] = useState("");
+  useEffect(() => {
+    if (user && user.avatar) {
+      setAvatarUrl(user.avatar);
+    }
+  }, [user]);
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +41,7 @@ const UpdateAvatar = ({ user }) => {
       ...prevState,
       [name]: value,
     }));
+    console.log(avatarUrl);
   };
 
   const handleSubmit = async (event) => {
@@ -61,10 +71,22 @@ const UpdateAvatar = ({ user }) => {
     <form onSubmit={handleSubmit} className="flex flex-col ">
       <div className="gap-2 mb-6 items-start">
         <DashAvatar
-          user={user}
-          src={user?.avatar ? user.avatar : "/images/placeholder-avatar.svg"}
+          src={
+            avatarUrl.avatar
+              ? avatarUrl.avatar
+              : user?.avatar || "/images/placeholder-avatar.svg"
+          }
           className="mx-auto"
-        ></DashAvatar>
+        />
+
+        {avatarUrl.avatar > 0 && (
+          <img
+            src={avatarUrl.avatar}
+            className="mb-3 rounded-sm"
+            alt={avatarUrl.name}
+          ></img>
+        )}
+
         <label htmlFor="avatar" className="mb-1">
           new avatar URL
         </label>

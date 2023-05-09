@@ -20,6 +20,10 @@ export const api = createApi({
       query: (username) => `profiles/${username}?_bookings=true&_venues=true`,
     }),
 
+    getAvatarByName: build.query({
+      query: (username) => `profiles/${username}`,
+    }),
+
     updateAvatar: build.mutation({
       query: (credentials, username) => ({
         url: `profiles/${username}/media`,
@@ -68,6 +72,7 @@ export const api = createApi({
 export const {
   useGetProfilesQuery,
   useGetProfileByNameQuery,
+  useGetAvatarByNameQuery,
   useUpdateAvatarMutation,
   useGetVenuesQuery,
   useGetVenueByIdQuery,
