@@ -70,7 +70,6 @@ const NewVenueForm = () => {
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     if (name === "media") {
-      const newValue = value.replace(/"/g, ""); // remove all quotes from value
       setNewVenueDetails((prevState) => ({
         ...prevState,
         media: [value],
@@ -88,7 +87,7 @@ const NewVenueForm = () => {
       console.log(value);
       console.log(newVenueDetails);
     } else if (name.includes("location")) {
-      // if the input name includes a dot ('.'), treat it as a nested property
+      // if the input name includes 'location.', treat it as a nested property
       const [parent, child] = name.split(".");
       setNewVenueDetails((prevState) => ({
         ...prevState,
