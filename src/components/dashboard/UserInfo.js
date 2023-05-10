@@ -21,7 +21,11 @@ const UserInfo = ({ username }) => {
 
   return (
     <>
-      <CenterContainer className="pt-12">
+      <CenterContainer
+        className="pt-12"
+        showModal={showModal}
+        setShowModal={setShowModal}
+      >
         <div className="relative">
           <Edit showModal={showModal} onClick={() => setShowModal(!showModal)}>
             edit
@@ -47,7 +51,11 @@ const UserInfo = ({ username }) => {
       </CenterContainer>
       <Modal user={user} showModal={showModal} setShowModal={setShowModal}>
         <h1 className="h2 pt-4 pb-8 text-center">update avatar</h1>
-        <UpdateAvatar username={username} />
+        <UpdateAvatar
+          username={username}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
       </Modal>
     </>
   );

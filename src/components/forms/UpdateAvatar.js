@@ -7,7 +7,7 @@ const UpdateAvatarSchema = Yup.object().shape({
   avatar: Yup.string(),
 });
 
-const UpdateAvatar = ({ username }) => {
+const UpdateAvatar = ({ username, showModal, setShowmodal }) => {
   //   const {
   //     data: user,
   //     isLoading: isUserLoading,
@@ -38,9 +38,10 @@ const UpdateAvatar = ({ username }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setAvatarUrl((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: value || null,
     }));
   };
 
@@ -69,6 +70,7 @@ const UpdateAvatar = ({ username }) => {
       // handle error
     } finally {
       setIsLoading(false);
+      setShowmodal(!showModal);
     }
   };
 
