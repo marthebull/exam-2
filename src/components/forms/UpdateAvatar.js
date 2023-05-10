@@ -21,7 +21,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
 
   const currentAvatar = useSelector((state) => state.persisted.auth.avatar);
 
-  const [avatarUrl, setAvatarUrl] = useState({ avatar: currentAvatar.value });
+  const [avatarUrl, setAvatarUrl] = useState({ avatar: currentAvatar });
   console.log(username);
   console.log(currentAvatar);
 
@@ -46,7 +46,6 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
 
   useEffect(() => {
     console.log(avatarUrl);
-    console.log(avatarUrl.avatar);
   }, [avatarUrl]);
 
   const handleSubmit = async (event) => {
@@ -57,6 +56,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
       await UpdateAvatarSchema.validate(avatarUrl, { abortEarly: false });
       const response = await updateAvatar({ username, avatar: avatarUrl });
       console.log(response);
+      window.location.reload();
     } catch (error) {
       console.error(error);
       if (error.inner) {
@@ -101,7 +101,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
           name="avatar"
           type="text"
           onChange={handleChange}
-          value={avatarUrl.avatar}
+          //   value={avatarUrl.avatar}
           placeholder="example.url.gif"
           className="mb-2"
         />
