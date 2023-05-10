@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { useNewVenueMutation } from "../../state/api/api";
 import { useNavigate } from "react-router-dom";
-import { ButtonSolidDark } from "../../styles/GlobalStyles";
+import { ButtonSolidDark, FormImg } from "../../styles/GlobalStyles";
 
 const NewVenueSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -41,9 +41,9 @@ const NewVenueForm = () => {
     name: "",
     description: "",
     media: [],
-    price: 0,
-    maxGuests: 0,
-    rating: 0,
+    price: "",
+    maxGuests: "",
+    rating: "",
     meta: {
       wifi: false,
       parking: false,
@@ -56,8 +56,8 @@ const NewVenueForm = () => {
       zip: "unknown",
       country: "unknown",
       continent: "unknown",
-      lat: 0,
-      lng: 0,
+      lat: "",
+      lng: "",
     },
   });
 
@@ -180,12 +180,12 @@ const NewVenueForm = () => {
         {errors.description && <div>{errors.description}</div>}
       </div>
 
-      {newVenueDetails.media.length > 0 && (
-        <img
+      {newVenueDetails.media.length !== "" && (
+        <FormImg
           src={newVenueDetails.media}
           className="mb-3 rounded-sm"
           alt={newVenueDetails.name}
-        ></img>
+        ></FormImg>
       )}
 
       <div className="gap-2 mb-1 items-start" id="imgInputs">
@@ -216,7 +216,7 @@ const NewVenueForm = () => {
           name="price"
           type="number"
           onChange={handleChange}
-          value={newVenueDetails.price}
+          defaultValue={newVenueDetails.price}
           placeholder="899"
           className="mb-1"
         />
@@ -232,7 +232,7 @@ const NewVenueForm = () => {
           name="maxGuests"
           type="number"
           onChange={handleChange}
-          value={newVenueDetails.maxGuests}
+          defaultValue={newVenueDetails.maxGuests}
           placeholder="16"
           className="mb-1"
         />
@@ -248,7 +248,7 @@ const NewVenueForm = () => {
           name="rating"
           type="number"
           onChange={handleChange}
-          value={newVenueDetails.rating}
+          defaultValue={newVenueDetails.rating}
           placeholder="5"
           className="mb-1"
         />
@@ -342,9 +342,9 @@ const NewVenueForm = () => {
         <input
           id="lat"
           name="location.lat"
-          type="text"
+          type="number"
           onChange={handleChange}
-          value={newVenueDetails.lat}
+          defaultValue={newVenueDetails.lat}
           placeholder="38.8951"
           className="mb-1"
         />
@@ -358,9 +358,9 @@ const NewVenueForm = () => {
         <input
           id="lng"
           name="location.lng"
-          type="text"
+          type="number"
           onChange={handleChange}
-          value={newVenueDetails.lng}
+          defaultValue={newVenueDetails.lng}
           placeholder="-77.0364"
           className="mb-1"
         />

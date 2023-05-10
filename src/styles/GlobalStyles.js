@@ -309,6 +309,10 @@ export const DashAvatar = styled.img`
   margin-bottom: 10px;
 `;
 
+export const FormImg = styled.img`
+  width: 100%;
+`;
+
 export const ButtonSolidDark = styled.button`
   background-color: var(--dark-grey);
   border: 2px solid var(--dark-grey);
