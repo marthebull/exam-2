@@ -6,20 +6,24 @@ import {
   ButtonSolidDark,
   DashAvatar,
 } from "../../styles/GlobalStyles";
+import { useSelector } from "react-redux";
 
 const UpdateAvatarSchema = Yup.object().shape({
-  avatar: Yup.string(),
+  avatar: Yup.string().url("Must be a valid url"),
 });
 
-const UpdateAvatar = ({ username, showModal, setShowmodal }) => {
+const UpdateAvatar = ({ username, showModal, setShowModal }) => {
   //   const {
   //     data: user,
   //     isLoading: isUserLoading,
   //     isError: isUserError,
   //   } = useGetAvatarByNameQuery(username);
 
-  const [avatarUrl, setAvatarUrl] = useState({ avatar: "" });
+  const currentAvatar = useSelector((state) => state.persisted.auth.avatar);
+
+  const [avatarUrl, setAvatarUrl] = useState({ avatar: currentAvatar.value });
   console.log(username);
+  console.log(currentAvatar);
 
   //   useEffect(() => {
   //     if (user && user.avatar) {
@@ -30,15 +34,6 @@ const UpdateAvatar = ({ username, showModal, setShowmodal }) => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [updateAvatar] = usePutAvatarMutation();
-
-  //   const handleChange = (event) => {
-  //     const { name, value } = event.target;
-  //     setAvatarUrl((prevState) => ({
-  //       ...prevState,
-  //       [name]: value,
-  //     }));
-  //     console.log(avatarUrl);
-  //   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -74,18 +69,18 @@ const UpdateAvatar = ({ username, showModal, setShowmodal }) => {
       // handle error
     } finally {
       setIsLoading(false);
-      setShowmodal(!showModal);
+      setShowModal(!showModal);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col ">
       <div className="gap-2 mb-6 items-start">
-        {/* <DashAvatar
+        <DashAvatar
           src={
             avatarUrl.avatar
               ? avatarUrl.avatar
-              : user?.avatar || "/images/placeholder-avatar.svg"
+              : currentAvatar || "/images/placeholder-avatar.svg"
           }
           className="mx-auto"
         />
@@ -96,7 +91,7 @@ const UpdateAvatar = ({ username, showModal, setShowmodal }) => {
             className="mb-3 rounded-sm"
             alt={avatarUrl.name}
           ></img>
-        )} */}
+        )}
 
         <label htmlFor="avatar" className="mb-1">
           new avatar URL
@@ -116,9 +111,6 @@ const UpdateAvatar = ({ username, showModal, setShowmodal }) => {
       <ButtonSolidDark type="submit" disabled={isLoading}>
         {isLoading ? "Loading..." : "update"}
       </ButtonSolidDark>
-      <ButtonOutlineDark type="submit" disabled={isLoading}>
-        {isLoading ? "Loading..." : "delete avatar"}
-      </ButtonOutlineDark>
     </form>
   );
 };
