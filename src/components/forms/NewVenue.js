@@ -7,24 +7,17 @@ import { ButtonSolidDark, FormImg } from "../../styles/GlobalStyles";
 const NewVenueSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   description: Yup.string().required("Description is required"),
-
   price: Yup.number().required("Price is required"),
-  maxGuests: Yup.number()
-    .required("Max guests is required")
-    .positive("Max guests must be a positive number")
-    .integer("Max guests must be an integer"),
-
+  maxGuests: Yup.number().required("Max guests is required"),
   rating: Yup.number()
     .min(1, "Rating must be between 0 and 5")
     .max(5, "Rating must be between 0 and 5"),
-
   meta: Yup.object().shape({
     wifi: Yup.boolean(),
     parking: Yup.boolean(),
     breakfast: Yup.boolean(),
     pets: Yup.boolean(),
   }),
-
   location: Yup.object().shape({
     address: Yup.string(),
     city: Yup.string(),

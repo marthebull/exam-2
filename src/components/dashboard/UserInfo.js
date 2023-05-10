@@ -4,7 +4,6 @@ import {
   ButtonOutlineDark,
   CenterContainer,
   DashAvatar,
-  DashAvatarLoading,
 } from "../../styles/GlobalStyles";
 import { Edit } from "./styles";
 import { Link } from "react-router-dom";

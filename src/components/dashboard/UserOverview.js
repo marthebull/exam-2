@@ -4,21 +4,21 @@ import NoBookingsYet from "./NoBookingsYet";
 import NoVenuesYet from "./NoVenuesYet";
 import { useGetProfileByNameQuery } from "../../state/api/api";
 import VenueCards from "../cards/dashboard/VenueCard";
-import Modal from "../modal/Modal";
+import UserOverviewLoader from "../loaders/UserOverviewLoader";
 
 const UserOverview = ({ username }) => {
-  const {
-    data: user,
-    isLoading: isUserLoading,
-    isError: isUserError,
-  } = useGetProfileByNameQuery(username);
+  const { data: user, isLoading: isUserLoading } =
+    useGetProfileByNameQuery(username);
   console.log(user);
+
+  if (isUserLoading) {
+    return <UserOverviewLoader />;
+  }
 
   return (
     <Container className="flex flex-col justify-center md:py-12 md:flex-row">
       <InfoContainer className=" pb-12 my-10  w-100 max-w-xlg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
         <NoBookingsYet />
-        <Modal />
       </InfoContainer>
       <div className="flex flex-col gap-8 pb-8 my-10 w-100 max-w-xlg md:mx-0 md:px-8 md:pb-0 lg:ps-14 md:w-1/2">
         {user?.venues.length > 0 ? (
