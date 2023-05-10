@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetProfileByNameQuery } from "../../state/api/api";
 import {
   ButtonOutlineDark,
@@ -9,16 +9,19 @@ import { Edit } from "./styles";
 import { Link } from "react-router-dom";
 import Modal from "../modal/Modal";
 import UpdateAvatar from "../forms/UpdateAvatar";
+import { useSelector } from "react-redux";
 
 const UserInfo = ({ username }) => {
   const {
     data: user,
     isLoading: isUserLoading,
     isError: isUserError,
+    refetch: refetchUser,
   } = useGetProfileByNameQuery(username);
 
-  const [showModal, setShowModal] = useState(false);
+  const currentAvatar = useSelector((state) => state.persisted.auth.avatar);
 
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       <CenterContainer className="pt-12">
@@ -27,7 +30,9 @@ const UserInfo = ({ username }) => {
             edit
           </Edit>
           <DashAvatar
-            src={user?.avatar ? user.avatar : "/images/placeholder-avatar.svg"}
+            src={
+              currentAvatar ? currentAvatar : "/images/placeholder-avatar.svg"
+            }
           ></DashAvatar>
         </div>
         <h1 className="h3 pb-1">{user?.name}</h1>
