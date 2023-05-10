@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { usePutAvatarMutation } from "../../state/api/api";
-import { ButtonSolidDark, DashAvatar } from "../../styles/GlobalStyles";
+import {
+  ButtonOutlineDark,
+  ButtonSolidDark,
+  DashAvatar,
+} from "../../styles/GlobalStyles";
 
 const UpdateAvatarSchema = Yup.object().shape({
   avatar: Yup.string(),
@@ -112,6 +116,9 @@ const UpdateAvatar = ({ username, showModal, setShowmodal }) => {
       <ButtonSolidDark type="submit" disabled={isLoading}>
         {isLoading ? "Loading..." : "update"}
       </ButtonSolidDark>
+      <ButtonOutlineDark type="submit" disabled={isLoading}>
+        {isLoading ? "Loading..." : "delete avatar"}
+      </ButtonOutlineDark>
     </form>
   );
 };

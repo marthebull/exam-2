@@ -40,7 +40,9 @@ const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.name = action.payload.name;
       //state.email = action.payload;
-      state.avatar = action.payload.avatar;
+      state.avatar = action.payload.avatar
+        ? action.payload.avatar
+        : "/images/placeholder-avatar.svg";
       //state.isVenueManager = action.payload;
       state.loginErrorMessage = "";
     },
