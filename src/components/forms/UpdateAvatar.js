@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { usePutAvatarMutation } from "../../state/api/api";
-import {
-  ButtonOutlineDark,
-  ButtonSolidDark,
-  DashAvatar,
-} from "../../styles/GlobalStyles";
+import { ButtonSolidDark, DashAvatar } from "../../styles/GlobalStyles";
 import { useSelector, useDispatch } from "react-redux";
 import { setAvatar } from "../../state/features/authSlice";
 
@@ -15,6 +11,7 @@ const UpdateAvatarSchema = Yup.object().shape({
 
 const UpdateAvatar = ({ username, showModal, setShowModal }) => {
   const currentAvatar = useSelector((state) => state.persisted.auth.avatar);
+
   const dispatch = useDispatch();
 
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -39,6 +36,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
       );
       const response = await updateAvatar({ username, avatar: avatarUrl });
       dispatch(setAvatar(avatarUrl));
+      console.log({ avatar: avatarUrl });
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -60,7 +58,11 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
     <form onSubmit={handleSubmit} className="flex flex-col ">
       <div className="gap-2 mb-6 items-start">
         <DashAvatar
-          src={currentAvatar ? currentAvatar : "/images/placeholder-avatar.svg"}
+          src={
+            avatarUrl
+              ? avatarUrl
+              : currentAvatar || "/images/placeholder-avatar.svg"
+          }
           className="mx-auto"
         />
 

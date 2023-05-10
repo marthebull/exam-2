@@ -47,7 +47,10 @@ const authSlice = createSlice({
       state.loginErrorMessage = "";
     },
     setAvatar(state, action) {
-      state.avatar = action.payload;
+      //state.avatar = action.payload;
+      state.avatar = action.payload
+        ? action.payload
+        : "/images/placeholder-avatar.svg";
     },
     logout(state) {
       state.accessToken = "";
