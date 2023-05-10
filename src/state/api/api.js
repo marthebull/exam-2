@@ -24,11 +24,11 @@ export const api = createApi({
       query: (username) => `profiles/${username}`,
     }),
 
-    updateAvatar: build.mutation({
-      query: (credentials, username) => ({
+    putAvatar: build.mutation({
+      query: ({ username, avatar }) => ({
         url: `profiles/${username}/media`,
         method: "PUT",
-        body: credentials,
+        body: avatar,
       }),
     }),
 
@@ -73,7 +73,7 @@ export const {
   useGetProfilesQuery,
   useGetProfileByNameQuery,
   useGetAvatarByNameQuery,
-  useUpdateAvatarMutation,
+  usePutAvatarMutation,
   useGetVenuesQuery,
   useGetVenueByIdQuery,
   useRegisterMutation,

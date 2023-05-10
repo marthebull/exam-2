@@ -1,39 +1,40 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
-import {
-  useGetAvatarByNameQuery,
-  useUpdateAvatarMutation,
-} from "../../state/api/api";
+import { usePutAvatarMutation } from "../../state/api/api";
 import { ButtonSolidDark, DashAvatar } from "../../styles/GlobalStyles";
 
 const UpdateAvatarSchema = Yup.object().shape({
-  avatar: Yup.string()
-    .url("Invalid URL")
-    .test("is-image-url", "Avatar must be a valid image URL", (value) => {
-      if (!value) {
-        return true; // allowing empty value
-      }
-      return /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(value);
-    }),
+  avatar: Yup.string(),
 });
 
 const UpdateAvatar = ({ username }) => {
-  const {
-    data: user,
-    isLoading: isUserLoading,
-    isError: isUserError,
-  } = useGetAvatarByNameQuery(username);
+  //   const {
+  //     data: user,
+  //     isLoading: isUserLoading,
+  //     isError: isUserError,
+  //   } = useGetAvatarByNameQuery(username);
 
-  const [avatarUrl, setAvatarUrl] = useState("");
-  useEffect(() => {
-    if (user && user.avatar) {
-      setAvatarUrl(user.avatar);
-    }
-  }, [user]);
+  const [avatarUrl, setAvatarUrl] = useState({ avatar: "" });
+  console.log(username);
+
+  //   useEffect(() => {
+  //     if (user && user.avatar) {
+  //       setAvatarUrl(user.avatar);
+  //     }
+  //   }, [user]);
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [updateAvatar] = useUpdateAvatarMutation();
+  const [updateAvatar] = usePutAvatarMutation();
+
+  //   const handleChange = (event) => {
+  //     const { name, value } = event.target;
+  //     setAvatarUrl((prevState) => ({
+  //       ...prevState,
+  //       [name]: value,
+  //     }));
+  //     console.log(avatarUrl);
+  //   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,8 +42,12 @@ const UpdateAvatar = ({ username }) => {
       ...prevState,
       [name]: value,
     }));
-    console.log(avatarUrl);
   };
+
+  useEffect(() => {
+    console.log(avatarUrl);
+    console.log(avatarUrl.avatar);
+  }, [avatarUrl]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,7 +55,7 @@ const UpdateAvatar = ({ username }) => {
     try {
       // handle success
       await UpdateAvatarSchema.validate(avatarUrl, { abortEarly: false });
-      const response = await updateAvatar(avatarUrl);
+      const response = await updateAvatar({ username, avatar: avatarUrl });
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -70,7 +75,7 @@ const UpdateAvatar = ({ username }) => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col ">
       <div className="gap-2 mb-6 items-start">
-        <DashAvatar
+        {/* <DashAvatar
           src={
             avatarUrl.avatar
               ? avatarUrl.avatar
@@ -85,7 +90,7 @@ const UpdateAvatar = ({ username }) => {
             className="mb-3 rounded-sm"
             alt={avatarUrl.name}
           ></img>
-        )}
+        )} */}
 
         <label htmlFor="avatar" className="mb-1">
           new avatar URL
