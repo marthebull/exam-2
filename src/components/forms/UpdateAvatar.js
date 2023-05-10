@@ -18,7 +18,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [updateAvatar] = usePutAvatarMutation();
+  const [updateNewAvatar] = usePutAvatarMutation();
 
   const handleChange = (event) => {
     setAvatarUrl(event.target.value);
@@ -34,9 +34,12 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
         { avatar: avatarUrl },
         { abortEarly: false }
       );
-      const response = await updateAvatar({ username, avatar: avatarUrl });
+      const response = await updateNewAvatar({
+        username,
+        avatar: { avatar: avatarUrl },
+      });
       dispatch(setAvatar(avatarUrl));
-      console.log({ avatar: avatarUrl });
+      //console.log({ avatar: avatarUrl });
       console.log(response);
     } catch (error) {
       console.error(error);

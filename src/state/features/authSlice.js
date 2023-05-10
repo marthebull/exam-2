@@ -51,6 +51,7 @@ const authSlice = createSlice({
       state.avatar = action.payload
         ? action.payload
         : "/images/placeholder-avatar.svg";
+      console.log("this is the payload:" + action.payload);
     },
     logout(state) {
       state.accessToken = "";
