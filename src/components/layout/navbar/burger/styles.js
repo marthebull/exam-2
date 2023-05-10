@@ -47,6 +47,7 @@ export const MenuOverlay = styled.div`
   top: -5px;
   left: 0;
   z-index: 1;
+  cursor: pointer;
 
   opacity: ${({ open }) => (open ? 1 : 0)};
   display: ${({ open }) => (open ? "block" : "none")};
