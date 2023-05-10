@@ -309,6 +309,13 @@ export const DashAvatar = styled.img`
   margin-bottom: 10px;
 `;
 
+export const DashAvatarLoading = styled.div`
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+`;
+
 export const FormImg = styled.img`
   width: 100%;
 `;

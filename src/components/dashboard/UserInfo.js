@@ -1,27 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useGetProfileByNameQuery } from "../../state/api/api";
 import {
   ButtonOutlineDark,
   CenterContainer,
   DashAvatar,
+  DashAvatarLoading,
 } from "../../styles/GlobalStyles";
 import { Edit } from "./styles";
 import { Link } from "react-router-dom";
 import Modal from "../modal/Modal";
 import UpdateAvatar from "../forms/UpdateAvatar";
 import { useSelector } from "react-redux";
+import UserInfoLoader from "../loaders/UserInfoLoader";
 
 const UserInfo = ({ username }) => {
   const {
     data: user,
     isLoading: isUserLoading,
     isError: isUserError,
-    refetch: refetchUser,
   } = useGetProfileByNameQuery(username);
 
   const currentAvatar = useSelector((state) => state.persisted.auth.avatar);
 
   const [showModal, setShowModal] = useState(false);
+
+  if (isUserLoading) {
+    return <UserInfoLoader />;
+  }
+
+  if (isUserError) {
+    return (
+      <CenterContainer>
+        <p>Error loading userinfo</p>
+      </CenterContainer>
+    );
+  }
   return (
     <>
       <CenterContainer className="pt-12">
