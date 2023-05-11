@@ -6,7 +6,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { setAvatar } from "../../state/features/authSlice";
 
 const UpdateAvatarSchema = Yup.object().shape({
-  avatar: Yup.string().url("Must be a valid url"),
+  avatar: Yup.string()
+    .url("Must be a valid url")
+    .test("is-image-url", "Avatar must be a valid image URL", (value) => {
+      if (!value) {
+        return true; // allowing empty value
+      }
+      return /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(value);
+    }),
 });
 
 const UpdateAvatar = ({ username, showModal, setShowModal }) => {
@@ -36,7 +43,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
       );
       const response = await updateNewAvatar({
         username,
-        avatar: { avatar: avatarUrl },
+        avatar: avatarUrl,
       });
       dispatch(setAvatar(avatarUrl));
       //console.log({ avatar: avatarUrl });

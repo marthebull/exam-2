@@ -28,7 +28,7 @@ export const api = createApi({
       query: ({ username, avatar }) => ({
         url: `profiles/${username}/media`,
         method: "PUT",
-        body: avatar,
+        body: { avatar: avatar },
       }),
     }),
 
