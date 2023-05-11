@@ -7,7 +7,7 @@ import CardLoader from "../../loaders/CardLoader";
 
 const ListAllVenues = () => {
   const { data: list, isLoading } = useGetVenuesQuery();
-  //console.log(list);
+  console.log(list);
   const [criteria, setCriteria] = useState({
     parking: false,
     breakfast: false,
@@ -136,7 +136,7 @@ const ListAllVenues = () => {
                 style={{
                   backgroundImage:
                     venue.media.length > 0
-                      ? `url(${venue.media})`
+                      ? `url(${venue?.media[0]})`
                       : `url(/images/placeholder-image.svg)`,
                   backgroundPosition: `center`,
                   backgroundSize: `cover`,
@@ -152,15 +152,27 @@ const ListAllVenues = () => {
                 <h3 className="mb-2 h3">
                   {venue.location.city}, {venue.location.country}
                 </h3>
+
+                {/* <div className="flex flex-row gap-3">
+                  <img
+                    className="ms-1 me-3"
+                    src="/images/pin-icon.svg"
+                    alt="Night icon"
+                  ></img>
+                  <p className="a">
+                    {venue.location.city}, {venue.location.country}
+                  </p>
+                </div> */}
+
                 <div className="flex flex-row gap-3">
                   <img
                     className="icon"
                     src="/images/moon-sea-icon.svg"
                     alt="Night icon"
                   ></img>
-
                   <p>{venue.price} NOK</p>
                 </div>
+
                 <div className="flex flex-row justify-between">
                   <div className="flex flex-row gap-3">
                     <img
@@ -170,6 +182,7 @@ const ListAllVenues = () => {
                     ></img>
                     <p>{venue.maxGuests}</p>
                   </div>
+
                   <div className="flex flex-row gap-4 content-center">
                     <img
                       className="icon-row opacity-50 my-auto"

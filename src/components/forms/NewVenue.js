@@ -34,9 +34,9 @@ const NewVenueForm = () => {
     name: "",
     description: "",
     media: [],
-    price: "",
-    maxGuests: "",
-    rating: "",
+    price: 0,
+    maxGuests: 0,
+    rating: 0,
     meta: {
       wifi: false,
       parking: false,
@@ -49,8 +49,8 @@ const NewVenueForm = () => {
       zip: "unknown",
       country: "unknown",
       continent: "unknown",
-      lat: "",
-      lng: "",
+      lat: 0,
+      lng: 0,
     },
   });
 
@@ -206,7 +206,7 @@ const NewVenueForm = () => {
         <input
           id="price"
           name="price"
-          type="number"
+          type="text"
           onChange={handleChange}
           defaultValue={newVenueDetails.price}
           placeholder="899"
@@ -222,7 +222,7 @@ const NewVenueForm = () => {
         <input
           id="maxGuests"
           name="maxGuests"
-          type="number"
+          type="text"
           onChange={handleChange}
           defaultValue={newVenueDetails.maxGuests}
           placeholder="16"
@@ -238,7 +238,7 @@ const NewVenueForm = () => {
         <input
           id="rating"
           name="rating"
-          type="number"
+          type="text"
           onChange={handleChange}
           defaultValue={newVenueDetails.rating}
           placeholder="5"

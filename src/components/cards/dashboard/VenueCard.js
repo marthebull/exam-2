@@ -7,7 +7,6 @@ const VenueCards = ({ user }) => {
     <>
       {user.venues.map((venue) => (
         <div key={venue.id}>
-          <h3 className="mb-2 h3">{venue?.name}</h3>
           <div className="w-full rounded overflow-hidden shadow-md ">
             <div className="relative overflow-hidden bg-cover bg-center bg-no-repeat max-h-80">
               <img
@@ -24,18 +23,28 @@ const VenueCards = ({ user }) => {
               </div>
             </div>
             <div className="px-3 py-4">
-              <h4 className="mb-2 h3">
-                {venue.location.city}, {venue.location.country}
-              </h4>
+              <h4 className="mb-2 h3">{venue?.name}</h4>
+
+              <div className="flex flex-row gap-3">
+                <img
+                  className="ms-1 me-3"
+                  src="/images/pin-icon.svg"
+                  alt="Night icon"
+                ></img>
+                <p className="a">
+                  {venue.location.city}, {venue.location.country}
+                </p>
+              </div>
+
               <div className="flex flex-row gap-3">
                 <img
                   className="icon"
                   src="/images/moon-sea-icon.svg"
                   alt="Night icon"
                 ></img>
-
                 <p className="a">{venue.price} NOK</p>
               </div>
+
               <div className="flex flex-row gap-3">
                 <img
                   className="icon"

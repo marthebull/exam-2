@@ -5,13 +5,17 @@ import {
   ButtonSolidWhite,
 } from "../../styles/GlobalStyles";
 
-const HeroManage = () => {
+const HeroManage = (venueData) => {
+  console.log(venueData.venueData);
   return (
     <>
       <HeroContainer className="relative">
         <TextHero
           style={{
-            backgroundImage: `url(images/hero-bg-home.jpg)`,
+            backgroundImage:
+              venueData.venueData?.media.length > 0
+                ? `url(${venueData.venueData.media[0]})`
+                : `url(/images/placeholder-image.svg)`,
             backgroundPosition: `center`,
             backgroundSize: `cover`,
             backgroundColor: `#424242`,
