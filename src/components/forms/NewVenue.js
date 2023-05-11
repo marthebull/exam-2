@@ -61,7 +61,7 @@ const NewVenueForm = () => {
   let navigate = useNavigate();
 
   const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
+    const { name, value, checked } = event.target;
     if (name === "media") {
       setNewVenueDetails((prevState) => ({
         ...prevState,

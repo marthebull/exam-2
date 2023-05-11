@@ -1,11 +1,11 @@
 import React from "react";
 
-const Modal = ({ children, showModal, setShowModal }) => {
+const ModalBody = ({ children, showModal, setShowModal }) => {
   return (
     <>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 modal-bg outline-none focus:outline-none">
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-scroll max-h-full fixed inset-0 modal-bg outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-2xl">
               <div className="modal border-0 rounded-sm p-10 shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <img
@@ -28,4 +28,4 @@ const Modal = ({ children, showModal, setShowModal }) => {
   );
 };
 
-export default Modal;
+export default ModalBody;

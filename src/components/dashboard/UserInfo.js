@@ -7,7 +7,7 @@ import {
 } from "../../styles/GlobalStyles";
 import { Edit } from "./styles";
 import { Link } from "react-router-dom";
-import Modal from "../modal/Modal";
+import ModalBody from "../modal/ModalBody";
 import UpdateAvatar from "../forms/UpdateAvatar";
 import { useSelector } from "react-redux";
 import UserInfoLoader from "../loaders/UserInfoLoader";
@@ -62,14 +62,14 @@ const UserInfo = ({ username }) => {
           </Link>
         )}
       </CenterContainer>
-      <Modal user={user} showModal={showModal} setShowModal={setShowModal}>
+      <ModalBody showModal={showModal} setShowModal={setShowModal}>
         <h1 className="h2 pt-4 pb-8 text-center">update avatar</h1>
         <UpdateAvatar
           username={username}
           showModal={showModal}
           setShowModal={setShowModal}
         />
-      </Modal>
+      </ModalBody>
     </>
   );
 };
