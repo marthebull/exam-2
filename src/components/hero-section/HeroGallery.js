@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useGetVenueByIdQuery } from "../../state/api/api";
 import { HeroContainer } from "./styles";
 import HeroSpinner from "../loaders/HeroSpinner";
 
-const HeroGallery = () => {
+const HeroGallery = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
   const [index, setIndex] = useState(0);
 
   const handleIndicatorClick = (i) => {
@@ -12,23 +10,18 @@ const HeroGallery = () => {
   };
 
   const handlePrevClick = () => {
-    setIndex((index + data.media.length - 1) % data.media.length);
+    setIndex((index + venueData.media.length - 1) % venueData.media.length);
   };
 
   const handleNextClick = () => {
-    setIndex((index + 1) % data.media.length);
+    setIndex((index + 1) % venueData.media.length);
   };
 
-  const { id } = useParams();
-
-  const { data, isLoading, isError } = useGetVenueByIdQuery(id);
-  console.log(useGetVenueByIdQuery(id));
-
-  if (isLoading) {
+  if (isVenueDataLoading) {
     return <HeroSpinner></HeroSpinner>;
   }
 
-  if (isError) {
+  if (isVenueDataError) {
     return <div>Something wrong</div>;
   }
 
@@ -36,8 +29,8 @@ const HeroGallery = () => {
     <>
       <HeroContainer className="relative">
         <div className="relative w-full h-full">
-          {data.media.length > 0 ? (
-            data.media.map((image, i) => (
+          {venueData.media.length > 0 ? (
+            venueData.media.map((image, i) => (
               <img
                 key={i}
                 src={image}
@@ -57,7 +50,7 @@ const HeroGallery = () => {
         </div>
       </HeroContainer>
 
-      {data.media.length > 1 && (
+      {venueData.media.length > 1 && (
         <div className=" flex gap-6 mb-4 items-center justify-center mt-3">
           <div
             onClick={handlePrevClick}
@@ -77,7 +70,7 @@ const HeroGallery = () => {
             </svg>
           </div>
           <div className="flex items-center">
-            {data.media.map((_, i) => (
+            {venueData.media.map((_, i) => (
               <button
                 key={i}
                 onClick={() => handleIndicatorClick(i)}

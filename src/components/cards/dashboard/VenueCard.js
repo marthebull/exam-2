@@ -16,7 +16,7 @@ const VenueCards = ({ user }) => {
                 alt={venue?.name}
               ></img>
               <div className="flex flex-col justify-center align-middle absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-dark bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100">
-                <Link to={"/venues/" + venue.id}>
+                <Link to={"/manage-venue/" + venue.id}>
                   <ButtonOutlineWhite className="opacity-1">
                     manage venue
                   </ButtonOutlineWhite>

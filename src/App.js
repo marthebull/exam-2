@@ -37,7 +37,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard/:username" element={<Dashboard />} />
           <Route path="/manage-booking" element={<ManageBooking />} />
-          <Route path="/manage-venue" element={<ManageVenue />} />
+          <Route path="/manage-venue/:id" element={<ManageVenue />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Layout>

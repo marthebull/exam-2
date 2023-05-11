@@ -9,7 +9,6 @@ const HeroManage = () => {
   return (
     <>
       <HeroContainer className="relative">
-        <div className="z-10 absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-dark bg-fixed opacity-1 "></div>
         <TextHero
           style={{
             backgroundImage: `url(images/hero-bg-home.jpg)`,
