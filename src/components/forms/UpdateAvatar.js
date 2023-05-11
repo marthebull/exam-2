@@ -22,6 +22,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
   const dispatch = useDispatch();
 
   const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState("");
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +30,16 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
 
   const handleChange = (event) => {
     setAvatarUrl(event.target.value);
+
+    const value = event.target.value;
+    const isValidUrl = Yup.string().url().isValidSync(value);
+
+    if (isValidUrl) {
+      setAvatarPreview(value);
+    } else {
+      setAvatarPreview("/images/placeholder-avatar.svg");
+    }
+    console.log(avatarPreview);
   };
 
   const handleSubmit = async (event) => {
@@ -69,8 +80,8 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
       <div className="gap-2 mb-6 items-start">
         <DashAvatar
           src={
-            avatarUrl
-              ? avatarUrl
+            avatarPreview
+              ? avatarPreview
               : currentAvatar || "/images/placeholder-avatar.svg"
           }
           className="mx-auto"
