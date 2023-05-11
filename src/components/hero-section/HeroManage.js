@@ -7,6 +7,7 @@ import {
 
 const HeroManage = (venueData) => {
   console.log(venueData.venueData);
+
   return (
     <>
       <HeroContainer className="relative">
@@ -22,11 +23,14 @@ const HeroManage = (venueData) => {
           }}
           className="z-20"
         >
-          <small className="white">manage venue</small>
-          <h1 className="white h3">Venue Name Blabla</h1>
-          <div className="flex flex-col pt-6 gap-1 md:flex-row md:gap-4">
-            <ButtonSolidWhite>edit</ButtonSolidWhite>
-            <ButtonOutlineWhite>delete</ButtonOutlineWhite>
+          <div className="flex absolute z-20 bg-gray-900 opacity-50 w-full h-full items-center"></div>
+          <div className="w-fit mx-auto z-50">
+            <small className="white">manage venue</small>
+            <h1 className="white h3">{venueData.venueData.name}</h1>
+            <div className="flex flex-col mx-auto pt-6 gap-1 md:flex-row md:gap-4">
+              <ButtonSolidWhite>edit</ButtonSolidWhite>
+              <ButtonOutlineWhite>delete</ButtonOutlineWhite>
+            </div>
           </div>
         </TextHero>
       </HeroContainer>
