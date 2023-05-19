@@ -119,12 +119,10 @@ const BookVenue = ({ venueData }) => {
           </>
         ) : null}
 
-        {isLoggedIn === "" ? (
-          <ButtonSolidDark>book venue</ButtonSolidDark>
+        {isLoggedIn && name === venueData?.owner.name ? null : isLoggedIn ? (
+          <ButtonSolidDark>Book Venue</ButtonSolidDark>
         ) : (
-          <Link to={"/sign-in"}>
-            <ButtonSolidDark>sign in to book</ButtonSolidDark>
-          </Link>
+          <ButtonSolidDark>Login to Book</ButtonSolidDark>
         )}
       </div>
     </>
