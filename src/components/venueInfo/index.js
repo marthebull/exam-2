@@ -1,7 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
-import { InfoContainer } from "../../styles/GlobalStyles";
+import {
+  Avatar,
+  ButtonSolidDark,
+  InfoContainer,
+} from "../../styles/GlobalStyles";
 import { useSelector } from "react-redux";
 
 const VenueInfo = () => {
@@ -25,11 +29,11 @@ const VenueInfo = () => {
   }
   return (
     <InfoContainer className=" pb-8 my-10 w-100 md:max-w-lg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
-      {data.owner.name === name ? (
-        <div className="mb-6">This your venue</div>
+      {/* {data.owner.name === name ? (
+        <div className="mb-6">This your own venue:</div>
       ) : (
         ""
-      )}
+      )} */}
 
       <h1 className="h1 mb-1">{data.name}</h1>
       <h2 className="h5 mb-8">
@@ -98,24 +102,30 @@ const VenueInfo = () => {
       <p className="p  mb-10">
         {data.location.city}, {data.location.country}
       </p>
-      <div className="flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-2 mb-10">
         <div className="h-full">
-          <img
-            className="icon rounded-full h-8"
+          <Avatar
+            className=" "
             src={
               data.owner.avatar
                 ? data.owner.avatar
                 : "/images/placeholder-avatar.svg"
             }
-            alt={data.owner + "'s profilepicture"}
-            style={{ height: "46px", width: "auto" }}
-          ></img>
+            alt={data.owner.name + "'s profilepicture"}
+          ></Avatar>
         </div>
         <div>
           <p>owner:</p>
           <p>{data.owner.name}</p>
         </div>
       </div>
+      {/* {data.owner.name === name ? (
+        <Link to={"/manage-venue/" + data?.id} key={data?.id}>
+          <ButtonSolidDark className="opacity-1">edit venue</ButtonSolidDark>
+        </Link>
+      ) : (
+        ""
+      )} */}
     </InfoContainer>
   );
 };

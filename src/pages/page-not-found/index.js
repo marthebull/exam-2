@@ -8,7 +8,7 @@ const PageNotFound = () => {
       <CenterContainer>
         <h1 className="h1">page not found</h1>
         <img
-          src="images/broken-heart-icon.svg"
+          src="/images/broken-heart-icon.svg"
           className="big-icon"
           alt="Broken heart icon"
         ></img>

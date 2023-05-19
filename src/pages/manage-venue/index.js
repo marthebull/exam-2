@@ -2,7 +2,7 @@ import React from "react";
 import HeroManage from "../../components/hero-section/HeroManage";
 import { Container } from "../../styles/GlobalStyles";
 import VenueInfo from "../../components/venueInfo";
-import BookVenue from "../../components/book-venue";
+import BookVenue from "../../components/booking/BookVenue";
 import { useGetVenueByIdQuery } from "../../state/api/api";
 import { useParams } from "react-router-dom";
 
@@ -11,10 +11,13 @@ const ManageVenue = () => {
 
   const {
     data: venueData,
+
     isLoading: isVenueDataLoading,
     isError: isVenueDataError,
   } = useGetVenueByIdQuery(id);
-  console.log(useGetVenueByIdQuery(id));
+
+  console.log(venueData);
+
   return (
     <>
       <HeroManage

@@ -12,6 +12,7 @@ import PageNotFound from "./pages/page-not-found";
 import Layout from "./components/layout";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import EditVenue from "./pages/edit-venue";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -36,8 +37,9 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard/:username" element={<Dashboard />} />
-          <Route path="/manage-booking" element={<ManageBooking />} />
+          <Route path="/manage-booking/:id" element={<ManageBooking />} />
           <Route path="/manage-venue/:id" element={<ManageVenue />} />
+          <Route path="/edit-venue/:id" element={<EditVenue />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Layout>

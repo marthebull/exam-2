@@ -7,7 +7,7 @@ const ModalBody = ({ children, showModal, setShowModal }) => {
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-scroll max-h-full fixed inset-0 modal-bg outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-2xl">
-              <div className="modal border-0 rounded-sm p-10 shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="modal border-0 rounded-sm p-10 shadow-lg relative flex flex-col  mx-auto bg-white outline-none focus:outline-none">
                 <img
                   src="/images/close-icon.svg"
                   alt="close"

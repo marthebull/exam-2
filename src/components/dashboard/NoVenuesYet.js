@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ButtonOutlineDark } from "../../styles/GlobalStyles";
+import { useDispatch } from "react-redux";
+import { logout } from "../../state/features/authSlice";
 
 const NoVenuesYet = ({ user }) => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <div className="flex flex-col items-center mx-auto">
       <img
@@ -31,7 +38,7 @@ const NoVenuesYet = ({ user }) => {
         </Link>
       ) : (
         <Link to="/register" className="link pt-6">
-          <ButtonOutlineDark>register</ButtonOutlineDark>
+          <ButtonOutlineDark onClick={handleLogout}>register</ButtonOutlineDark>
         </Link>
       )}
     </div>

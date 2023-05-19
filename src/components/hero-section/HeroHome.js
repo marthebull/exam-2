@@ -22,11 +22,17 @@ const HeroHome = () => {
             discover, book and enjoy the most exquisite places to stay.
           </h1>
           <p className="white">
-            <Link to="/sign-in" className="link-white hover:opacity-70">
+            <Link
+              to="/sign-in"
+              className="link-white underline label hover:opacity-70"
+            >
               sign in
             </Link>
             &nbsp; or &nbsp;
-            <Link to="/venues" className="link-white hover:opacity-70">
+            <Link
+              to="/venues"
+              className="link-white underline label hover:opacity-70"
+            >
               browse
             </Link>
           </p>

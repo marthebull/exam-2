@@ -3,29 +3,7 @@ import * as Yup from "yup";
 import { useRegisterMutation } from "../../state/api/api";
 import { ButtonSolidDark } from "../../styles/GlobalStyles";
 import { useNavigate } from "react-router-dom";
-
-const RegisterSchema = Yup.object().shape({
-  name: Yup.string().required("Required"),
-  email: Yup.string()
-    .email("Invalid email")
-    .required("Required")
-    .matches(
-      /(@stud\.noroff\.no|@noroff\.no)$/,
-      "Email must be a @stud.noroff.no or @noroff.no address"
-    ),
-  avatar: Yup.string()
-    .url("Invalid URL")
-    .test("is-image-url", "Avatar must be a valid image URL", (value) => {
-      if (!value) {
-        return true; // allowing empty value
-      }
-      return /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(value);
-    }),
-  venueManager: Yup.boolean(),
-  password: Yup.string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Required"),
-});
+import { RegisterSchema } from "../../utils/schema";
 
 const RegisterForm = () => {
   const [registerCredentials, setRegisterCredentials] = useState({
@@ -89,7 +67,7 @@ const RegisterForm = () => {
           placeholder="user_name"
           className="mb-2"
         />
-        {errors.name && <div>{errors.name}</div>}
+        {errors.name && <div className="text-red-700">{errors.name}</div>}
       </div>
 
       <div className="gap-2 mb-6 items-start">
@@ -105,7 +83,7 @@ const RegisterForm = () => {
           placeholder="example@noroff.no"
           className="mb-2"
         />
-        {errors.email && <div>{errors.email}</div>}
+        {errors.email && <div className="text-red-700">{errors.email}</div>}
       </div>
 
       <div className="gap-2 mb-6 items-start">
@@ -121,7 +99,7 @@ const RegisterForm = () => {
           placeholder="example.url.gif"
           className="mb-2"
         />
-        {errors.avatar && <div>{errors.avatar}</div>}
+        {errors.avatar && <div className="text-red-700">{errors.avatar}</div>}
       </div>
 
       <div className="gap-2 mb-6 items-start">
@@ -137,7 +115,9 @@ const RegisterForm = () => {
           placeholder="********"
           className="mb-2"
         />
-        {errors.password && <div>{errors.password}</div>}
+        {errors.password && (
+          <div className="text-red-700">{errors.password}</div>
+        )}
       </div>
 
       <div className="flex flex-row items-center mb-6">

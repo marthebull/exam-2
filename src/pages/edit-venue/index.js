@@ -1,13 +1,28 @@
 import React from "react";
 import { CenterContainer } from "../../styles/GlobalStyles";
-import EditVenueForm from "../../components/forms/EditVenue";
+import EditVenueForm from "../../components/forms/EditVenueForm";
+import { useParams } from "react-router-dom";
+import { useGetVenueByIdQuery } from "../../state/api/api";
 
-const EditVenue = () => {
+const EditVenue = ({ venueData }) => {
+  const { id } = useParams();
+
+  const {
+    data: currentVenueData,
+    isLoading: isCurrentVenueDataLoading,
+    isError: isCurrentVenueDataError,
+  } = useGetVenueByIdQuery(id);
+
+  console.log(currentVenueData);
+
   return (
     <CenterContainer className="flex flex-col pt-3 lsm:pt-8">
-      <small className="white">update venue</small>
+      <small className="">update venue</small>
       <h1 className="h1 mb-8">Venue Name</h1>
-      <EditVenueForm />
+      <EditVenueForm
+        currentVenueData={currentVenueData}
+        id={currentVenueData.id}
+      />
     </CenterContainer>
   );
 };

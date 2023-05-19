@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import HeroSpinner from "../loaders/HeroSpinner";
 import { HeroContainer, TextHero } from "./styles";
 import {
   ButtonOutlineWhite,
@@ -6,47 +8,48 @@ import {
   ButtonSolidWhite,
 } from "../../styles/GlobalStyles";
 import ModalBody from "../modal/ModalBody";
-import HeroSpinner from "../loaders/HeroSpinner";
-import { Link, useNavigate } from "react-router-dom";
-import { useDeleteVenueByIdMutation } from "../../state/api/api";
+import { useDeleteBookingByIdMutation } from "../../state/api/api";
+import { useSelector } from "react-redux";
 
-const HeroManage = ({ venueData, isVenueDataLoading }) => {
+const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
   //console.log(venueData.venueData);
   let navigate = useNavigate();
 
+  const name = useSelector((state) => state.persisted.auth.name);
+
   const [showModal, setShowModal] = useState(false);
-  console.log(venueData?.id);
+  console.log(bookingData?.id);
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [deleteVenue] = useDeleteVenueByIdMutation();
+  const [deleteBooking] = useDeleteBookingByIdMutation();
 
-  const handleDeleteVenue = async () => {
+  const handleCancelBooking = async () => {
     setIsLoading(true);
     try {
       // Call the deleteVenue mutation with the venue ID
-      await deleteVenue({ id: venueData?.id });
+      await deleteBooking({ id: bookingData?.id });
     } catch (error) {
-      console.log("Error deleting venue:", error);
+      console.log("Error cancelling booking:", error);
     } finally {
       setIsLoading(false);
       setShowModal(!showModal);
-      navigate(`/dashboard/${venueData.owner.name}`);
+      navigate(`/dashboard/${name}`);
     }
   };
 
-  if (isVenueDataLoading) {
+  if (isBookingDataLoading) {
     return <HeroSpinner />;
   }
 
   return (
     <>
-      <HeroContainer className="relative" id={venueData.id}>
+      <HeroContainer className="relative" id={bookingData.id}>
         <TextHero
           style={{
             backgroundImage:
-              venueData?.media.length > 0
-                ? `url(${venueData?.media[0]})`
+              bookingData?.venue.media.length > 0
+                ? `url(${bookingData?.venue.media[0]})`
                 : `url(/images/placeholder-image.svg)`,
             backgroundPosition: `center`,
             backgroundSize: `cover`,
@@ -56,49 +59,45 @@ const HeroManage = ({ venueData, isVenueDataLoading }) => {
         >
           <div className="flex absolute z-20 bg-gray-900 opacity-50 w-full h-full items-center"></div>
           <div className="w-fit mx-auto z-50">
-            <small className="white">manage venue</small>
-            <h1 className="white h3">{venueData?.name}</h1>
+            <small className="white">manage booking for</small>
+            <h1 className="white h3">{bookingData.venue?.name}</h1>
             <div className="flex flex-col mx-auto pt-6 gap-1 md:flex-row md:gap-4">
-              <Link to={"/edit-venue/" + venueData?.id}>
-                <ButtonSolidWhite id={venueData?.id}>
-                  edit venue
-                </ButtonSolidWhite>
-              </Link>
+              <ButtonSolidWhite id={bookingData.venue?.id}>
+                edit
+              </ButtonSolidWhite>
 
               <ButtonOutlineWhite
                 showModal={showModal}
                 onClick={() => setShowModal(!showModal)}
               >
-                delete venue
+                cancel
               </ButtonOutlineWhite>
             </div>
           </div>
         </TextHero>
       </HeroContainer>
       <ModalBody
-        id={venueData.id}
+        id={bookingData.venue?.id}
         showModal={showModal}
         setShowModal={setShowModal}
         className="items-center"
       >
-        <small className="text-center block">delete venue</small>
-        <h1 className="h3 text-center mb-10">{venueData?.name}</h1>
-        <p className="text-center p">
-          Are you sure you want to delete this venue?
-        </p>
+        <small className="text-center block">cancel booking for</small>
+        <h1 className="h3 text-center mb-10">{bookingData?.venue.name}</h1>
         <p className="text-center p mb-12">
-          Note that you can also set it as unavailable for a period of time.
+          Are you sure you want to cancel this booking?
         </p>
+
         <ButtonSolidDark
           showModal={showModal}
-          onClick={handleDeleteVenue}
+          onClick={handleCancelBooking}
           disabled={isLoading}
         >
-          {isLoading ? "Deleting..." : "yes, delete venue"}
+          {isLoading ? "Deleting..." : "yes, cancel booking"}
         </ButtonSolidDark>
       </ModalBody>
     </>
   );
 };
 
-export default HeroManage;
+export default HeroManageBooking;

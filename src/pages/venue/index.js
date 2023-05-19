@@ -2,7 +2,7 @@ import React from "react";
 import HeroGallery from "../../components/hero-section/HeroGallery";
 import VenueInfo from "../../components/venueInfo";
 import { Container } from "../../styles/GlobalStyles";
-import BookVenue from "../../components/book-venue";
+import BookVenue from "../../components/booking/BookVenue";
 import { useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
 

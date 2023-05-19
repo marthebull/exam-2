@@ -1,39 +1,55 @@
 import React, { useState } from "react";
-import { useNewVenueMutation } from "../../state/api/api";
-import { useNavigate } from "react-router-dom";
+import {
+  useGetVenueByIdQuery,
+  usePutVenueByIdMutation,
+} from "../../state/api/api";
+//import { useNavigate } from "react-router-dom";
 import { ButtonSolidDark, FormImg } from "../../styles/GlobalStyles";
 import { NewVenueSchema } from "../../utils/schema";
+import { useParams } from "react-router-dom";
 
-const NewVenueForm = () => {
+const EditVenueForm = ({ currentVenueData }) => {
+  const { id } = useParams();
+  console.log(id);
+  //const id = currentVenueData?.id;
+
+  // const {
+  //   data: oldVenueData,
+  //   isLoading: isVenueDataLoading,
+  //   isError: isVenueDataError,
+  // } = useGetVenueByIdQuery(id);
+  // console.log(useGetVenueByIdQuery(id));
+  console.log(currentVenueData);
+
   const [newVenueDetails, setNewVenueDetails] = useState({
-    name: "",
-    description: "",
-    media: [],
-    price: 0,
-    maxGuests: 0,
-    rating: 0,
+    name: currentVenueData?.name,
+    description: currentVenueData?.description,
+    media: [currentVenueData?.media],
+    price: currentVenueData?.price,
+    maxGuests: currentVenueData?.maxGuests,
+    rating: currentVenueData?.rating,
     meta: {
-      wifi: false,
-      parking: false,
-      breakfast: false,
-      pets: false,
+      wifi: currentVenueData?.meta.wifi,
+      parking: currentVenueData?.meta.parking,
+      breakfast: currentVenueData?.meta.breakfast,
+      pets: currentVenueData?.meta.pets,
     },
     location: {
-      address: "unknown",
-      city: "unknown",
-      zip: "unknown",
-      country: "unknown",
-      continent: "unknown",
-      lat: 0,
-      lng: 0,
+      address: currentVenueData?.location.address,
+      city: currentVenueData?.location.city,
+      zip: currentVenueData?.location.zip,
+      country: currentVenueData?.location.country,
+      continent: currentVenueData?.location.continent,
+      lat: currentVenueData?.location.lat,
+      lng: currentVenueData?.location.lng,
     },
   });
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [data] = useNewVenueMutation();
+  const [data] = usePutVenueByIdMutation(id);
 
-  let navigate = useNavigate();
+  //let navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
@@ -83,18 +99,21 @@ const NewVenueForm = () => {
       // handle success
       await NewVenueSchema.validate(newVenueDetails, { abortEarly: false });
       const response = await data({
-        ...newVenueDetails,
-        price: parseFloat(newVenueDetails.price), // parse as number
-        maxGuests: parseInt(newVenueDetails.maxGuests), // parse as number
-        rating: parseFloat(newVenueDetails.rating), // parse as number
+        id,
+        newVenueDetails: newVenueDetails,
+
+        // ...newVenueDetails,
+        // price: parseFloat(newVenueDetails.price), // parse as number
+        // maxGuests: parseInt(newVenueDetails.maxGuests), // parse as number
+        // rating: parseFloat(newVenueDetails.rating), // parse as number
       });
       console.log(response);
       if (!response.error) {
-        navigate("/venues");
+        //navigate("/venues");
       }
     } catch (error) {
       console.error(error);
-      console.log(useNewVenueMutation);
+      console.log(usePutVenueByIdMutation);
       if (error.inner) {
         const formErrors = error.inner.reduce((acc, err) => {
           acc[err.path] = err.message;
@@ -427,4 +446,4 @@ const NewVenueForm = () => {
   );
 };
 
-export default NewVenueForm;
+export default EditVenueForm;

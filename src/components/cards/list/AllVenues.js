@@ -135,7 +135,7 @@ const ListAllVenues = () => {
                 className="relative overflow-hidden bg-no-repeat h-80"
                 style={{
                   backgroundImage:
-                    venue.media.length > 0
+                    venue?.media.length > 0
                       ? `url(${venue?.media[0]})`
                       : `url(/images/placeholder-image.svg)`,
                   backgroundPosition: `center`,

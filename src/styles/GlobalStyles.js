@@ -125,7 +125,7 @@ small {
 }
 
 button {
-    font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', sans-serif;
   display: block;
   width: 240px;
   height: 50px;
@@ -136,10 +136,10 @@ button {
   margin: 10px auto;
 }
 
-input[type=text], input[type=number], input[type=textarea], input[type=email], input[type=password] {
+
+input[type=text],input[type=date], input[type=number], input[type=textarea], input[type=email], input[type=password] {
   height: 50px;
   width: 100%;
-  min-width: 450px;
   max-width: 500px;
   padding: 12px;
   border-radius: 2px;
@@ -147,14 +147,15 @@ input[type=text], input[type=number], input[type=textarea], input[type=email], i
   cursor: pointer;
 }
 
+
 form {
-  max-width: 500px;
+  min-width: 450px;
 }
 
 textarea {
   width: 100%;
   min-height: 70px;
-  min-width: 450px;
+  min-width: 100%;
   max-width: 500px;
   padding: 12px;
   border-radius: 2px;
@@ -254,7 +255,7 @@ height: 80px;
   }
 
   input[type=text], input[type=number], input[type=email], input[type=password], textarea {
-  min-width: 300px;
+  width: 100%;
 }
   
 }
@@ -299,6 +300,14 @@ export const InfoContainer = styled.div`
     border-right: none;
     border-bottom: 1px solid #d3d3d3;
   }
+`;
+
+export const Avatar = styled.img`
+  border-radius: 50%;
+  height: 42px;
+  width: 42px;
+  margin-right: 10px;
+  object-fit: cover;
 `;
 
 export const DashAvatar = styled.img`
@@ -378,6 +387,10 @@ export const ButtonOutlineWhite = styled.button`
   &:focus {
     background-color: rgba(255, 255, 255, 0);
   }
+`;
+
+export const AmountInput = styled.input`
+  width: 20px;
 `;
 
 export default GlobalStyles;

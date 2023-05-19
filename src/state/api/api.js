@@ -40,6 +40,18 @@ export const api = createApi({
       query: (id) => `venues/${id}?_owner=true&_bookings=true`,
     }),
 
+    getBookingById: build.query({
+      query: (id) => `bookings/${id}?_venue=true`,
+    }),
+
+    putVenueById: build.mutation({
+      query: ({ id, newVenueDetails }) => ({
+        url: `venues/${id}`,
+        method: "PUT",
+        body: { newVenueDetails: newVenueDetails },
+      }),
+    }),
+
     register: build.mutation({
       query: (credentials) => ({
         url: `auth/register`,
@@ -63,6 +75,20 @@ export const api = createApi({
         body: credentials,
       }),
     }),
+
+    deleteVenueById: build.mutation({
+      query: ({ id }) => ({
+        url: `venues/${id}`,
+        method: "DELETE",
+      }),
+    }),
+
+    deleteBookingById: build.mutation({
+      query: ({ id }) => ({
+        url: `bookings/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
   onError: (error, query) => {
     console.error("API request failed", { error, query });
@@ -76,8 +102,12 @@ export const {
   usePutAvatarMutation,
   useGetVenuesQuery,
   useGetVenueByIdQuery,
+  useGetBookingByIdQuery,
+  usePutVenueByIdMutation,
   useRegisterMutation,
   useLoginMutation,
   useNewVenueMutation,
+  useDeleteVenueByIdMutation,
+  useDeleteBookingByIdMutation,
 } = api;
 export const loginEndpoint = api.endpoints.login;

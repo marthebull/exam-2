@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <CenterContainer className="flex flex-col">
+    <CenterContainer className="flex flex-col pt-12">
       <h1 className="h1 mb-8">register</h1>
       <RegisterForm />
       <p className=" flex flex-col pt-12">

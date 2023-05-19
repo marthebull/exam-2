@@ -29,7 +29,7 @@ const LoginForm = () => {
   return (
     <>
       <form onSubmit={handleLogin} className="flex flex-col items-start">
-        <div className="gap-2 mb-6 items-start">
+        <div className="gap-2 mb-6 items-start w-full">
           <label htmlFor="email" className="mb-1">
             email address
           </label>
@@ -44,7 +44,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <div className="gap-2 mb-6 items-start">
+        <div className="gap-2 mb-6 items-start w-full">
           <label htmlFor="password" className="mb-1">
             password
           </label>
