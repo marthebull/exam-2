@@ -83,12 +83,10 @@ const HeroManage = ({ venueData, isVenueDataLoading }) => {
       >
         <small className="text-center block">delete venue</small>
         <h1 className="h3 text-center mb-10">{venueData?.name}</h1>
-        <p className="text-center p">
+        <p className="text-center p mb-10">
           Are you sure you want to delete this venue?
         </p>
-        <p className="text-center p mb-12">
-          Note that you can also set it as unavailable for a period of time.
-        </p>
+
         <ButtonSolidDark
           showModal={showModal}
           onClick={handleDeleteVenue}

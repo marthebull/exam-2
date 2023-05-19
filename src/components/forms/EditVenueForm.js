@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  useGetVenueByIdQuery,
-  usePutVenueByIdMutation,
-} from "../../state/api/api";
+import { usePutVenueByIdMutation } from "../../state/api/api";
 //import { useNavigate } from "react-router-dom";
 import { ButtonSolidDark, FormImg } from "../../styles/GlobalStyles";
 import { NewVenueSchema } from "../../utils/schema";

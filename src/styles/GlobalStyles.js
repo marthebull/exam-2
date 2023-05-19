@@ -149,7 +149,8 @@ input[type=text],input[type=date], input[type=number], input[type=textarea], inp
 
 
 form {
-  min-width: 450px;
+  width: 100%;
+  max-width: 500px;
 }
 
 textarea {
