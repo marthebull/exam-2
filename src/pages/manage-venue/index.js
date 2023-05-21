@@ -13,6 +13,7 @@ const ManageVenue = () => {
     data: venueData,
     isLoading: isVenueDataLoading,
     isError: isVenueDataError,
+    refetch: refetchVenueData,
   } = useGetVenueByIdQuery(id);
 
   if (isVenueDataLoading) {
@@ -21,12 +22,7 @@ const ManageVenue = () => {
 
   return (
     <>
-      <HeroManage
-        venueData={venueData}
-        isVenueDataLoading={isVenueDataLoading}
-        isVenueDataError={isVenueDataError}
-        id={id}
-      />
+      <HeroManage id={id} />
       <Container className="flex flex-col justify-center md:flex-row">
         <VenueInfo
           venueData={venueData}

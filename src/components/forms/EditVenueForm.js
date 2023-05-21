@@ -1,27 +1,16 @@
 import React, { useState } from "react";
 import { usePutVenueByIdMutation } from "../../state/api/api";
-//import { useNavigate } from "react-router-dom";
 import { ButtonSolidDark, FormImg } from "../../styles/GlobalStyles";
 import { NewVenueSchema } from "../../utils/schema";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditVenueForm = ({ currentVenueData }) => {
   const { id } = useParams();
-  console.log(id);
-  //const id = currentVenueData?.id;
-
-  // const {
-  //   data: oldVenueData,
-  //   isLoading: isVenueDataLoading,
-  //   isError: isVenueDataError,
-  // } = useGetVenueByIdQuery(id);
-  // console.log(useGetVenueByIdQuery(id));
-  console.log(currentVenueData);
 
   const [newVenueDetails, setNewVenueDetails] = useState({
     name: currentVenueData?.name,
     description: currentVenueData?.description,
-    media: [currentVenueData?.media],
+    media: currentVenueData?.media,
     price: currentVenueData?.price,
     maxGuests: currentVenueData?.maxGuests,
     rating: currentVenueData?.rating,
@@ -46,7 +35,7 @@ const EditVenueForm = ({ currentVenueData }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data] = usePutVenueByIdMutation(id);
 
-  //let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
@@ -95,18 +84,28 @@ const EditVenueForm = ({ currentVenueData }) => {
     try {
       // handle success
       await NewVenueSchema.validate(newVenueDetails, { abortEarly: false });
-      const response = await data({
-        id,
-        newVenueDetails: newVenueDetails,
 
-        // ...newVenueDetails,
-        // price: parseFloat(newVenueDetails.price), // parse as number
-        // maxGuests: parseInt(newVenueDetails.maxGuests), // parse as number
-        // rating: parseFloat(newVenueDetails.rating), // parse as number
-      });
+      const editVenueBody = {
+        ...newVenueDetails,
+        price: parseFloat(newVenueDetails.price), // parse as number
+        maxGuests: parseInt(newVenueDetails.maxGuests), // parse as number
+        rating: parseFloat(newVenueDetails.rating),
+        location: {
+          address: newVenueDetails.location.address,
+          city: newVenueDetails.location.city,
+          zip: newVenueDetails.location.zip,
+          country: newVenueDetails.location.country,
+          continent: newVenueDetails.location.continent,
+          lat: parseFloat(newVenueDetails.location.lat),
+          lng: parseFloat(newVenueDetails.location.lng),
+        },
+      };
+
+      const response = await data({ editVenueBody, id });
+
       console.log(response);
       if (!response.error) {
-        //navigate("/venues");
+        navigate(`/dashboard`);
       }
     } catch (error) {
       console.error(error);
@@ -197,7 +196,7 @@ const EditVenueForm = ({ currentVenueData }) => {
         <input
           id="price"
           name="price"
-          type="text"
+          type="number"
           onChange={handleChange}
           defaultValue={newVenueDetails.price}
           placeholder="899"
@@ -213,7 +212,7 @@ const EditVenueForm = ({ currentVenueData }) => {
         <input
           id="maxGuests"
           name="maxGuests"
-          type="text"
+          type="number"
           onChange={handleChange}
           defaultValue={newVenueDetails.maxGuests}
           placeholder="16"
@@ -229,7 +228,7 @@ const EditVenueForm = ({ currentVenueData }) => {
         <input
           id="rating"
           name="rating"
-          type="text"
+          type="number"
           onChange={handleChange}
           defaultValue={newVenueDetails.rating}
           placeholder="5"
@@ -247,7 +246,7 @@ const EditVenueForm = ({ currentVenueData }) => {
           name="location.address"
           type="text"
           onChange={handleChange}
-          value={newVenueDetails.address}
+          value={newVenueDetails.location.address}
           placeholder="Calle San Paternian 1 - San Marco"
           className="mb-1"
         />
@@ -263,7 +262,7 @@ const EditVenueForm = ({ currentVenueData }) => {
           name="location.city"
           type="text"
           onChange={handleChange}
-          value={newVenueDetails.city}
+          value={newVenueDetails.location.city}
           placeholder="Venice"
           className="mb-1"
         />
@@ -279,7 +278,7 @@ const EditVenueForm = ({ currentVenueData }) => {
           name="location.zip"
           type="text"
           onChange={handleChange}
-          value={newVenueDetails.zip}
+          value={newVenueDetails.location.zip}
           placeholder="30124"
           className="mb-1"
         />
@@ -295,7 +294,7 @@ const EditVenueForm = ({ currentVenueData }) => {
           name="location.country"
           type="text"
           onChange={handleChange}
-          value={newVenueDetails.country}
+          value={newVenueDetails.location.country}
           placeholder="Italy"
           className="mb-1"
         />
@@ -311,7 +310,7 @@ const EditVenueForm = ({ currentVenueData }) => {
           name="location.continent"
           type="text"
           onChange={handleChange}
-          value={newVenueDetails.continent}
+          value={newVenueDetails.location.continent}
           placeholder="Europe"
           className="mb-1"
         />
@@ -327,7 +326,7 @@ const EditVenueForm = ({ currentVenueData }) => {
           name="location.lat"
           type="number"
           onChange={handleChange}
-          defaultValue={newVenueDetails.lat}
+          defaultValue={newVenueDetails.location.lat}
           placeholder="38.8951"
           className="mb-1"
         />
@@ -343,7 +342,7 @@ const EditVenueForm = ({ currentVenueData }) => {
           name="location.lng"
           type="number"
           onChange={handleChange}
-          defaultValue={newVenueDetails.lng}
+          defaultValue={newVenueDetails.location.lng}
           placeholder="-77.0364"
           className="mb-1"
         />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeroContainer, TextHero } from "./styles";
 import {
   ButtonOutlineWhite,
@@ -8,11 +8,21 @@ import {
 import ModalBody from "../modal/ModalBody";
 import HeroSpinner from "../loaders/HeroSpinner";
 import { Link, useNavigate } from "react-router-dom";
-import { useDeleteVenueByIdMutation } from "../../state/api/api";
+import {
+  useDeleteVenueByIdMutation,
+  useGetVenueByIdQuery,
+} from "../../state/api/api";
 
-const HeroManage = ({ venueData, isVenueDataLoading }) => {
+const HeroManage = ({ id }) => {
   //console.log(venueData.venueData);
   let navigate = useNavigate();
+
+  const {
+    data: venueData,
+    isLoading: isVenueDataLoading,
+    isError: isVenueDataError,
+    refetch: refetchVenueData,
+  } = useGetVenueByIdQuery(id);
 
   const [showModal, setShowModal] = useState(false);
   console.log(venueData?.id);
@@ -20,6 +30,12 @@ const HeroManage = ({ venueData, isVenueDataLoading }) => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [deleteVenue] = useDeleteVenueByIdMutation();
+
+  useEffect(() => {
+    if (venueData) {
+      refetchVenueData();
+    }
+  }, [isVenueDataLoading]);
 
   const handleDeleteVenue = async () => {
     setIsLoading(true);

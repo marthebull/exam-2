@@ -46,6 +46,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
     event.preventDefault();
     setIsLoading(true);
 
+    // TODO: Have a closer look at this, might be related to the need for avatar: avatar in request
     try {
       // handle success
       await UpdateAvatarSchema.validate(

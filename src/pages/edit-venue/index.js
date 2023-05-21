@@ -13,16 +13,15 @@ const EditVenue = ({ venueData }) => {
     isError: isCurrentVenueDataError,
   } = useGetVenueByIdQuery(id);
 
-  console.log(currentVenueData);
+  if (isCurrentVenueDataLoading) {
+    return "Loading....";
+  }
 
   return (
     <CenterContainer className="flex flex-col pt-3 lsm:pt-8">
       <small className="">update venue</small>
       <h1 className="h1 mb-8">Venue Name</h1>
-      <EditVenueForm
-        currentVenueData={currentVenueData}
-        id={currentVenueData.id}
-      />
+      <EditVenueForm currentVenueData={currentVenueData} id={id} />
     </CenterContainer>
   );
 };

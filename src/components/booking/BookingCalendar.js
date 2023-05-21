@@ -10,10 +10,6 @@ import {
 } from "date-fns";
 
 const BookingCalendar = ({ venueData, setBookingStart, setBookingEnd }) => {
-  console.log(
-    "🚀 ~ file: BookingCalendar.js:13 ~ BookingCalendar ~ venueData:",
-    venueData
-  );
   const [state, setState] = useState([
     {
       startDate: new Date(),

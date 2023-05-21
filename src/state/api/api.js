@@ -53,10 +53,10 @@ export const api = createApi({
     }),
 
     putVenueById: build.mutation({
-      query: ({ id, newVenueDetails }) => ({
+      query: ({ editVenueBody, id }) => ({
         url: `venues/${id}`,
         method: "PUT",
-        body: { newVenueDetails: newVenueDetails },
+        body: editVenueBody,
       }),
     }),
 
