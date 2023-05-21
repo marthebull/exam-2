@@ -222,6 +222,20 @@ height: 80px;
   z-index: 1100;
 }
 
+// todo: style cal
+#calendar button.rdrDayPassive {
+  opacity: 0;
+}
+
+#calendar .rdrDateDisplayWrapper{
+  display: none;
+}
+
+#calendar .rdrCalendarWrapper .rdrDateRangeWrapper {
+  width: 100% !important;
+}
+
+
 @media screen and (max-width: 600px){
 
   .h1 {

@@ -23,7 +23,7 @@ const LoginForm = () => {
   };
 
   if (accessToken.length > 0) {
-    navigate(`/dashboard/${name}`);
+    navigate(`/dashboard`);
   }
 
   return (

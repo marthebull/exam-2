@@ -18,7 +18,7 @@ const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
   const name = useSelector((state) => state.persisted.auth.name);
 
   const [showModal, setShowModal] = useState(false);
-  console.log(bookingData?.id);
+  console.log(bookingData);
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
     } finally {
       setIsLoading(false);
       setShowModal(!showModal);
-      navigate(`/dashboard/${name}`);
+      navigate(`/dashboard`);
     }
   };
 

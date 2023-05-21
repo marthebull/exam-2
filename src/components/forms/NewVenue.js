@@ -82,6 +82,7 @@ const NewVenueForm = () => {
     try {
       // handle success
       await NewVenueSchema.validate(newVenueDetails, { abortEarly: false });
+
       const response = await data({
         ...newVenueDetails,
         price: parseFloat(newVenueDetails.price), // parse as number
@@ -90,7 +91,7 @@ const NewVenueForm = () => {
       });
       console.log(response);
       if (!response.error) {
-        navigate("/venues");
+        navigate(`/dashboard`);
       }
     } catch (error) {
       console.error(error);

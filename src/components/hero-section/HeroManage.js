@@ -31,7 +31,7 @@ const HeroManage = ({ venueData, isVenueDataLoading }) => {
     } finally {
       setIsLoading(false);
       setShowModal(!showModal);
-      navigate(`/dashboard/${venueData.owner.name}`);
+      navigate(`/dashboard`);
     }
   };
 

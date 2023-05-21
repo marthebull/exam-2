@@ -27,7 +27,7 @@ const MenuItems = () => {
 
         {accessToken.length > 0 && (
           <NavItem>
-            <Link to={"/dashboard/" + name} className="link nav-link">
+            <Link to={"/dashboard/"} className="link nav-link">
               dashboard
             </Link>
           </NavItem>
@@ -49,7 +49,7 @@ const MenuItems = () => {
 
         {accessToken.length > 0 && (
           <NavItem>
-            <Link to={"/dashboard/" + name}>
+            <Link to={"/dashboard/"}>
               <NavAvatar src={avatar}></NavAvatar>
             </Link>
           </NavItem>

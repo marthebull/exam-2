@@ -14,7 +14,10 @@ const Venue = () => {
     isLoading: isVenueDataLoading,
     isError: isVenueDataError,
   } = useGetVenueByIdQuery(id);
-  console.log(useGetVenueByIdQuery(id));
+
+  if (isVenueDataLoading) {
+    return "loading";
+  }
 
   return (
     <div>

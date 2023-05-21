@@ -8,6 +8,7 @@ const BookingDetails = ({ bookingData, isBookingDataLoading }) => {
     bookingData?.dateFrom,
     bookingData?.dateTo
   );
+
   const total = bookingData?.venue.price * numberOfDays;
 
   return (

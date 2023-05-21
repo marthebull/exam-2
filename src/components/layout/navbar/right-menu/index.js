@@ -32,7 +32,7 @@ const RightMenu = ({ open, setOpen }) => {
         {accessToken.length > 0 && (
           <NavItem>
             <Link
-              to={"/dashboard/" + name}
+              to={"/dashboard/"}
               className="link nav-link"
               onClick={() => setOpen(!open)}
             >
@@ -65,7 +65,7 @@ const RightMenu = ({ open, setOpen }) => {
 
         {accessToken.length > 0 && (
           <Link
-            to={"/dashboard/" + name}
+            to={"/dashboard/"}
             className="flex justify-center"
             onClick={() => setOpen(!open)}
           >

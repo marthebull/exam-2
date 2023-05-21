@@ -11,12 +11,13 @@ const ManageVenue = () => {
 
   const {
     data: venueData,
-
     isLoading: isVenueDataLoading,
     isError: isVenueDataError,
   } = useGetVenueByIdQuery(id);
 
-  console.log(venueData);
+  if (isVenueDataLoading) {
+    return "manage-venue/index.js - Loading venue data data";
+  }
 
   return (
     <>

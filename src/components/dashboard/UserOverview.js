@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, InfoContainer } from "../../styles/GlobalStyles";
 import NoBookingsYet from "./NoBookingsYet";
 import NoVenuesYet from "./NoVenuesYet";
@@ -8,9 +8,15 @@ import UserOverviewLoader from "../loaders/UserOverviewLoader";
 import BookingCard from "../cards/dashboard/BookingCard";
 
 const UserOverview = ({ username }) => {
-  const { data: user, isLoading: isUserLoading } =
-    useGetProfileByNameQuery(username);
-  console.log(user);
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    refetch: refetchUser,
+  } = useGetProfileByNameQuery(username);
+
+  useEffect(() => {
+    refetchUser();
+  }, []);
 
   if (isUserLoading) {
     return <UserOverviewLoader />;

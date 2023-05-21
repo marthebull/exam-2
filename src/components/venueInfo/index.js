@@ -1,22 +1,15 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
-import {
-  Avatar,
-  ButtonSolidDark,
-  InfoContainer,
-} from "../../styles/GlobalStyles";
+import { Avatar, InfoContainer } from "../../styles/GlobalStyles";
 import { useSelector } from "react-redux";
 
-const VenueInfo = () => {
+const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
   const { id } = useParams();
 
   const name = useSelector((state) => state.persisted.auth.name);
 
-  const { data, isLoading, isError } = useGetVenueByIdQuery(id);
-  console.log(useGetVenueByIdQuery(id));
-
-  if (isLoading) {
+  if (isVenueDataLoading) {
     return (
       <InfoContainer className=" pb-8 my-10 w-100 md:max-w-lg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
         loading...
@@ -24,7 +17,7 @@ const VenueInfo = () => {
     );
   }
 
-  if (isError) {
+  if (isVenueDataError) {
     return <div>Something wrong</div>;
   }
   return (
@@ -35,13 +28,13 @@ const VenueInfo = () => {
         ""
       )} */}
 
-      <h1 className="h1 mb-1">{data.name}</h1>
+      <h1 className="h1 mb-1">{venueData.name}</h1>
       <h2 className="h5 mb-8">
-        {data.location.city}, {data.location.country}
+        {venueData.location.city}, {venueData.location.country}
       </h2>
-      <p className="h3 mb-8">{data.price} NOK / night</p>
+      <p className="h3 mb-8">{venueData.price} NOK / night</p>
       <h3 className="h5 mb-1">Description</h3>
-      <p className="p mb-10">{data.description}</p>
+      <p className="p mb-10">{venueData.description}</p>
 
       <div className="flex flex-col gap-2 mb-10">
         <div className="flex flex-row gap-3">
@@ -50,7 +43,7 @@ const VenueInfo = () => {
             src="/images/star-icon.svg"
             alt="Rating star icon"
           ></img>
-          <p className="h5">{data.rating}/5</p>
+          <p className="h5">{venueData.rating}/5</p>
         </div>
         <div className="flex flex-row gap-3">
           <img
@@ -58,11 +51,11 @@ const VenueInfo = () => {
             src="/images/people-icon.svg"
             alt="Guests icon"
           ></img>
-          <p className="h5">max {data.maxGuests} guests</p>
+          <p className="h5">max {venueData.maxGuests} guests</p>
         </div>
         <div
           className="flex flex-row gap-3"
-          style={{ opacity: data.meta.parking ? 1 : 0.3 }}
+          style={{ opacity: venueData.meta.parking ? 1 : 0.3 }}
         >
           <img
             className="icon"
@@ -73,7 +66,7 @@ const VenueInfo = () => {
         </div>
         <div
           className="flex flex-row gap-3"
-          style={{ opacity: data.meta.breakfast ? 1 : 0.3 }}
+          style={{ opacity: venueData.meta.breakfast ? 1 : 0.3 }}
         >
           <img
             className="icon"
@@ -84,43 +77,43 @@ const VenueInfo = () => {
         </div>
         <div
           className="flex flex-row gap-3"
-          style={{ opacity: data.meta.pets ? 1 : 0.3 }}
+          style={{ opacity: venueData.meta.pets ? 1 : 0.3 }}
         >
           <img className="icon" src="/images/paw-icon.svg" alt="Guests"></img>
           <p className="h5">pets allowed</p>
         </div>
         <div
           className="flex flex-row gap-3"
-          style={{ opacity: data.meta.wifi ? 1 : 0.3 }}
+          style={{ opacity: venueData.meta.wifi ? 1 : 0.3 }}
         >
           <img className="icon" src="/images/wifi-icon.svg" alt="Guests"></img>
           <p className="h5">wifi</p>
         </div>
       </div>
       <h3 className="h5 mb-2">Address</h3>
-      <p className="p mb-1">{data.location.address}</p>
+      <p className="p mb-1">{venueData.location.address}</p>
       <p className="p  mb-10">
-        {data.location.city}, {data.location.country}
+        {venueData.location.city}, {venueData.location.country}
       </p>
       <div className="flex flex-row items-center gap-2 mb-10">
         <div className="h-full">
           <Avatar
             className=" "
             src={
-              data.owner.avatar
-                ? data.owner.avatar
+              venueData.owner.avatar
+                ? venueData.owner.avatar
                 : "/images/placeholder-avatar.svg"
             }
-            alt={data.owner.name + "'s profilepicture"}
+            alt={venueData.owner.name + "'s profilepicture"}
           ></Avatar>
         </div>
         <div>
           <p>owner:</p>
-          <p>{data.owner.name}</p>
+          <p>{venueData.owner.name}</p>
         </div>
       </div>
-      {/* {data.owner.name === name ? (
-        <Link to={"/manage-venue/" + data?.id} key={data?.id}>
+      {/* {venueData.owner.name === name ? (
+        <Link to={"/manage-venue/" + venueData?.id} key={venueData?.id}>
           <ButtonSolidDark className="opacity-1">edit venue</ButtonSolidDark>
         </Link>
       ) : (

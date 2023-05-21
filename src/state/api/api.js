@@ -44,6 +44,14 @@ export const api = createApi({
       query: (id) => `bookings/${id}?_venue=true`,
     }),
 
+    postBooking: build.mutation({
+      query: (postBookingBody) => ({
+        url: `bookings?_customer=true&_venue=true`,
+        method: "POST",
+        body: postBookingBody,
+      }),
+    }),
+
     putVenueById: build.mutation({
       query: ({ id, newVenueDetails }) => ({
         url: `venues/${id}`,
@@ -103,6 +111,7 @@ export const {
   useGetVenuesQuery,
   useGetVenueByIdQuery,
   useGetBookingByIdQuery,
+  usePostBookingMutation,
   usePutVenueByIdMutation,
   useRegisterMutation,
   useLoginMutation,
