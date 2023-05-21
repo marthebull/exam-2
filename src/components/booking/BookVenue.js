@@ -19,8 +19,8 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
   const [guests, setGuests] = useState(1);
   const [bookingStart, setBookingStart] = useState("");
   const [bookingEnd, setBookingEnd] = useState("");
-  const [bookedNights, setBookedNights] = 0;
-  const [total, setTotal] = 0;
+  const [bookedNights, setBookedNights] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const handleDecrease = () => {
     if (guests > 1) {
@@ -42,7 +42,10 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
   };
 
   useEffect(() => {
-    bookedNights = getDateDifference(bookingStart, bookingEnd) + 1;
+    setBookedNights(getDateDifference(bookingStart, bookingEnd) + 1);
+    setTotal(
+      venueData.price * (getDateDifference(bookingStart, bookingEnd) + 1)
+    );
   }, [bookingStart, bookingEnd]);
 
   const handleAddNewBooking = async () => {
@@ -100,8 +103,8 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
                 </ButtonOutlineDark>
               </div>
               <div className="text-center pt-8 pb-5">
-                <p className="h3">total 3444 NOK</p>
-                <p className="text-gray-400">{bookedNights} x nights</p>
+                <p className="h3">total {total} NOK</p>
+                <p className="text-gray-400">{bookedNights} days</p>
               </div>
             </div>
           </>

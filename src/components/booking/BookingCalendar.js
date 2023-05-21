@@ -43,13 +43,33 @@ const BookingCalendar = ({ venueData, setBookingStart, setBookingEnd }) => {
 
   useEffect(() => {
     if (venueData.bookings.length > 0) {
-      const lastBooking = venueData.bookings[venueData.bookings.length - 1];
-      const nextAvailableDate = addDays(parseISO(lastBooking.dateTo), 1);
+      // Find the latest booking end date
+      const lastBookingEndDate = venueData.bookings.reduce(
+        (lastDate, booking) => {
+          const bookingEndDate = parseISO(booking.dateTo);
+          return bookingEndDate > lastDate ? bookingEndDate : lastDate;
+        },
+        new Date(0)
+      ); // 0 initializes a very early date
+
+      // Iterate from today to the last booking end date to find the earliest available date
+      let earliestAvailableDate = new Date();
+      while (earliestAvailableDate <= lastBookingEndDate) {
+        // Check if the date is booked
+        if (
+          !disabledDates.find(
+            (date) => date.getTime() === earliestAvailableDate.getTime()
+          )
+        ) {
+          break; // Found an available date
+        }
+        earliestAvailableDate = addDays(earliestAvailableDate, 1);
+      }
 
       setState([
         {
-          startDate: nextAvailableDate,
-          endDate: nextAvailableDate,
+          startDate: earliestAvailableDate,
+          endDate: earliestAvailableDate,
           key: "selection",
         },
       ]);
