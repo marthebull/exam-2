@@ -241,6 +241,25 @@ height: 80px;
  #calendar .rdrCalendarWrapper, .rdrMonth {
   width: 100% !important;
 }
+#calendar button {
+  color: #424242 !important;
+}
+
+#calendar button span{
+  color: #424242 !important;
+}
+
+#calendar .rdrDay:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span, #calendar .rdrDay:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span, #calendar .rdrDay:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span,#calendar .rdrDay:not(.rdrDayPassive) .rdrSelected ~ .rdrDayNumber span{
+  color: white !important;
+}
+
+#calendar  .rdrDayDisabled {
+  background-color: white;
+}
+
+#calendar  .rdrDayDisabled span.rdrDayNumber{
+  background-color: var(--dark-grey-transparent);
+}
 
  .rdrNextPrevButton, .rdrPprevButton {
   background: none;

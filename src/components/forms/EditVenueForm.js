@@ -3,6 +3,7 @@ import { usePutVenueByIdMutation } from "../../state/api/api";
 import { ButtonSolidDark, FormImg } from "../../styles/GlobalStyles";
 import { NewVenueSchema } from "../../utils/schema";
 import { useNavigate, useParams } from "react-router-dom";
+import AddressAutoComplete from "./AddressAutoComplete";
 
 const EditVenueForm = ({ currentVenueData }) => {
   const { id } = useParams();
@@ -20,17 +21,14 @@ const EditVenueForm = ({ currentVenueData }) => {
       breakfast: currentVenueData?.meta.breakfast,
       pets: currentVenueData?.meta.pets,
     },
-    location: {
-      address: currentVenueData?.location.address,
-      city: currentVenueData?.location.city,
-      zip: currentVenueData?.location.zip,
-      country: currentVenueData?.location.country,
-      continent: currentVenueData?.location.continent,
-      lat: currentVenueData?.location.lat,
-      lng: currentVenueData?.location.lng,
-    },
   });
 
+  const [city, setCity] = useState(currentVenueData?.location.city);
+  const [zip, setZip] = useState(currentVenueData?.location.zip);
+  const [country, setCountry] = useState(currentVenueData?.location.country);
+  const [address, setAddress] = useState(currentVenueData?.location.address);
+  const [latitude, setLatitude] = useState(currentVenueData?.location.lat);
+  const [longitude, setLongitude] = useState(currentVenueData?.location.lng);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data] = usePutVenueByIdMutation(id);
@@ -91,13 +89,13 @@ const EditVenueForm = ({ currentVenueData }) => {
         maxGuests: parseInt(newVenueDetails.maxGuests), // parse as number
         rating: parseFloat(newVenueDetails.rating),
         location: {
-          address: newVenueDetails.location.address,
-          city: newVenueDetails.location.city,
-          zip: newVenueDetails.location.zip,
-          country: newVenueDetails.location.country,
-          continent: newVenueDetails.location.continent,
-          lat: parseFloat(newVenueDetails.location.lat),
-          lng: parseFloat(newVenueDetails.location.lng),
+          address: address,
+          city: city,
+          zip: zip,
+          country: country,
+          continent: "",
+          lat: latitude,
+          lng: longitude,
         },
       };
 
@@ -238,115 +236,32 @@ const EditVenueForm = ({ currentVenueData }) => {
       </div>
 
       <div className="gap-2 mb-3 ">
-        <label htmlFor="address" className="mb-1 ">
-          address
-        </label>
-        <input
-          id="address"
-          name="location.address"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.location.address}
-          placeholder="Calle San Paternian 1 - San Marco"
-          className="mb-1"
-        />
-        {errors.address && <div>{errors.address}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
         <label htmlFor="city" className="mb-1 ">
           city
         </label>
         <input
           id="city"
-          name="location.city"
+          name="city"
           type="text"
           onChange={handleChange}
-          value={newVenueDetails.location.city}
+          value={city}
           placeholder="Venice"
           className="mb-1"
         />
         {errors.city && <div>{errors.city}</div>}
       </div>
 
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="zip" className="mb-1 ">
-          zip
-        </label>
-        <input
-          id="zip"
-          name="location.zip"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.location.zip}
-          placeholder="30124"
-          className="mb-1"
+      <div className="mb-3">
+        <label className="mb-1 ">address</label>
+        <AddressAutoComplete
+          setCity={setCity}
+          setZip={setZip}
+          setCountry={setCountry}
+          setAddress={setAddress}
+          setLongitude={setLongitude}
+          setLatitude={setLatitude}
+          value={currentVenueData?.location.address}
         />
-        {errors.zip && <div>{errors.zip}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="country" className="mb-1 ">
-          country
-        </label>
-        <input
-          id="country"
-          name="location.country"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.location.country}
-          placeholder="Italy"
-          className="mb-1"
-        />
-        {errors.country && <div>{errors.country}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="continent" className="mb-1 ">
-          continent
-        </label>
-        <input
-          id="continent"
-          name="location.continent"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.location.continent}
-          placeholder="Europe"
-          className="mb-1"
-        />
-        {errors.continent && <div>{errors.continent}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="lat" className="mb-1 ">
-          lat
-        </label>
-        <input
-          id="lat"
-          name="location.lat"
-          type="number"
-          onChange={handleChange}
-          defaultValue={newVenueDetails.location.lat}
-          placeholder="38.8951"
-          className="mb-1"
-        />
-        {errors.lat && <div>{errors.lat}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="lng" className="mb-1 ">
-          lng
-        </label>
-        <input
-          id="lng"
-          name="location.lng"
-          type="number"
-          onChange={handleChange}
-          defaultValue={newVenueDetails.location.lng}
-          placeholder="-77.0364"
-          className="mb-1"
-        />
-        {errors.lng && <div>{errors.lng}</div>}
       </div>
 
       <div className="flex flex-col gap-2 py-4">

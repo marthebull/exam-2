@@ -18,6 +18,7 @@ const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
   const name = useSelector((state) => state.persisted.auth.name);
 
   const [showModal, setShowModal] = useState(false);
+
   console.log(bookingData);
 
   const [errors, setErrors] = useState({});
@@ -62,8 +63,8 @@ const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
             <small className="white">manage booking for</small>
             <h1 className="white h3">{bookingData.venue?.name}</h1>
             <div className="flex flex-col mx-auto pt-6 gap-1 md:flex-row md:gap-4">
-              <ButtonSolidWhite id={bookingData.venue?.id}>
-                edit
+              <ButtonSolidWhite className="opacity-50">
+                feat coming soon...
               </ButtonSolidWhite>
 
               <ButtonOutlineWhite
@@ -76,6 +77,8 @@ const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
           </div>
         </TextHero>
       </HeroContainer>
+
+      {/* Cancel booking modal */}
       <ModalBody
         id={bookingData.venue?.id}
         showModal={showModal}
@@ -93,7 +96,7 @@ const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
           onClick={handleCancelBooking}
           disabled={isLoading}
         >
-          {isLoading ? "Deleting..." : "yes, cancel booking"}
+          {isLoading ? "cancelling..." : "yes, cancel booking"}
         </ButtonSolidDark>
       </ModalBody>
     </>

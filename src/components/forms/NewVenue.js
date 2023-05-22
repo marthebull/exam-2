@@ -3,7 +3,6 @@ import { useNewVenueMutation } from "../../state/api/api";
 import { useNavigate } from "react-router-dom";
 import { ButtonSolidDark, FormImg } from "../../styles/GlobalStyles";
 import { NewVenueSchema } from "../../utils/schema";
-import MapComponent from "./AddressAutoComplete";
 import AddressAutoComplete from "./AddressAutoComplete";
 
 const NewVenueForm = () => {

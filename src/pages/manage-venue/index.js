@@ -5,6 +5,7 @@ import VenueInfo from "../../components/venueInfo";
 import BookVenue from "../../components/booking/BookVenue";
 import { useGetVenueByIdQuery } from "../../state/api/api";
 import { useParams } from "react-router-dom";
+import HeroSpinner from "../../components/loaders/HeroSpinner";
 
 const ManageVenue = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const ManageVenue = () => {
   } = useGetVenueByIdQuery(id);
 
   if (isVenueDataLoading) {
-    return "manage-venue/index.js - Loading venue data data";
+    return <HeroSpinner />;
   }
 
   return (

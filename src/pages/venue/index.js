@@ -5,6 +5,7 @@ import { Container } from "../../styles/GlobalStyles";
 import BookVenue from "../../components/booking/BookVenue";
 import { useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
+import HeroSpinner from "../../components/loaders/HeroSpinner";
 
 const Venue = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const Venue = () => {
   } = useGetVenueByIdQuery(id);
 
   if (isVenueDataLoading) {
-    return "loading";
+    return <HeroSpinner />;
   }
 
   return (

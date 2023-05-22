@@ -60,7 +60,7 @@ export default function AddressAutoComplete({
   return (
     <div>
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-        <input type="text" placeholder="Enter a location" />
+        <input type="text" placeholder="address" />
       </Autocomplete>
     </div>
   );

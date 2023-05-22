@@ -91,11 +91,6 @@ const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
           <p className="h5">wifi</p>
         </div>
       </div>
-      <h3 className="h5 mb-2">Address</h3>
-      <p className="p mb-1">{venueData.location.address}</p>
-      <p className="p  mb-10">
-        {venueData.location.city}, {venueData.location.country}
-      </p>
       <div className="flex flex-row items-center gap-2 mb-10">
         <div className="h-full">
           <Avatar
@@ -113,13 +108,12 @@ const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
           <p>{venueData.owner.name}</p>
         </div>
       </div>
-      {/* {venueData.owner.name === name ? (
-        <Link to={"/manage-venue/" + venueData?.id} key={venueData?.id}>
-          <ButtonSolidDark className="opacity-1">edit venue</ButtonSolidDark>
-        </Link>
-      ) : (
-        ""
-      )} */}
+      <h3 className="h5 mb-2">Address</h3>
+      <p className="p mb-1">{venueData.location.address}</p>
+      <p className="p  mb-10">
+        {venueData.location.city}, {venueData.location.country}
+      </p>
+
       <MapWithMarker
         lat={venueData?.location.lat}
         lng={venueData?.location.lng}

@@ -8,7 +8,9 @@ import {
   ButtonSolidDark,
 } from "../../styles/GlobalStyles";
 import BookingCalendar from "./BookingCalendar";
-import { getDateDifference } from "../../utils/formatDate";
+import { formatDate, getDateDifference } from "../../utils/formatDate";
+import { useNavigate } from "react-router-dom";
+import ModalBody from "../modal/ModalBody";
 
 const BookVenue = ({ venueData, venueDataIsLoading }) => {
   const [postBooking] = usePostBookingMutation();
@@ -16,11 +18,14 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
   const name = useSelector((state) => state.persisted.auth.name);
   const isLoggedIn = name !== null;
 
+  const [showModal, setShowModal] = useState(false);
   const [guests, setGuests] = useState(1);
   const [bookingStart, setBookingStart] = useState("");
   const [bookingEnd, setBookingEnd] = useState("");
   const [bookedNights, setBookedNights] = useState(0);
   const [total, setTotal] = useState(0);
+
+  let navigate = useNavigate();
 
   const handleDecrease = () => {
     if (guests > 1) {
@@ -41,6 +46,20 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
     }
   };
 
+  const postBookingBody = {
+    dateFrom: new Date(bookingStart),
+    // .toISOString()
+    dateTo: new Date(bookingEnd),
+    // .toISOString()
+    guests: guests,
+    venueId: venueData.id,
+  };
+
+  const handleConfirm = () => {
+    setShowModal(!showModal);
+    console.log(postBookingBody);
+  };
+
   useEffect(() => {
     setBookedNights(getDateDifference(bookingStart, bookingEnd) + 1);
     setTotal(
@@ -49,17 +68,12 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
   }, [bookingStart, bookingEnd]);
 
   const handleAddNewBooking = async () => {
-    alert(bookingStart);
-
-    //
-    const postBookingBody = {
-      dateFrom: new Date(bookingStart).toISOString(),
-      dateTo: new Date(bookingEnd).toISOString(),
-      guests: guests,
-      venueId: venueData.id,
-    };
-
     const response = await postBooking(postBookingBody);
+
+    console.log(response);
+    if (!response.error) {
+      navigate(`/dashboard`);
+    }
     console.log(response);
   };
 
@@ -77,13 +91,17 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
           <h1 className="h1">Book this venue</h1>
         )}
 
-        {/* Booking calendar component */}
-        <BookingCalendar
-          venueData={venueData}
-          venueDataIsLoading={venueDataIsLoading}
-          setBookingStart={setBookingStart}
-          setBookingEnd={setBookingEnd}
-        />
+        {name !== venueData?.owner.name ? (
+          <>
+            {/* Booking calendar component */}
+            <BookingCalendar
+              venueData={venueData}
+              venueDataIsLoading={venueDataIsLoading}
+              setBookingStart={setBookingStart}
+              setBookingEnd={setBookingEnd}
+            />
+          </>
+        ) : null}
         {name !== venueData?.owner.name ? (
           <>
             <div>
@@ -111,13 +129,60 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
         ) : null}
 
         {isLoggedIn && name === venueData?.owner.name ? null : isLoggedIn ? (
-          <ButtonSolidDark onClick={handleAddNewBooking}>
-            Book Venue
+          <ButtonSolidDark showModal={showModal} onClick={handleConfirm}>
+            book venue
           </ButtonSolidDark>
         ) : (
           <ButtonSolidDark>Login to Book</ButtonSolidDark>
         )}
       </div>
+      {/* Booking confirmation modal */}
+      <ModalBody
+        showModal={showModal}
+        setShowModal={setShowModal}
+        className="items-center"
+      >
+        <small className="text-center block">confirm booking for</small>
+        <h1 className="h3 text-center mb-10">{venueData?.name}</h1>
+        <h3 className="h3 mb-2">
+          {formatDate(postBookingBody?.dateFrom)} -{" "}
+          {formatDate(postBookingBody?.dateTo)}
+        </h3>
+        <div className="flex flex-row gap-3">
+          <img
+            className="icon"
+            src="/images/people-icon.svg"
+            alt="Guests"
+          ></img>
+          <p className="a">{postBookingBody?.guests} x guests</p>
+        </div>
+        <div className="flex flex-row gap-3">
+          <img
+            className="icon"
+            src="/images/moon-sea-icon.svg"
+            alt="Guests"
+          ></img>
+          <p className="a">
+            {getDateDifference(
+              postBookingBody?.dateFrom,
+              postBookingBody?.dateTo
+            )}{" "}
+            x nights
+          </p>
+        </div>
+        <div className="flex flex-row justify-between pt-5">
+          <p className="h4">total </p>
+          <p className="h4"> {total} NOK</p>
+        </div>
+
+        <ButtonSolidDark
+          showModal={showModal}
+          disabled={venueDataIsLoading}
+          onClick={handleAddNewBooking}
+        >
+          {venueDataIsLoading ? "booking..." : "confirm"}
+        </ButtonSolidDark>
+      </ModalBody>
     </>
   );
 };

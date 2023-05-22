@@ -33,7 +33,7 @@ export const api = createApi({
     }),
 
     getVenues: build.query({
-      query: () => `venues?sort=created&sortOrder=desc&_owner=true`,
+      query: () => `venues?sort=name&sortOrder=desc&_owner=true`,
     }),
 
     getVenueById: build.query({
