@@ -3,6 +3,8 @@ import { useNewVenueMutation } from "../../state/api/api";
 import { useNavigate } from "react-router-dom";
 import { ButtonSolidDark, FormImg } from "../../styles/GlobalStyles";
 import { NewVenueSchema } from "../../utils/schema";
+import MapComponent from "./AddressAutoComplete";
+import AddressAutoComplete from "./AddressAutoComplete";
 
 const NewVenueForm = () => {
   const [newVenueDetails, setNewVenueDetails] = useState({
@@ -18,19 +20,16 @@ const NewVenueForm = () => {
       breakfast: false,
       pets: false,
     },
-    location: {
-      address: "unknown",
-      city: "unknown",
-      zip: "unknown",
-      country: "unknown",
-      continent: "unknown",
-      lat: 0,
-      lng: 0,
-    },
   });
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [city, setCity] = useState("");
+  const [zip, setZip] = useState("");
+  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState("");
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const [data] = useNewVenueMutation();
 
   let navigate = useNavigate();
@@ -88,6 +87,15 @@ const NewVenueForm = () => {
         price: parseFloat(newVenueDetails.price), // parse as number
         maxGuests: parseInt(newVenueDetails.maxGuests), // parse as number
         rating: parseFloat(newVenueDetails.rating), // parse as number
+        location: {
+          address: address,
+          city: city,
+          zip: zip,
+          country: country,
+          continent: "",
+          lat: latitude,
+          lng: longitude,
+        },
       });
       console.log(response);
       if (!response.error) {
@@ -224,22 +232,6 @@ const NewVenueForm = () => {
       </div>
 
       <div className="gap-2 mb-3 ">
-        <label htmlFor="address" className="mb-1 ">
-          address
-        </label>
-        <input
-          id="address"
-          name="location.address"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.address}
-          placeholder="Calle San Paternian 1 - San Marco"
-          className="mb-1"
-        />
-        {errors.address && <div>{errors.address}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
         <label htmlFor="city" className="mb-1 ">
           city
         </label>
@@ -247,95 +239,29 @@ const NewVenueForm = () => {
           id="city"
           name="location.city"
           type="text"
-          onChange={handleChange}
-          value={newVenueDetails.city}
+          onChange={(event) => {
+            setCity(event.target.value);
+          }}
+          value={city}
           placeholder="Venice"
           className="mb-1"
         />
         {errors.city && <div>{errors.city}</div>}
       </div>
 
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="zip" className="mb-1 ">
-          zip
-        </label>
-        <input
-          id="zip"
-          name="location.zip"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.zip}
-          placeholder="30124"
-          className="mb-1"
+      <div className="mb-3">
+        <label className="mb-1 ">address</label>
+        <AddressAutoComplete
+          setCity={setCity}
+          setZip={setZip}
+          setCountry={setCountry}
+          setAddress={setAddress}
+          setLongitude={setLongitude}
+          setLatitude={setLatitude}
         />
-        {errors.zip && <div>{errors.zip}</div>}
       </div>
 
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="country" className="mb-1 ">
-          country
-        </label>
-        <input
-          id="country"
-          name="location.country"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.country}
-          placeholder="Italy"
-          className="mb-1"
-        />
-        {errors.country && <div>{errors.country}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="continent" className="mb-1 ">
-          continent
-        </label>
-        <input
-          id="continent"
-          name="location.continent"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.continent}
-          placeholder="Europe"
-          className="mb-1"
-        />
-        {errors.continent && <div>{errors.continent}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="lat" className="mb-1 ">
-          lat
-        </label>
-        <input
-          id="lat"
-          name="location.lat"
-          type="number"
-          onChange={handleChange}
-          defaultValue={newVenueDetails.lat}
-          placeholder="38.8951"
-          className="mb-1"
-        />
-        {errors.lat && <div>{errors.lat}</div>}
-      </div>
-
-      <div className="gap-2 mb-3 ">
-        <label htmlFor="lng" className="mb-1 ">
-          lng
-        </label>
-        <input
-          id="lng"
-          name="location.lng"
-          type="number"
-          onChange={handleChange}
-          defaultValue={newVenueDetails.lng}
-          placeholder="-77.0364"
-          className="mb-1"
-        />
-        {errors.lng && <div>{errors.lng}</div>}
-      </div>
-
-      <div className="flex flex-col gap-2 py-4">
+      <div className="flex flex-col gap-2 pt-4 pb-8">
         <div className="flex flex-row items-center gap-2">
           <input
             id="breakfast"
@@ -422,7 +348,7 @@ const NewVenueForm = () => {
       </div>
 
       <ButtonSolidDark type="submit" disabled={isLoading}>
-        {isLoading ? "Loading..." : "list venue"}
+        {isLoading ? "Loading..." : "add venue"}
       </ButtonSolidDark>
     </form>
   );

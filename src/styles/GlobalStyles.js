@@ -137,7 +137,7 @@ button {
 }
 
 
-input[type=text],input[type=date], input[type=number], input[type=textarea], input[type=email], input[type=password] {
+input[type=text],input[type=date], input[type=number], input[type=textarea], input[type=email], input[type=password], input {
   height: 50px;
   width: 100%;
   max-width: 500px;
@@ -223,6 +223,13 @@ height: 80px;
 }
 
 // todo: style cal
+#calendar {
+  margin: 30px 0;
+  padding: 20px;
+  border: 2px solid var(--dark-grey);
+  border-radius: 2px;
+}
+
 #calendar button.rdrDayPassive {
   opacity: 0;
 }
@@ -231,8 +238,23 @@ height: 80px;
   display: none;
 }
 
-#calendar .rdrCalendarWrapper .rdrDateRangeWrapper {
+ #calendar .rdrCalendarWrapper, .rdrMonth {
   width: 100% !important;
+}
+
+ .rdrNextPrevButton, .rdrPprevButton {
+  background: none;
+}
+
+.rdrDayToday .rdrDayNumber span:after {
+  background-color: #424242;
+}
+
+@media screen and (max-width: 900px){
+  #calendar {
+  padding: 20px 0;
+}
+
 }
 
 

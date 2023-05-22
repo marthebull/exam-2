@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
 import { Avatar, InfoContainer } from "../../styles/GlobalStyles";
 import { useSelector } from "react-redux";
+import MapWithMarker from "../booking/MapWithMarker";
 
 const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
   const { id } = useParams();
@@ -119,6 +120,10 @@ const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
       ) : (
         ""
       )} */}
+      <MapWithMarker
+        lat={venueData?.location.lat}
+        lng={venueData?.location.lng}
+      />
     </InfoContainer>
   );
 };

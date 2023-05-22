@@ -13,6 +13,7 @@ import Layout from "./components/layout";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import EditVenue from "./pages/edit-venue";
+import { LoadScript } from "@react-google-maps/api";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,21 +29,25 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/venues" element={<Venues />} />
-          <Route path="/venues/:id" element={<Venue />} />
-          <Route path="/create-new-venue" element={<CreateNewVenue />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/manage-booking/:id" element={<ManageBooking />} />
-          <Route path="/manage-venue/:id" element={<ManageVenue />} />
-          <Route path="/edit-venue/:id" element={<EditVenue />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </Layout>
+      <LoadScript
+        googleMapsApiKey="AIzaSyB5txE4RJufR8FvvlKG1ktaBQ6zQVqNt0A" // Replace with your Google Maps API Key
+      >
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/venues" element={<Venues />} />
+            <Route path="/venues/:id" element={<Venue />} />
+            <Route path="/create-new-venue" element={<CreateNewVenue />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/manage-booking/:id" element={<ManageBooking />} />
+            <Route path="/manage-venue/:id" element={<ManageVenue />} />
+            <Route path="/edit-venue/:id" element={<EditVenue />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </Layout>
+      </LoadScript>
     </>
   );
 }

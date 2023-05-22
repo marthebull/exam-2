@@ -1,5 +1,6 @@
 import React from "react";
 import { formatDate, getDateDifference } from "../../utils/formatDate";
+import MapWithMarker from "./MapWithMarker";
 
 const BookingDetails = ({ bookingData, isBookingDataLoading }) => {
   console.log(bookingData);
@@ -50,11 +51,10 @@ const BookingDetails = ({ bookingData, isBookingDataLoading }) => {
           {bookingData?.venue.location.city},{" "}
           {bookingData?.venue.location.country}
         </p>
-        <img
-          src="/images/maps-placeholder.png"
-          alt="Google maps"
-          className="rounded-sm"
-        ></img>
+        <MapWithMarker
+          lat={bookingData?.venue.location.lat}
+          lng={bookingData?.venue.location.lng}
+        />
       </div>
     </>
   );
