@@ -9,14 +9,14 @@ import {
 } from "../../styles/GlobalStyles";
 import BookingCalendar from "./BookingCalendar";
 import { formatDate, getDateDifference } from "../../utils/formatDate";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ModalBody from "../modal/ModalBody";
 
 const BookVenue = ({ venueData, venueDataIsLoading }) => {
   const [postBooking] = usePostBookingMutation();
 
   const name = useSelector((state) => state.persisted.auth.name);
-  const accessToken = useSelector((state) => state.persisted.auth.accesToken);
+  const accessToken = useSelector((state) => state.persisted.auth.accessToken);
   const isLoggedIn = name !== null;
 
   const [showModal, setShowModal] = useState(false);
@@ -86,10 +86,13 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
         ) : (
           ""
         )}
-        {venueData?.owner.name === name ? (
+
+        {accessToken && name === venueData?.owner.name ? (
           ""
+        ) : accessToken ? (
+          <h1 className="h1">Book venue</h1>
         ) : (
-          <h1 className="h1">Book this venue</h1>
+          <h1 className="h1">Availability</h1>
         )}
 
         {name !== venueData?.owner.name ? (
@@ -103,7 +106,7 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
             />
           </>
         ) : null}
-        {name !== venueData?.owner.name ? (
+        {accessToken && name === venueData?.owner.name ? null : accessToken ? (
           <>
             <div>
               <p className="h5">guests (max {venueData?.maxGuests})</p>
@@ -129,12 +132,14 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
           </>
         ) : null}
 
-        {isLoggedIn && name === venueData?.owner.name ? null : isLoggedIn ? (
+        {accessToken && name === venueData?.owner.name ? null : accessToken ? (
           <ButtonSolidDark showModal={showModal} onClick={handleConfirm}>
             book venue
           </ButtonSolidDark>
         ) : (
-          <ButtonSolidDark>Login to Book</ButtonSolidDark>
+          <Link to="/sign-in" className="link pt-6">
+            <ButtonSolidDark>sign in to book </ButtonSolidDark>
+          </Link>
         )}
       </div>
       {/* Booking confirmation modal */}

@@ -162,6 +162,7 @@ textarea {
   border-radius: 2px;
   border: 2px solid var(--dark-grey);
   cursor: pointer;
+  font-size: 18px;
 }
 
 input::placeholder, textarea::placeholder {

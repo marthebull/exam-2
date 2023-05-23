@@ -30,11 +30,17 @@ export const NewVenueSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
   description: yup.string().required("Description is required"),
   price: yup.number().required("Price is required"),
-  maxGuests: yup.number().required("Max guests is required"),
+  maxGuests: yup
+    .number()
+    .positive()
+    .integer()
+    .min(1, "Guests must be between 1 and 100")
+    .max(100, "Guests must be between 1 and 100")
+    .required("Max guests is required"),
   rating: yup
     .number()
-    .min(1, "Rating must be between 0 and 5")
-    .max(5, "Rating must be between 0 and 5"),
+    .min(1, "Rating must be between 1 and 5")
+    .max(5, "Rating must be between 1 and 5"),
   meta: yup.object().shape({
     wifi: yup.boolean(),
     parking: yup.boolean(),

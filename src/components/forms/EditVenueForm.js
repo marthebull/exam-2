@@ -220,7 +220,7 @@ const EditVenueForm = ({ currentVenueData }) => {
 
       <div className="gap-2 mb-3 ">
         <label htmlFor="rating" className="mb-1 ">
-          rating
+          rating 1 to 5
         </label>
         <input
           id="rating"
