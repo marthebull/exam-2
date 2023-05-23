@@ -23,6 +23,7 @@ const BookingCalendar = ({ venueData, setBookingStart, setBookingEnd }) => {
 
   useEffect(() => {
     if (venueData.bookings) {
+      console.log(venueData.bookings);
       let bookedDates = [];
 
       venueData.bookings.forEach((booking) => {
@@ -35,7 +36,7 @@ const BookingCalendar = ({ venueData, setBookingStart, setBookingEnd }) => {
 
       setDisabledDates(bookedDates);
     }
-  }, []);
+  }, [venueData?.bookings]);
 
   useEffect(() => {
     if (venueData.bookings.length > 0) {

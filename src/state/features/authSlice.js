@@ -53,6 +53,9 @@ const authSlice = createSlice({
         : "/images/placeholder-avatar.svg";
       //console.log("this is the payload:" + action.payload);
     },
+    setVenueManager(state) {
+      state.isVenueManager = true;
+    },
     logout(state) {
       state.accessToken = "";
       state.name = "";
@@ -71,6 +74,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logout, loginErrorMessage, setAvatar } =
+export const { login, logout, loginErrorMessage, setAvatar, setVenueManager } =
   authSlice.actions;
 export default authSlice.reducer;

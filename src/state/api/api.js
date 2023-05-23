@@ -32,8 +32,16 @@ export const api = createApi({
       }),
     }),
 
+    putVenueManager: build.mutation({
+      query: ({ username, venuemanager }) => ({
+        url: `profiles/${username}`,
+        method: "PUT",
+        body: { venueManager: venuemanager },
+      }),
+    }),
+
     getVenues: build.query({
-      query: () => `venues?sort=name&sortOrder=desc&_owner=true`,
+      query: () => `venues?sort=name&sortOrder=desc&_owner=true&_bookings=true`,
     }),
 
     getVenueById: build.query({
@@ -108,6 +116,7 @@ export const {
   useGetProfileByNameQuery,
   useGetAvatarByNameQuery,
   usePutAvatarMutation,
+  usePutVenueManagerMutation,
   useGetVenuesQuery,
   useGetVenueByIdQuery,
   useGetBookingByIdQuery,

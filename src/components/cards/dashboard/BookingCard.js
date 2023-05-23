@@ -42,13 +42,10 @@ const BookingCard = ({ user }) => {
               <div className="flex flex-row gap-3">
                 <img
                   className="ms-1 me-3"
-                  src="/images/pin-icon.svg"
+                  src="/images/house-icon.svg"
                   alt="Night icon"
                 ></img>
-                <p className="a">
-                  {booking.venue.location?.city},{" "}
-                  {booking.venue.location?.country}
-                </p>
+                <p className="a">{booking.venue?.name}</p>
               </div>
 
               <div className="flex flex-row gap-3">
@@ -79,19 +76,21 @@ const BookingCard = ({ user }) => {
                   ></img>
                   <img
                     className="icon-row opacity-50 my-auto"
-                    style={{ opacity: booking.meta?.parking ? 1 : 0.3 }}
+                    style={{
+                      opacity: booking.venue?.meta.parking ? 1 : 0.3,
+                    }}
                     src="/images/car-icon.svg"
                     alt="Guests"
                   ></img>
                   <img
                     className="icon-row opacity-50 my-auto"
-                    style={{ opacity: booking.meta?.pets ? 1 : 0.3 }}
+                    style={{ opacity: booking.venue?.meta.pets ? 1 : 0.3 }}
                     src="/images/paw-icon.svg"
                     alt="Guests"
                   ></img>
                   <img
                     className="icon-row my-auto"
-                    style={{ opacity: booking.meta?.wifi ? 1 : 0.3 }}
+                    style={{ opacity: booking.venue?.meta.wifi ? 1 : 0.3 }}
                     src="/images/wifi-icon.svg"
                     alt="Guests"
                   ></img>

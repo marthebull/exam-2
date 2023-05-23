@@ -130,7 +130,7 @@ const ListAllVenues = () => {
       <div className="w-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
         {filteredList?.map((venue) => (
           <Link to={venue.id} key={venue.id}>
-            <div className="full-w rounded overflow-hidden shadow-md ">
+            <div className="full-w rounded overflow-hidden shadow-md h-full">
               <div
                 className="relative overflow-hidden bg-no-repeat h-80"
                 style={{
@@ -149,20 +149,7 @@ const ListAllVenues = () => {
                 </div>
               </div>
               <div className="px-3 py-4">
-                <h3 className="mb-2 h3">
-                  {venue.location.city}, {venue.location.country}
-                </h3>
-
-                {/* <div className="flex flex-row gap-3">
-                  <img
-                    className="ms-1 me-3"
-                    src="/images/pin-icon.svg"
-                    alt="Night icon"
-                  ></img>
-                  <p className="a">
-                    {venue.location.city}, {venue.location.country}
-                  </p>
-                </div> */}
+                <h3 className="mb-2 h3">{venue.name}</h3>
 
                 <div className="flex flex-row gap-3">
                   <img

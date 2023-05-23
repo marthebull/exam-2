@@ -21,6 +21,14 @@ const EditVenueForm = ({ currentVenueData }) => {
       breakfast: currentVenueData?.meta.breakfast,
       pets: currentVenueData?.meta.pets,
     },
+    location: {
+      address: currentVenueData?.location?.address,
+      city: currentVenueData?.location?.city,
+      zip: currentVenueData?.location?.zip,
+      country: currentVenueData?.location?.country,
+      lat: currentVenueData?.location?.lat,
+      lng: currentVenueData?.location?.lng,
+    },
   });
 
   const [city, setCity] = useState(currentVenueData?.location.city);
@@ -42,20 +50,15 @@ const EditVenueForm = ({ currentVenueData }) => {
         ...prevState,
         media: [value],
       }));
-      //console.log(newVenueDetails);
     } else if (name.startsWith("meta.")) {
-      // if the checkbox name starts with 'meta.'
       setNewVenueDetails((prevState) => ({
         ...prevState,
         meta: {
           ...prevState.meta,
-          [name.slice(5)]: checked, // update the corresponding property in the meta object
+          [name.slice(5)]: checked,
         },
       }));
-      //console.log(value);
-      //console.log(newVenueDetails);
     } else if (name.includes("location")) {
-      // if the input name includes 'location.', treat it as a nested property
       const [parent, child] = name.split(".");
       setNewVenueDetails((prevState) => ({
         ...prevState,
@@ -64,15 +67,11 @@ const EditVenueForm = ({ currentVenueData }) => {
           [child]: value,
         },
       }));
-      //console.log(value);
-      //console.log(newVenueDetails);
     } else {
       setNewVenueDetails((prevState) => ({
         ...prevState,
         [name]: value,
       }));
-      //console.log(value);
-      //console.log(newVenueDetails);
     }
   };
 
@@ -235,6 +234,19 @@ const EditVenueForm = ({ currentVenueData }) => {
         {errors.rating && <div>{errors.rating}</div>}
       </div>
 
+      <div className="mb-3">
+        <label className="mb-1 ">address</label>
+        <AddressAutoComplete
+          setCity={setCity}
+          setZip={setZip}
+          setCountry={setCountry}
+          setAddress={setAddress}
+          setLongitude={setLongitude}
+          setLatitude={setLatitude}
+          value={currentVenueData?.location.address}
+        />
+      </div>
+
       <div className="gap-2 mb-3 ">
         <label htmlFor="city" className="mb-1 ">
           city
@@ -249,19 +261,6 @@ const EditVenueForm = ({ currentVenueData }) => {
           className="mb-1"
         />
         {errors.city && <div>{errors.city}</div>}
-      </div>
-
-      <div className="mb-3">
-        <label className="mb-1 ">address</label>
-        <AddressAutoComplete
-          setCity={setCity}
-          setZip={setZip}
-          setCountry={setCountry}
-          setAddress={setAddress}
-          setLongitude={setLongitude}
-          setLatitude={setLatitude}
-          value={currentVenueData?.location.address}
-        />
       </div>
 
       <div className="flex flex-col gap-2 py-4">

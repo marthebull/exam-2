@@ -230,6 +230,18 @@ const NewVenueForm = () => {
         {errors.rating && <div>{errors.rating}</div>}
       </div>
 
+      <div className="mb-3">
+        <label className="mb-1 ">address</label>
+        <AddressAutoComplete
+          setCity={setCity}
+          setZip={setZip}
+          setCountry={setCountry}
+          setAddress={setAddress}
+          setLongitude={setLongitude}
+          setLatitude={setLatitude}
+        />
+      </div>
+
       <div className="gap-2 mb-3 ">
         <label htmlFor="city" className="mb-1 ">
           city
@@ -246,18 +258,6 @@ const NewVenueForm = () => {
           className="mb-1"
         />
         {errors.city && <div>{errors.city}</div>}
-      </div>
-
-      <div className="mb-3">
-        <label className="mb-1 ">address</label>
-        <AddressAutoComplete
-          setCity={setCity}
-          setZip={setZip}
-          setCountry={setCountry}
-          setAddress={setAddress}
-          setLongitude={setLongitude}
-          setLatitude={setLatitude}
-        />
       </div>
 
       <div className="flex flex-col gap-2 pt-4 pb-8">

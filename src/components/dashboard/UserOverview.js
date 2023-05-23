@@ -33,7 +33,7 @@ const UserOverview = ({ username }) => {
         {user?.bookings.length > 0 ? (
           <BookingCard user={user} />
         ) : (
-          <NoBookingsYet user={user} />
+          <NoBookingsYet user={user} isUserLoading={isUserLoading} />
         )}
       </InfoContainer>
 

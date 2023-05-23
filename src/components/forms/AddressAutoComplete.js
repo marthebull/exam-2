@@ -1,11 +1,12 @@
 import React from "react";
-import { useLoadScript, GoogleMap, Marker } from "@react-google-maps/api";
+import { useLoadScript } from "@react-google-maps/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { useState } from "react";
 import _ from "lodash";
 
 export default function AddressAutoComplete({
   setZip,
+  setCity,
   setCountry,
   setAddress,
   setLongitude,
@@ -43,6 +44,7 @@ export default function AddressAutoComplete({
         }
       }
       setZip(zip);
+      setCity(city);
       setCountry(country);
       setAddress(place.formatted_address);
       setLongitude(place.geometry.location.lng());

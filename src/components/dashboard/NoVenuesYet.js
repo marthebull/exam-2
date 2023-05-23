@@ -1,47 +1,110 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ButtonOutlineDark } from "../../styles/GlobalStyles";
-import { useDispatch } from "react-redux";
-import { logout } from "../../state/features/authSlice";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ButtonOutlineDark, ButtonSolidDark } from "../../styles/GlobalStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, setVenueManager } from "../../state/features/authSlice";
+import ModalBody from "../modal/ModalBody";
+import { usePutVenueManagerMutation } from "../../state/api/api";
 
 const NoVenuesYet = ({ user }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [isVenueManager, setIsVenueManager] = useState(false);
+
+  let navigate = useNavigate();
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [updateVenueManager] = usePutVenueManagerMutation();
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleChange = (event) => {
+    setIsVenueManager(event.target.checked);
   };
+
+  const handleRegisterHost = async () => {
+    const requestData = {
+      venuemanager: isVenueManager,
+    };
+
+    try {
+      const response = await updateVenueManager({
+        username: user.name,
+        venuemanager: isVenueManager,
+      });
+      console.log(response);
+      dispatch(setVenueManager());
+      setShowModal(false);
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center mx-auto">
-      <img
-        src="/images/house-icon.svg"
-        className="big-icon"
-        alt="Venues icon"
-      ></img>
+    <>
+      <div className="flex flex-col items-center mx-auto">
+        <img
+          src="/images/house-icon.svg"
+          className="big-icon"
+          alt="Venues icon"
+        ></img>
 
-      {user?.venueManager ? (
-        <>
-          <h2 className="text-center">no venues to manage.</h2>
-          <h2 className="text-center">
-            start hosting by creating your first venue
-          </h2>
-        </>
-      ) : (
-        <>
-          <h2 className="text-center">no venues to manage.</h2>
-          <h2 className="text-center">register as host to add new venues</h2>
-        </>
-      )}
+        {user?.venueManager ? (
+          <>
+            <h2 className="text-center">no venues to manage.</h2>
+            <h2 className="text-center">
+              start hosting by creating your first venue
+            </h2>
+          </>
+        ) : (
+          <>
+            <h2 className="text-center">no venues to manage.</h2>
+            <h2 className="text-center">register as host to add new venues</h2>
+          </>
+        )}
 
-      {user?.venueManager ? (
-        <Link to="/create-new-venue" className="link pt-6">
-          <ButtonOutlineDark>+ new venue</ButtonOutlineDark>
-        </Link>
-      ) : (
-        <Link to="/register" className="link pt-6">
-          <ButtonOutlineDark onClick={handleLogout}>register</ButtonOutlineDark>
-        </Link>
-      )}
-    </div>
+        {user?.venueManager ? (
+          <Link to="/create-new-venue" className="link pt-6">
+            <ButtonOutlineDark>+ new venue</ButtonOutlineDark>
+          </Link>
+        ) : (
+          <ButtonOutlineDark onClick={() => setShowModal(true)}>
+            register
+          </ButtonOutlineDark>
+        )}
+      </div>
+
+      <ModalBody
+        id={user.id}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        className="items-center"
+      >
+        <small className="text-center block">{user?.name}</small>
+        <h1 className="h3 text-center mb-10">register as host</h1>
+        <div className="flex flex-row items-center mb-10">
+          <input
+            id="venueManager"
+            name="venueManager"
+            type="checkbox"
+            onChange={handleChange}
+            checked={isVenueManager}
+            className="check"
+          />
+          <label htmlFor="venueManager" className="max-w-[400px]">
+            I accept the terms and conditions for use of Holidaze as
+            venuemanager.
+          </label>
+        </div>
+
+        <ButtonSolidDark
+          showModal={showModal}
+          onClick={handleRegisterHost}
+          disabled={!isVenueManager}
+        >
+          register
+        </ButtonSolidDark>
+      </ModalBody>
+    </>
   );
 };
 

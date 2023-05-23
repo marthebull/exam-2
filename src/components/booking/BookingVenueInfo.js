@@ -28,10 +28,16 @@ const BookingVenueInfo = ({
   )} */}
 
       <h1 className="h1 mb-1">{bookingData?.venue.name}</h1>
-      <h2 className="h5 mb-8">
-        {bookingData?.venue.location.city},{" "}
-        {bookingData?.venue.location.country}
-      </h2>
+
+      {bookingData.venue?.location.city === "Unknown" ? (
+        ""
+      ) : (
+        <h2 className="h5 mb-8">
+          {bookingData?.venue.location.city},{" "}
+          {bookingData?.venue.location.country}
+        </h2>
+      )}
+
       <p className="h3 mb-8">{bookingData?.venue.price} NOK / night</p>
       <h3 className="h5 mb-1">Description</h3>
       <p className="p mb-10">{bookingData?.venue.description}</p>
@@ -90,12 +96,6 @@ const BookingVenueInfo = ({
           <p className="h5">wifi</p>
         </div>
       </div>
-      <h3 className="h5 mb-2">Address</h3>
-      <p className="p mb-1">{bookingData?.venue?.location.address}</p>
-      <p className="p  mb-10">
-        {bookingData?.venue.location.city},{" "}
-        {bookingData?.venue.location.country}
-      </p>
     </InfoContainer>
   );
 };

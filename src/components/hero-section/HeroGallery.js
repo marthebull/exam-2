@@ -29,12 +29,12 @@ const HeroGallery = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
     <>
       <HeroContainer className="relative">
         <div className="relative w-full h-full">
-          {venueData.media.length > 0 ? (
-            venueData.media.map((image, i) => (
+          {venueData?.media.length > 0 ? (
+            venueData?.media.map((image, i) => (
               <img
                 key={i}
                 src={image}
-                alt={` ${i}`}
+                alt={` ${image}`}
                 className={`absolute top-0 left-0 w-full h-full object-center object-cover ${
                   i === index ? "opacity-100" : "opacity-0"
                 } transition-opacity duration-500`}

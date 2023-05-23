@@ -3,6 +3,7 @@ import { CenterContainer } from "../../styles/GlobalStyles";
 import EditVenueForm from "../../components/forms/EditVenueForm";
 import { useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
+import HeroSpinner from "../../components/loaders/HeroSpinner";
 
 const EditVenue = ({ venueData }) => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const EditVenue = ({ venueData }) => {
   } = useGetVenueByIdQuery(id);
 
   if (isCurrentVenueDataLoading) {
-    return "Loading....";
+    return <HeroSpinner />;
   }
 
   return (

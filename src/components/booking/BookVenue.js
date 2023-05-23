@@ -16,6 +16,7 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
   const [postBooking] = usePostBookingMutation();
 
   const name = useSelector((state) => state.persisted.auth.name);
+  const accessToken = useSelector((state) => state.persisted.auth.accesToken);
   const isLoggedIn = name !== null;
 
   const [showModal, setShowModal] = useState(false);
@@ -144,10 +145,31 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
       >
         <small className="text-center block">confirm booking for</small>
         <h1 className="h3 text-center mb-10">{venueData?.name}</h1>
+        <div
+          className="relative w-full h-[200px] overflow-hidden bg-no-repeat md:w-[400px] md:h-[200px] mb-10"
+          style={{
+            backgroundImage:
+              venueData?.media.length > 0
+                ? `url(${venueData?.media[0]})`
+                : `url(/images/placeholder-image.svg)`,
+            backgroundPosition: `center`,
+            backgroundSize: `cover`,
+          }}
+        ></div>
+        {/* <img
+          src={
+            venueData?.media.length > 0
+              ? venueData?.media[0]
+              : `/images/placeholder-image.svg`
+          }
+          alt={venueData?.name}
+          className="mb-10 w-[400px] h-[300] object-cover "
+        ></img> */}
         <h3 className="h3 mb-2">
           {formatDate(postBookingBody?.dateFrom)} -{" "}
           {formatDate(postBookingBody?.dateTo)}
         </h3>
+
         <div className="flex flex-row gap-3">
           <img
             className="icon"
@@ -172,7 +194,7 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
         </div>
         <div className="flex flex-row justify-between pt-5">
           <p className="h4">total </p>
-          <p className="h4"> {total} NOK</p>
+          <p className="h4 mb-10"> {total} NOK</p>
         </div>
 
         <ButtonSolidDark

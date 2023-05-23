@@ -45,16 +45,26 @@ const BookingDetails = ({ bookingData, isBookingDataLoading }) => {
             <p className="h4"> {total} NOK</p>
           </div>
         </div>
-        <h3 className="h5 mb-2">Address</h3>
-        <p className="p mb-1">{bookingData?.venue.location.address}</p>
-        <p className="p mb-5">
-          {bookingData?.venue.location.city},{" "}
-          {bookingData?.venue.location.country}
-        </p>
-        <MapWithMarker
-          lat={bookingData?.venue.location.lat}
-          lng={bookingData?.venue.location.lng}
-        />
+
+        {bookingData?.venue.location.city === "Unknown" ? (
+          ""
+        ) : (
+          <>
+            <h3 className="h5 mb-2">Address</h3>
+            <p className="p mb-1">{bookingData?.venue.location.address}</p>
+            <p className="p mb-5">
+              {bookingData?.venue.location.city},{" "}
+              {bookingData?.venue.location.country}
+            </p>
+          </>
+        )}
+
+        {bookingData?.venue.location.lat !== 0 && (
+          <MapWithMarker
+            lat={bookingData?.venue.location.lat}
+            lng={bookingData?.venue.location.lng}
+          />
+        )}
       </div>
     </>
   );

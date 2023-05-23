@@ -4,17 +4,17 @@ import { useGetVenueByIdQuery } from "../../state/api/api";
 import { Avatar, InfoContainer } from "../../styles/GlobalStyles";
 import { useSelector } from "react-redux";
 import MapWithMarker from "../booking/MapWithMarker";
+import HeroSpinner from "../loaders/HeroSpinner";
 
 const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
-  const { id } = useParams();
-
-  const name = useSelector((state) => state.persisted.auth.name);
+  console.log("🚀 ~ file: index.js:10 ~ VenueInfo ~ venueData:", venueData);
 
   if (isVenueDataLoading) {
     return (
-      <InfoContainer className=" pb-8 my-10 w-100 md:max-w-lg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
-        loading...
-      </InfoContainer>
+      // <InfoContainer className=" pb-8 my-10 w-100 md:max-w-lg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
+      //   loading...
+      // </InfoContainer>
+      <HeroSpinner />
     );
   }
 
@@ -30,9 +30,17 @@ const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
       )} */}
 
       <h1 className="h1 mb-1">{venueData.name}</h1>
-      <h2 className="h5 mb-8">
+      {venueData.location.city === "Unknown" ? (
+        ""
+      ) : (
+        <h2 className="h5 mb-8">
+          {venueData.location.city}, {venueData.location.country}
+        </h2>
+      )}
+
+      {/* <h2 className="h5 mb-8">
         {venueData.location.city}, {venueData.location.country}
-      </h2>
+      </h2> */}
       <p className="h3 mb-8">{venueData.price} NOK / night</p>
       <h3 className="h5 mb-1">Description</h3>
       <p className="p mb-10">{venueData.description}</p>
@@ -108,16 +116,24 @@ const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
           <p>{venueData.owner.name}</p>
         </div>
       </div>
-      <h3 className="h5 mb-2">Address</h3>
-      <p className="p mb-1">{venueData.location.address}</p>
-      <p className="p  mb-10">
-        {venueData.location.city}, {venueData.location.country}
-      </p>
+      {venueData.location.city === "Unknown" ? (
+        ""
+      ) : (
+        <>
+          <h3 className="h5 mb-2">Address</h3>
+          <p className="p mb-1">{venueData.location.address}</p>
+          <p className="p  mb-10">
+            {venueData.location.city}, {venueData.location.country}
+          </p>
+        </>
+      )}
 
-      <MapWithMarker
-        lat={venueData?.location.lat}
-        lng={venueData?.location.lng}
-      />
+      {venueData?.location.lat !== 0 && (
+        <MapWithMarker
+          lat={venueData?.location.lat}
+          lng={venueData?.location.lng}
+        />
+      )}
     </InfoContainer>
   );
 };

@@ -71,7 +71,7 @@ const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
                 showModal={showModal}
                 onClick={() => setShowModal(!showModal)}
               >
-                cancel
+                cancel booking
               </ButtonOutlineWhite>
             </div>
           </div>
