@@ -55,6 +55,18 @@ const EditVenueForm = ({ currentVenueData }) => {
     });
   };
 
+  const handleRemoveMedia = (index) => {
+    setNewVenueDetails((prevState) => {
+      const updatedMedia = [...prevState.media];
+      updatedMedia.splice(index, 1);
+
+      return {
+        ...prevState,
+        media: updatedMedia,
+      };
+    });
+  };
+
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
     if (name === "media") {
@@ -108,6 +120,7 @@ const EditVenueForm = ({ currentVenueData }) => {
           lat: latitude,
           lng: longitude,
         },
+        media: newVenueDetails.media.filter((imageUrl) => imageUrl !== ""), // Remove empty URLs
       };
 
       const response = await data({ editVenueBody, id });
@@ -177,15 +190,23 @@ const EditVenueForm = ({ currentVenueData }) => {
           <label htmlFor={`media-${index}`} className="mb-1">
             image URL {index + 1}
           </label>
-          <input
-            id={`media-${index}`}
-            name={`media-${index}`}
-            type="text"
-            onChange={(event) => handleMediaChange(index, event.target.value)}
-            value={imageUrl}
-            placeholder="example.url.gif"
-            className="mb-2"
-          />
+          <div className="relative">
+            <input
+              id={`media-${index}`}
+              name={`media-${index}`}
+              type="text"
+              onChange={(event) => handleMediaChange(index, event.target.value)}
+              value={imageUrl}
+              placeholder="example.url.gif"
+              className="mb-2 image-input"
+            />
+            <div
+              className="absolute right-4 top-3 cursor-pointer"
+              onClick={() => handleRemoveMedia(index)}
+            >
+              x
+            </div>
+          </div>
           {errors[`media-${index}`] && <div>{errors[`media-${index}`]}</div>}
 
           {imageUrl && (
