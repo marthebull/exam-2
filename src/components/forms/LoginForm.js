@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonSolidDark } from "../../styles/GlobalStyles";
-import { loginUser } from "../../state/features/authSlice";
+import {
+  clearLoginErrorMessage,
+  loginUser,
+} from "../../state/features/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -14,6 +17,11 @@ const LoginForm = () => {
   const loginErrorMessage = useSelector(
     (state) => state.persisted.auth.loginErrorMessage
   );
+
+  useEffect(() => {
+    // Clear login error message when the component mounts
+    dispatch(clearLoginErrorMessage());
+  }, []);
 
   const { accessToken, name } = useSelector((state) => state.persisted.auth);
 
@@ -57,7 +65,9 @@ const LoginForm = () => {
             placeholder="********"
             className="mb-2"
           />
-          {loginErrorMessage.length > 0 && <div>{loginErrorMessage}</div>}
+          {loginErrorMessage.length > 0 && (
+            <div className="text-red-700">{loginErrorMessage}</div>
+          )}
         </div>
         <ButtonSolidDark type="submit">sign in</ButtonSolidDark>
       </form>

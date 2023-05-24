@@ -136,7 +136,7 @@ const NewVenueForm = () => {
           placeholder="Villa Rosa"
           className="mb-2"
         />
-        {errors.name && <div>{errors.name}</div>}
+        {errors.name && <div className="text-red-700">{errors.name}</div>}
       </div>
 
       <div className="gap-2 mb-3 ">
@@ -152,7 +152,9 @@ const NewVenueForm = () => {
           placeholder="describe the venue and location"
           className="mb-2"
         />
-        {errors.description && <div>{errors.description}</div>}
+        {errors.description && (
+          <div className="text-red-700">{errors.description}</div>
+        )}
       </div>
 
       {newVenueDetails.media.length !== "" && (
@@ -176,7 +178,7 @@ const NewVenueForm = () => {
           placeholder="example.url.gif"
           className="mb-2"
         />
-        {errors.media && <div>{errors.media}</div>}
+        {errors.media && <div className="text-red-700">{errors.media}</div>}
       </div>
       <p className="text-end cursor-pointer label mb-3 hover:text-gray-400">
         + add image
@@ -195,7 +197,7 @@ const NewVenueForm = () => {
           placeholder="899"
           className="mb-1"
         />
-        {errors.price && <div>{errors.price}</div>}
+        {errors.price && <div className="text-red-700">{errors.price}</div>}
       </div>
 
       <div className="gap-2 mb-3 ">
@@ -211,7 +213,9 @@ const NewVenueForm = () => {
           placeholder="16"
           className="mb-1"
         />
-        {errors.maxGuests && <div>{errors.maxGuests}</div>}
+        {errors.maxGuests && (
+          <div className="text-red-700">{errors.maxGuests}</div>
+        )}
       </div>
 
       <div className="gap-2 mb-3 ">
@@ -227,7 +231,7 @@ const NewVenueForm = () => {
           placeholder="5"
           className="mb-1"
         />
-        {errors.rating && <div>{errors.rating}</div>}
+        {errors.rating && <div className="text-red-700">{errors.rating}</div>}
       </div>
 
       <div className="mb-3">

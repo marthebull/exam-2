@@ -46,6 +46,9 @@ const authSlice = createSlice({
       //state.isVenueManager = action.payload;
       state.loginErrorMessage = "";
     },
+    clearLoginErrorMessage(state) {
+      state.loginErrorMessage = "";
+    },
     setAvatar(state, action) {
       //state.avatar = action.payload;
       state.avatar = action.payload
@@ -74,6 +77,12 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logout, loginErrorMessage, setAvatar, setVenueManager } =
-  authSlice.actions;
+export const {
+  login,
+  clearLoginErrorMessage,
+  logout,
+  loginErrorMessage,
+  setAvatar,
+  setVenueManager,
+} = authSlice.actions;
 export default authSlice.reducer;
