@@ -147,6 +147,10 @@ input[type=text],input[type=date], input[type=number], input[type=textarea], inp
   cursor: pointer;
 }
 
+input.image-input {
+  padding-right: 40px;
+}
+
 
 form {
   width: 100%;

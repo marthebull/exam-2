@@ -30,6 +30,7 @@ const NewVenueForm = () => {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [data] = useNewVenueMutation();
+  const [additionalImages, setAdditionalImages] = useState([""]);
 
   let navigate = useNavigate();
 
@@ -40,20 +41,15 @@ const NewVenueForm = () => {
         ...prevState,
         media: [value],
       }));
-      //console.log(newVenueDetails);
     } else if (name.startsWith("meta.")) {
-      // if the checkbox name starts with 'meta.'
       setNewVenueDetails((prevState) => ({
         ...prevState,
         meta: {
           ...prevState.meta,
-          [name.slice(5)]: checked, // update the corresponding property in the meta object
+          [name.slice(5)]: checked,
         },
       }));
-      //console.log(value);
-      //console.log(newVenueDetails);
     } else if (name.includes("location")) {
-      // if the input name includes 'location.', treat it as a nested property
       const [parent, child] = name.split(".");
       setNewVenueDetails((prevState) => ({
         ...prevState,
@@ -62,30 +58,47 @@ const NewVenueForm = () => {
           [child]: value,
         },
       }));
-      //console.log(value);
-      //console.log(newVenueDetails);
     } else {
       setNewVenueDetails((prevState) => ({
         ...prevState,
         [name]: value,
       }));
-      //console.log(value);
-      //console.log(newVenueDetails);
     }
+  };
+
+  const handleAdditionalImageChange = (index, event) => {
+    const { value } = event.target;
+    setAdditionalImages((prevState) => {
+      const updatedImages = [...prevState];
+      updatedImages[index] = value;
+      return updatedImages;
+    });
+  };
+
+  const handleAddImage = () => {
+    setAdditionalImages((prevState) => [...prevState, ""]);
+  };
+
+  const handleRemoveImage = (index) => {
+    setAdditionalImages((prevState) => {
+      const updatedImages = [...prevState];
+      updatedImages.splice(index, 1);
+      return updatedImages;
+    });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      // handle success
       await NewVenueSchema.validate(newVenueDetails, { abortEarly: false });
 
       const response = await data({
         ...newVenueDetails,
-        price: parseFloat(newVenueDetails.price), // parse as number
-        maxGuests: parseInt(newVenueDetails.maxGuests), // parse as number
-        rating: parseFloat(newVenueDetails.rating), // parse as number
+        media: [...newVenueDetails.media, ...additionalImages],
+        price: parseFloat(newVenueDetails.price),
+        maxGuests: parseInt(newVenueDetails.maxGuests),
+        rating: parseFloat(newVenueDetails.rating),
         location: {
           address: address,
           city: city,
@@ -96,26 +109,19 @@ const NewVenueForm = () => {
           lng: longitude,
         },
       });
-      console.log(response);
+
       if (!response.error) {
         navigate(`/dashboard`);
       }
     } catch (error) {
       console.error(error);
-      console.log(useNewVenueMutation);
       if (error.inner) {
         const formErrors = error.inner.reduce((acc, err) => {
           acc[err.path] = err.message;
-
           return acc;
         }, {});
         setErrors(formErrors);
-        console.log(formErrors);
-        console.log(error.inner);
-        console.log(data);
-        console.log(newVenueDetails);
       }
-      // handle error
     } finally {
       setIsLoading(false);
     }
@@ -157,7 +163,7 @@ const NewVenueForm = () => {
         )}
       </div>
 
-      {newVenueDetails.media.length !== "" && (
+      {/* {newVenueDetails.media.length !== "" && (
         <FormImg
           src={newVenueDetails.media}
           className="mb-3 rounded-sm"
@@ -181,6 +187,45 @@ const NewVenueForm = () => {
         {errors.media && <div className="text-red-700">{errors.media}</div>}
       </div>
       <p className="text-end cursor-pointer label mb-3 hover:text-gray-400">
+        + add image
+      </p> */}
+
+      {additionalImages.map((imageUrl, index) => (
+        <div key={index} className="gap-2 mb-1 items-start relative">
+          <label htmlFor={`additionalMedia-${index}`} className="mb-1">
+            image URL
+          </label>
+          <div className="relative">
+            <input
+              id={`additionalMedia-${index}`}
+              name={`additionalMedia-${index}`}
+              type="text"
+              onChange={(event) => handleAdditionalImageChange(index, event)}
+              value={imageUrl}
+              placeholder="example.url.gif"
+              className="mb-2 image-input"
+            />
+            <div
+              className="absolute right-4 top-3 cursor-pointer"
+              onClick={() => handleRemoveImage(index)}
+            >
+              x
+            </div>
+          </div>
+          {imageUrl && (
+            <FormImg
+              src={imageUrl}
+              className="mb-3 rounded-sm"
+              alt={`Additional Image ${index + 1}`}
+            />
+          )}
+        </div>
+      ))}
+
+      <p
+        className="text-end cursor-pointer label mb-3 hover:text-gray-400"
+        onClick={handleAddImage}
+      >
         + add image
       </p>
 
