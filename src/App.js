@@ -29,9 +29,7 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <LoadScript
-        googleMapsApiKey="AIzaSyB5txE4RJufR8FvvlKG1ktaBQ6zQVqNt0A" // Replace with your Google Maps API Key
-      >
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />

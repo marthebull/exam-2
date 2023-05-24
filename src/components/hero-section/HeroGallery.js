@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { HeroContainer } from "./styles";
 import HeroSpinner from "../loaders/HeroSpinner";
+import { Link } from "react-router-dom";
+import { ButtonSolidWhite } from "../../styles/GlobalStyles";
+import { useSelector } from "react-redux";
 
 const HeroGallery = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
   const [index, setIndex] = useState(0);
+  const name = useSelector((state) => state.persisted.auth.name);
 
   const handleIndicatorClick = (i) => {
     setIndex(i);
@@ -48,6 +52,15 @@ const HeroGallery = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
             />
           )}
         </div>
+
+        {name === venueData?.owner.name ? (
+          <Link
+            to={"/manage-venue/" + venueData?.id}
+            className="link link-white pt-6 absolute bottom-4 right-50% z-50"
+          >
+            manage venue
+          </Link>
+        ) : null}
       </HeroContainer>
 
       {venueData.media.length > 1 && (

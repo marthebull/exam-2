@@ -12,10 +12,12 @@ import {
   useDeleteVenueByIdMutation,
   useGetVenueByIdQuery,
 } from "../../state/api/api";
+import { useSelector } from "react-redux";
 
 const HeroManage = ({ id }) => {
   //console.log(venueData.venueData);
   let navigate = useNavigate();
+  const name = useSelector((state) => state.persisted.auth.name);
 
   const {
     data: venueData,
@@ -90,6 +92,14 @@ const HeroManage = ({ id }) => {
             </div>
           </div>
         </TextHero>
+        {name === venueData?.owner.name ? (
+          <Link
+            to={"/venues/" + venueData?.id}
+            className="link link-white pt-6 absolute bottom-4 right-50% z-50"
+          >
+            preview
+          </Link>
+        ) : null}
       </HeroContainer>
       <ModalBody
         id={venueData.id}
