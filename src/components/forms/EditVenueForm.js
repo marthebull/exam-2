@@ -11,7 +11,7 @@ const EditVenueForm = ({ currentVenueData }) => {
   const [newVenueDetails, setNewVenueDetails] = useState({
     name: currentVenueData?.name,
     description: currentVenueData?.description,
-    media: currentVenueData?.media,
+    media: currentVenueData?.media || [],
     price: currentVenueData?.price,
     maxGuests: currentVenueData?.maxGuests,
     rating: currentVenueData?.rating,
@@ -42,6 +42,18 @@ const EditVenueForm = ({ currentVenueData }) => {
   const [data] = usePutVenueByIdMutation(id);
 
   const navigate = useNavigate();
+
+  const handleMediaChange = (index, value) => {
+    setNewVenueDetails((prevState) => {
+      const updatedMedia = [...prevState.media];
+      updatedMedia[index] = value;
+
+      return {
+        ...prevState,
+        media: updatedMedia,
+      };
+    });
+  };
 
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
@@ -159,7 +171,41 @@ const EditVenueForm = ({ currentVenueData }) => {
         {errors.description && <div>{errors.description}</div>}
       </div>
 
-      {newVenueDetails.media.length !== "" && (
+      {/* Display media images */}
+      {newVenueDetails.media.map((imageUrl, index) => (
+        <div className="gap-2 mb-1 items-start" id="imgInputs" key={index}>
+          <label htmlFor={`media-${index}`} className="mb-1">
+            image URL {index + 1}
+          </label>
+          <input
+            id={`media-${index}`}
+            name={`media-${index}`}
+            type="text"
+            onChange={(event) => handleMediaChange(index, event.target.value)}
+            value={imageUrl}
+            placeholder="example.url.gif"
+            className="mb-2"
+          />
+          {errors[`media-${index}`] && <div>{errors[`media-${index}`]}</div>}
+
+          {imageUrl && (
+            <FormImg
+              src={imageUrl}
+              className="mb-3 rounded-sm"
+              alt={`Image ${index + 1}`}
+            />
+          )}
+        </div>
+      ))}
+
+      <p
+        className="text-end cursor-pointer label mb-3 hover:text-gray-400"
+        onClick={() => handleMediaChange(newVenueDetails.media.length, "")}
+      >
+        + add image
+      </p>
+
+      {/* {newVenueDetails.media.length !== "" && (
         <FormImg
           src={newVenueDetails.media}
           className="mb-3 rounded-sm"
@@ -184,7 +230,7 @@ const EditVenueForm = ({ currentVenueData }) => {
       </div>
       <p className="text-end cursor-pointer label mb-3 hover:text-gray-400">
         + add image
-      </p>
+      </p> */}
 
       <div className="gap-2 mb-3 ">
         <label htmlFor="price" className="mb-1 ">

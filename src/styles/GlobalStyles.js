@@ -376,7 +376,7 @@ export const DashAvatar = styled.img`
   height: 180px;
   width: 180px;
   object-fit: cover;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 `;
 
 export const DashAvatarLoading = styled.div`
