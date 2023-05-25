@@ -6,7 +6,7 @@ import { ButtonOutlineWhite } from "../../../styles/GlobalStyles";
 import CardLoader from "../../loaders/CardLoader";
 
 const ListAllVenues = () => {
-  const { data: list, isLoading } = useGetVenuesQuery();
+  const { data: list, isLoading, isError } = useGetVenuesQuery();
   console.log(list);
   const [criteria, setCriteria] = useState({
     parking: false,
@@ -85,6 +85,10 @@ const ListAllVenues = () => {
         </div>
       </div>
     );
+  }
+
+  if (isError) {
+    return <div>Something wrong!</div>;
   }
 
   return (

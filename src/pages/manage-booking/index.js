@@ -19,6 +19,11 @@ const ManageBooking = () => {
   } = useGetBookingByIdQuery(id);
 
   console.log(bookingData);
+
+  if (isBookingDataError) {
+    return <div>Something wrong!</div>;
+  }
+
   return (
     <>
       <HeroManageBooking

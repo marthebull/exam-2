@@ -6,9 +6,6 @@ import { useSelector } from "react-redux";
 const Dashboard = () => {
   const username = useSelector((state) => state.persisted.auth.name);
 
-  if (!username) {
-    return "todo: navigate to somewhere";
-  }
   return (
     <div>
       <UserInfo username={username} />

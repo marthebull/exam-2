@@ -229,7 +229,7 @@ height: 80px;
 
 // todo: style cal
 #calendar {
-  margin: 30px 0;
+  margin: 30px 0 10px;
   padding: 20px;
   border: 2px solid var(--dark-grey);
   border-radius: 2px;
@@ -264,6 +264,11 @@ height: 80px;
 
 #calendar  .rdrDayDisabled span.rdrDayNumber{
   background-color: var(--dark-grey-transparent);
+  
+}
+
+#calendar  .rdrDayDisabled span.rdrDayNumber span{
+  color: #d3d3d3;
 }
 
  .rdrNextPrevButton, .rdrPprevButton {
@@ -271,6 +276,24 @@ height: 80px;
 }
 
 .rdrDayToday .rdrDayNumber span:after {
+  background-color: #424242;
+}
+
+.legend {
+  height: 20px;
+  width: 20px;
+  border-radius: 2px;
+}
+
+.legend-available {
+  border: 2px solid #424242;
+}
+
+.legend-unavailable {
+  background-color: #d3d3d3;
+}
+
+.legend-selected {
   background-color: #424242;
 }
 

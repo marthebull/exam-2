@@ -204,7 +204,7 @@ const EditVenueForm = ({ currentVenueData }) => {
               className="absolute right-4 top-3 cursor-pointer"
               onClick={() => handleRemoveMedia(index)}
             >
-              x
+              &times;
             </div>
           </div>
           {errors[`media-${index}`] && <div>{errors[`media-${index}`]}</div>}
@@ -225,33 +225,6 @@ const EditVenueForm = ({ currentVenueData }) => {
       >
         + add image
       </p>
-
-      {/* {newVenueDetails.media.length !== "" && (
-        <FormImg
-          src={newVenueDetails.media}
-          className="mb-3 rounded-sm"
-          alt={newVenueDetails.name}
-        ></FormImg>
-      )}
-
-      <div className="gap-2 mb-1 items-start" id="imgInputs">
-        <label htmlFor="media" className="mb-1">
-          main image URL
-        </label>
-        <input
-          id="media"
-          name="media"
-          type="text"
-          onChange={handleChange}
-          value={newVenueDetails.media}
-          placeholder="example.url.gif"
-          className="mb-2"
-        />
-        {errors.media && <div>{errors.media}</div>}
-      </div>
-      <p className="text-end cursor-pointer label mb-3 hover:text-gray-400">
-        + add image
-      </p> */}
 
       <div className="gap-2 mb-3 ">
         <label htmlFor="price" className="mb-1 ">

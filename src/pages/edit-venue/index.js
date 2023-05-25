@@ -18,6 +18,10 @@ const EditVenue = ({ venueData }) => {
     return <HeroSpinner />;
   }
 
+  if (isCurrentVenueDataError) {
+    return <div>Something wrong!</div>;
+  }
+
   return (
     <CenterContainer className="flex flex-col pt-3 lsm:pt-8">
       <small className="">update venue</small>

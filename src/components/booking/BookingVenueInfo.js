@@ -1,5 +1,10 @@
 import React from "react";
-import { Avatar, InfoContainer } from "../../styles/GlobalStyles";
+import {
+  Avatar,
+  CenterContainer,
+  InfoContainer,
+} from "../../styles/GlobalStyles";
+import { Link } from "react-router-dom";
 
 const BookingVenueInfo = ({
   bookingData,
@@ -15,7 +20,17 @@ const BookingVenueInfo = ({
   }
 
   if (isBookingDataError) {
-    return <div>Something wrong</div>;
+    return (
+      <CenterContainer>
+        <h1 className="h1">Sorry!</h1>
+        <img
+          src="/images/broken-heart-icon.svg"
+          className="big-icon"
+          alt="Broken heart icon"
+        ></img>
+        <p>Something went wrong.</p>
+      </CenterContainer>
+    );
   }
   console.log(bookingData);
 

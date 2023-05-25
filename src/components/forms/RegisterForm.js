@@ -17,7 +17,6 @@ const RegisterForm = () => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [register] = useRegisterMutation();
-  const [apiError, setApiError] = useState("");
 
   let navigate = useNavigate();
 
@@ -32,8 +31,8 @@ const RegisterForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-
     try {
+      // handle success
       await RegisterSchema.validate(registerCredentials, { abortEarly: false });
       const response = await register(registerCredentials);
       console.log(response);
@@ -46,19 +45,8 @@ const RegisterForm = () => {
           return acc;
         }, {});
         setErrors(formErrors);
-      } else if (
-        error.response &&
-        error.response.data &&
-        error.response.data.errors
-      ) {
-        const errorMessage = error.response.data.errors[0].message;
-        setApiError(errorMessage);
-      } else if (error.response && error.response.data) {
-        const errorMessage = error.response.data.message;
-        setApiError(errorMessage);
-      } else {
-        setApiError("An error occurred. Please try again later.");
       }
+      // handle error
     } finally {
       setIsLoading(false);
     }
@@ -80,7 +68,6 @@ const RegisterForm = () => {
           className="mb-2"
         />
         {errors.name && <div className="text-red-700">{errors.name}</div>}
-        {apiError && <div className="text-red-700">{apiError}</div>}
       </div>
 
       <div className="gap-2 mb-6 items-start">

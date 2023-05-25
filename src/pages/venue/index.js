@@ -1,7 +1,7 @@
 import React from "react";
 import HeroGallery from "../../components/hero-section/HeroGallery";
 import VenueInfo from "../../components/venueInfo";
-import { Container } from "../../styles/GlobalStyles";
+import { CenterContainer, Container } from "../../styles/GlobalStyles";
 import BookVenue from "../../components/booking/BookVenue";
 import { useParams } from "react-router-dom";
 import { useGetVenueByIdQuery } from "../../state/api/api";
@@ -18,6 +18,20 @@ const Venue = () => {
 
   if (isVenueDataLoading) {
     return <HeroSpinner />;
+  }
+
+  if (isVenueDataError) {
+    return (
+      <CenterContainer>
+        <h1 className="h1">Sorry!</h1>
+        <img
+          src="/images/broken-heart-icon.svg"
+          className="big-icon"
+          alt="Broken heart icon"
+        ></img>
+        <p>Something went wrong.</p>
+      </CenterContainer>
+    );
   }
 
   return (

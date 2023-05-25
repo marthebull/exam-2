@@ -21,6 +21,10 @@ const ManageVenue = () => {
     return <HeroSpinner />;
   }
 
+  if (isVenueDataError) {
+    return <div>Something wrong!</div>;
+  }
+
   return (
     <>
       <HeroManage id={id} />

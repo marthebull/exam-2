@@ -104,6 +104,20 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
               setBookingStart={setBookingStart}
               setBookingEnd={setBookingEnd}
             />
+            <div className="flex flex-row mb-10">
+              <div className="me-5 flex flex-row gap-2 items-center">
+                <div className="legend legend-available"> </div>
+                <p>available</p>
+              </div>
+              <div className="me-5 flex flex-row gap-2 items-center">
+                <div className="legend legend-unavailable "> </div>
+                <p>unavailable</p>
+              </div>
+              <div className=" flex flex-row gap-2 items-center">
+                <div className="legend legend-selected "> </div>
+                <p>selected</p>
+              </div>
+            </div>
           </>
         ) : null}
         {accessToken && name === venueData?.owner.name ? null : accessToken ? (

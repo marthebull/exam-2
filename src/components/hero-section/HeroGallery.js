@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { HeroContainer } from "./styles";
 import HeroSpinner from "../loaders/HeroSpinner";
 import { Link } from "react-router-dom";
-import { ButtonSolidWhite } from "../../styles/GlobalStyles";
+import { ButtonSolidWhite, CenterContainer } from "../../styles/GlobalStyles";
 import { useSelector } from "react-redux";
 
 const HeroGallery = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
@@ -59,7 +59,17 @@ const HeroGallery = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
   }
 
   if (isVenueDataError) {
-    return <div>Something wrong</div>;
+    return (
+      <CenterContainer>
+        <h1 className="h1">Sorry!</h1>
+        <img
+          src="/images/broken-heart-icon.svg"
+          className="big-icon"
+          alt="Broken heart icon"
+        ></img>
+        <p>Something went wrong.</p>
+      </CenterContainer>
+    );
   }
 
   return (

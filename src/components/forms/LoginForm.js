@@ -19,7 +19,6 @@ const LoginForm = () => {
   );
 
   useEffect(() => {
-    // Clear login error message when the component mounts
     dispatch(clearLoginErrorMessage());
   }, []);
 
