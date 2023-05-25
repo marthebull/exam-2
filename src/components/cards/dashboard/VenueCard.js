@@ -3,9 +3,16 @@ import { Link } from "react-router-dom";
 import { ButtonOutlineWhite } from "../../../styles/GlobalStyles";
 
 const VenueCards = ({ user }) => {
+  const sortedVenues = [...user.venues].sort((a, b) => {
+    const timestampA = new Date(a.updated ? a.updated : a.created).getTime();
+    const timestampB = new Date(b.updated ? b.updated : b.created).getTime();
+
+    return timestampB - timestampA;
+  });
+
   return (
     <>
-      {user.venues.map((venue) => (
+      {sortedVenues.map((venue) => (
         <div key={venue?.id}>
           <div className="w-full rounded overflow-hidden shadow-md ">
             <div

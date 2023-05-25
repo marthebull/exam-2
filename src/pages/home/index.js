@@ -5,6 +5,7 @@ import HeroHome from "../../components/hero-section/HeroHome";
 import FeaturedVenues from "../../components/cards/list/FeaturedVenues";
 
 const Home = () => {
+  console.log(process.env.REACT_APP_GOOGLE_API_KEY);
   return (
     <>
       <HeroHome />

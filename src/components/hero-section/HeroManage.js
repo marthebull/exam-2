@@ -95,9 +95,9 @@ const HeroManage = ({ id }) => {
         {name === venueData?.owner.name ? (
           <Link
             to={"/venues/" + venueData?.id}
-            className="link link-white pt-6 absolute bottom-4 right-50% z-50"
+            className="link link-white pt-6 absolute bottom-4 right-50% z-50 hover:opacity-70"
           >
-            preview
+            preview venue
           </Link>
         ) : null}
       </HeroContainer>
