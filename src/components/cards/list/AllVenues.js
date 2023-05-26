@@ -32,10 +32,10 @@ const ListAllVenues = () => {
     if (searchQuery) {
       const searchLower = searchQuery.toLowerCase();
       if (
-        !venues.name?.toLowerCase().includes(searchLower) &&
-        !venues.owner.name?.toLowerCase().includes(searchLower) &&
-        !venues.location.city?.toLowerCase().includes(searchLower) &&
-        !venues.location.country?.toLowerCase().includes(searchLower)
+        !venues?.name?.toLowerCase().includes(searchLower) &&
+        !venues?.owner.name?.toLowerCase().includes(searchLower) &&
+        !venues?.location.city?.toLowerCase().includes(searchLower) &&
+        !venues?.location.country?.toLowerCase().includes(searchLower)
       )
         return false;
     }

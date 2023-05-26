@@ -175,21 +175,13 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
             backgroundSize: `cover`,
           }}
         ></div>
-        {/* <img
-          src={
-            venueData?.media.length > 0
-              ? venueData?.media[0]
-              : `/images/placeholder-image.svg`
-          }
-          alt={venueData?.name}
-          className="mb-10 w-[400px] h-[300] object-cover "
-        ></img> */}
-        <h3 className="h3 mb-2">
+
+        <h3 className="h3 mb-6 text-center">
           {formatDate(postBookingBody?.dateFrom)} -{" "}
           {formatDate(postBookingBody?.dateTo)}
         </h3>
 
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row justify-center gap-3">
           <img
             className="icon"
             src="/images/people-icon.svg"
@@ -197,7 +189,10 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
           ></img>
           <p className="a">{postBookingBody?.guests} x guests</p>
         </div>
-        <div className="flex flex-row gap-3">
+        <div
+          className="flex flex-row justify-center
+         gap-3"
+        >
           <img
             className="icon"
             src="/images/moon-sea-icon.svg"
@@ -211,7 +206,7 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
             x nights
           </p>
         </div>
-        <div className="flex flex-row justify-between pt-5">
+        <div className="flex flex-row justify-center gap-5 pt-10">
           <p className="h4">total </p>
           <p className="h4 mb-10"> {total} NOK</p>
         </div>

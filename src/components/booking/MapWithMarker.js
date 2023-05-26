@@ -17,9 +17,6 @@ const MapWithMarker = ({ lat, lng }) => {
   };
 
   return (
-    // <LoadScript
-    //   googleMapsApiKey="AIzaSyB5txE4RJufR8FvvlKG1ktaBQ6zQVqNt0A" // Replace with your Google Maps API Key
-    // >
     <GoogleMap
       mapContainerStyle={mapStyles}
       zoom={13}

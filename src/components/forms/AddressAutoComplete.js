@@ -14,7 +14,7 @@ export default function AddressAutoComplete({
 }) {
   const libraries = ["places"];
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyB5txE4RJufR8FvvlKG1ktaBQ6zQVqNt0A",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,
   });
   const [autocomplete, setAutocomplete] = useState(null);

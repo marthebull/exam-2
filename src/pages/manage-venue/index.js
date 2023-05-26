@@ -1,6 +1,6 @@
 import React from "react";
 import HeroManage from "../../components/hero-section/HeroManage";
-import { Container } from "../../styles/GlobalStyles";
+import { CenterContainer, Container } from "../../styles/GlobalStyles";
 import VenueInfo from "../../components/venueInfo";
 import BookVenue from "../../components/booking/BookVenue";
 import { useGetVenueByIdQuery } from "../../state/api/api";
@@ -22,7 +22,17 @@ const ManageVenue = () => {
   }
 
   if (isVenueDataError) {
-    return <div>Something wrong!</div>;
+    return (
+      <CenterContainer>
+        <h1 className="h1">Sorry!</h1>
+        <img
+          src="/images/broken-heart-icon.svg"
+          className="big-icon"
+          alt="Broken heart icon"
+        ></img>
+        <p>Something went wrong.</p>
+      </CenterContainer>
+    );
   }
 
   return (

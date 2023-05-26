@@ -19,7 +19,17 @@ const EditVenue = ({ venueData }) => {
   }
 
   if (isCurrentVenueDataError) {
-    return <div>Something wrong!</div>;
+    return (
+      <CenterContainer>
+        <h1 className="h1">Sorry!</h1>
+        <img
+          src="/images/broken-heart-icon.svg"
+          className="big-icon"
+          alt="Broken heart icon"
+        ></img>
+        <p>Something went wrong.</p>
+      </CenterContainer>
+    );
   }
 
   return (
