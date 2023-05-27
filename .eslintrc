@@ -1,0 +1,8 @@
+{
+    "extends": "react-app",
+    "rules": {
+      "no-loop-func": "off",
+      "react-hooks/exhaustive-deps": "off"
+    }
+  }
+  
