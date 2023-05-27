@@ -16,7 +16,7 @@ const UserOverview = ({ username }) => {
 
   useEffect(() => {
     refetchUser();
-  }, [refetchUser]);
+  }, []);
 
   if (isUserLoading) {
     return <UserOverviewLoader />;
