@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeroSpinner from "../loaders/HeroSpinner";
 import { HeroContainer, TextHero } from "./styles";
 import {
@@ -9,19 +9,18 @@ import {
 } from "../../styles/GlobalStyles";
 import ModalBody from "../modal/ModalBody";
 import { useDeleteBookingByIdMutation } from "../../state/api/api";
-import { useSelector } from "react-redux";
 
 const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
   //console.log(venueData.venueData);
   let navigate = useNavigate();
 
-  const name = useSelector((state) => state.persisted.auth.name);
+  // const name = useSelector((state) => state.persisted.auth.name);
 
   const [showModal, setShowModal] = useState(false);
 
   console.log(bookingData);
 
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [deleteBooking] = useDeleteBookingByIdMutation();
 

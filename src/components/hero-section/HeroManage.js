@@ -22,14 +22,14 @@ const HeroManage = ({ id }) => {
   const {
     data: venueData,
     isLoading: isVenueDataLoading,
-    isError: isVenueDataError,
+    // isError: isVenueDataError,
     refetch: refetchVenueData,
   } = useGetVenueByIdQuery(id);
 
   const [showModal, setShowModal] = useState(false);
   console.log(venueData?.id);
 
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [deleteVenue] = useDeleteVenueByIdMutation();
 
@@ -37,7 +37,7 @@ const HeroManage = ({ id }) => {
     if (venueData) {
       refetchVenueData();
     }
-  }, [isVenueDataLoading]);
+  }, [isVenueDataLoading, refetchVenueData, venueData]);
 
   const handleDeleteVenue = async () => {
     setIsLoading(true);

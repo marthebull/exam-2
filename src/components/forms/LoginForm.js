@@ -20,9 +20,9 @@ const LoginForm = () => {
 
   useEffect(() => {
     dispatch(clearLoginErrorMessage());
-  }, []);
+  });
 
-  const { accessToken, name } = useSelector((state) => state.persisted.auth);
+  const { accessToken } = useSelector((state) => state.persisted.auth);
 
   const handleLogin = (e) => {
     e.preventDefault();

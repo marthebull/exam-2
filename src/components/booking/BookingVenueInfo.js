@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Avatar,
-  CenterContainer,
-  InfoContainer,
-} from "../../styles/GlobalStyles";
-import { Link } from "react-router-dom";
+import { CenterContainer, InfoContainer } from "../../styles/GlobalStyles";
 
 const BookingVenueInfo = ({
   bookingData,

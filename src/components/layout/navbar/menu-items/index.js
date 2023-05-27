@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../state/features/authSlice";
 
 const MenuItems = () => {
-  const { accessToken, name, avatar } = useSelector(
-    (state) => state.persisted.auth
-  );
+  const { accessToken, avatar } = useSelector((state) => state.persisted.auth);
 
   const dispatch = useDispatch();
 

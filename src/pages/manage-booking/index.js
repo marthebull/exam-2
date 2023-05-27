@@ -1,8 +1,6 @@
 import React from "react";
-import HeroManage from "../../components/hero-section/HeroManage";
 import { Container } from "../../styles/GlobalStyles";
-import VenueInfo from "../../components/venueInfo";
-import BookVenue from "../../components/booking/BookVenue";
+
 import { useParams } from "react-router-dom";
 import { useGetBookingByIdQuery } from "../../state/api/api";
 import HeroManageBooking from "../../components/hero-section/HeroManageBooking";

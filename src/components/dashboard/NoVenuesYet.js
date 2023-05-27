@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ButtonOutlineDark, ButtonSolidDark } from "../../styles/GlobalStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { logout, setVenueManager } from "../../state/features/authSlice";
+import { useDispatch } from "react-redux";
+import { setVenueManager } from "../../state/features/authSlice";
 import ModalBody from "../modal/ModalBody";
 import { usePutVenueManagerMutation } from "../../state/api/api";
 
@@ -10,10 +10,10 @@ const NoVenuesYet = ({ user }) => {
   const [showModal, setShowModal] = useState(false);
   const [isVenueManager, setIsVenueManager] = useState(false);
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  // const [errors, setErrors] = useState({});
+  // const [isLoading, setIsLoading] = useState(false);
   const [updateVenueManager] = usePutVenueManagerMutation();
 
   const handleChange = (event) => {
@@ -21,9 +21,9 @@ const NoVenuesYet = ({ user }) => {
   };
 
   const handleRegisterHost = async () => {
-    const requestData = {
-      venuemanager: isVenueManager,
-    };
+    // const requestData = {
+    //   venuemanager: isVenueManager,
+    // };
 
     try {
       const response = await updateVenueManager({

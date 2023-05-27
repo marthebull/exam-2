@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import * as Yup from "yup";
 import { useRegisterMutation } from "../../state/api/api";
 import { ButtonSolidDark } from "../../styles/GlobalStyles";
 import { useNavigate } from "react-router-dom";

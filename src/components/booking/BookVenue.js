@@ -17,7 +17,6 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
 
   const name = useSelector((state) => state.persisted.auth.name);
   const accessToken = useSelector((state) => state.persisted.auth.accessToken);
-  const isLoggedIn = name !== null;
 
   const [showModal, setShowModal] = useState(false);
   const [guests, setGuests] = useState(1);
@@ -66,7 +65,7 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
     setTotal(
       venueData.price * (getDateDifference(bookingStart, bookingEnd) + 1)
     );
-  }, [bookingStart, bookingEnd]);
+  }, [bookingStart, bookingEnd, venueData.price]);
 
   const handleAddNewBooking = async () => {
     const response = await postBooking(postBookingBody);

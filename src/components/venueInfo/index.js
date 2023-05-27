@@ -1,14 +1,9 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { useGetVenueByIdQuery } from "../../state/api/api";
 import { Avatar, InfoContainer } from "../../styles/GlobalStyles";
-import { useSelector } from "react-redux";
 import MapWithMarker from "../booking/MapWithMarker";
 import HeroSpinner from "../loaders/HeroSpinner";
 
 const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
-  console.log("🚀 ~ file: index.js:10 ~ VenueInfo ~ venueData:", venueData);
-
   if (isVenueDataLoading) {
     return <HeroSpinner />;
   }
