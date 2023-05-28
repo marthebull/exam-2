@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <HeroHome />
       <Container className="flex flex-col gap-6">
-        <h2 className="h2 mb-2">Don't snooze on these</h2>
+        <h2 className="h2 mb-2">snooze on these</h2>
         <FeaturedVenues />
         <Link to="/venues">
           <ButtonSolidDark>see all venues</ButtonSolidDark>
