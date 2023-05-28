@@ -1,6 +1,6 @@
-# Holidaze - exam 2 - spring 2023
-#### by Marthe Bull Pettersen
-<br />
+# Holidaze - projectexam 2
+####  by Marthe Bull Pettersen
+
 <br />
 
 ### Links and resources
@@ -8,26 +8,23 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/664fdbcf-26ab-41d9-aad5-654d1f22daca/deploy-status)](https://app.netlify.com/sites/holidaze-exam2-marthebull/deploys)
 
 
-🌐 [Live site at netlify: https://holidaze-exam2-marthebull.netlify.app/](https://holidaze-exam2-marthebull.netlify.app/)
+🌐  [Live site at netlify: https://holidaze-exam2-marthebull.netlify.app/](https://holidaze-exam2-marthebull.netlify.app/)
 
-🎨 [Figma - all design, style guides and prottypes ](https://www.figma.com/file/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=105-9944&t=1n8x341Ph2Ro5c59-0)
+🎨  [Figma - all design, style guides and prottypes ](https://www.figma.com/file/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=105-9944&t=1n8x341Ph2Ro5c59-0)
 
-💻 [Figma protoype desktop](https://www.figma.com/proto/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=27-222&scaling=min-zoom&page-id=23%3A328&starting-point-node-id=27%3A222)
+💻  [Figma protoype desktop](https://www.figma.com/proto/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=27-222&scaling=min-zoom&page-id=23%3A328&starting-point-node-id=27%3A222)
 
-📱 [Figma prototype mobile](https://www.figma.com/proto/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=88-6426&scaling=scale-down&page-id=64%3A2283&starting-point-node-id=88%3A6426)
+📱  [Figma prototype mobile](https://www.figma.com/proto/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=88-6426&scaling=scale-down&page-id=64%3A2283&starting-point-node-id=88%3A6426)
 
-🗓️ [GANTT chart](https://www.figma.com/file/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=150-15470&t=1n8x341Ph2Ro5c59-0)
+🗓️  [GANTT chart](https://www.figma.com/file/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=150-15470&t=1n8x341Ph2Ro5c59-0)
 
-🗓️ [Trello - kanban board](https://trello.com/b/ntRkCA5a/eksamen-2)
+🗓️  [Trello - kanban board](https://trello.com/b/ntRkCA5a/eksamen-2)
 
 #### NOTE: For testing the live site you have to register with a @noroff.no or @stud.noroff.no email.
 <br />
 <br />
 
 ![Site preview](https://github.com/marthebull/exam-2/blob/main/public/images/holidaze-display.png?raw=true)
-
-<br />
-<br />
 
 ### Description of project
 
@@ -101,8 +98,7 @@ The Product Owner has requested links to the following:
 - A repository link
 - A hosted application demo link
 
-
-
+<br />
 
 ### Run this project locally
 
