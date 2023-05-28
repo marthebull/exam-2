@@ -1,4 +1,4 @@
-# Holidaze - projectexam 2
+# Holidaze - Project Exam 2
 ####  by Marthe Bull Pettersen
 
 <br />
