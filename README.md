@@ -97,8 +97,7 @@ The Product Owner has requested links to the following:
 - A repository link
 - A hosted application demo link
 
-
-
+<br />
 
 ### Run this project locally
 
