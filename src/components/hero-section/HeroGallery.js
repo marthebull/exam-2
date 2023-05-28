@@ -101,7 +101,7 @@ const HeroGallery = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
           <Link
             to={"/manage-venue/" + venueData?.id}
             key={venueData?.id}
-            className="pt-6 absolute bottom-4 right-50% z-50"
+            className="pt-6 absolute bottom-4 right-50% z-40"
           >
             <ButtonSolidWhite className="opacity-1">
               manage venue
