@@ -22,6 +22,8 @@ image of site
 
 The project at hand involved developing a brand new front-end application for Holidaze, a recently launched accommodation booking site. The objective was to create a modern and visually appealing user interface while incorporating the required features outlined in the client's specifications. The project primarily focused on two aspects: the customer-facing side of the website, allowing users to book holidays at various venues, and the admin-facing side, enabling venue managers to register, manage venues, and bookings.
 
+#### NOTE: For testing the live site you have to register with a @noroff.no or @stud.noroff.no email. 
+
 #### Goal
 
 To take the skills learned over the last two years and take on an extensive project where the finished product should reflect the candidate’s general development capabilities, in addition to visual and technical skills.
