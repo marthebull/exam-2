@@ -20,7 +20,7 @@ const HeroHome = () => {
             src="images/logo-holidaze-white.svg"
             className="pb-6"
           ></HeroLogo>
-          <h1 className="white mb-2  h4 lsm:mx-24 tracking-wide">
+          <h1 className="white mb-2 h4 mx-8 tracking-wide">
             discover, book and enjoy the most exquisite places to stay.
           </h1>
           {!accessToken && (
