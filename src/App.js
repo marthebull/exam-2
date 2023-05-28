@@ -28,8 +28,9 @@ function ScrollToTop() {
 function App() {
   return (
     <>
-      <ScrollToTop />
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
+      <LoadScript
+        googleMapsApiKey={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
+      >
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
