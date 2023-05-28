@@ -1,4 +1,5 @@
 # Holidaze - exam 2 - spring 2023
+#### by Marthe Bull Pettersen
 
 ### Links and resources
 
