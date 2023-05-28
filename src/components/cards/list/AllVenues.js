@@ -7,7 +7,7 @@ import CardLoader from "../../loaders/CardLoader";
 
 const ListAllVenues = () => {
   const { data: list, isLoading, isError } = useGetVenuesQuery();
-  console.log(list);
+
   const [criteria, setCriteria] = useState({
     parking: false,
     breakfast: false,

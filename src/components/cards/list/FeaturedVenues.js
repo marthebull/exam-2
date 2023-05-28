@@ -5,7 +5,6 @@ import CardLoader from "../../loaders/CardLoader";
 
 const FeaturedVenues = () => {
   const { data: list, isLoading } = useGetVenuesQuery();
-  console.log(useGetVenuesQuery());
 
   if (isLoading) {
     return (

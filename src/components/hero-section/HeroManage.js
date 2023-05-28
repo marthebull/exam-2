@@ -15,21 +15,18 @@ import {
 import { useSelector } from "react-redux";
 
 const HeroManage = ({ id }) => {
-  //console.log(venueData.venueData);
   let navigate = useNavigate();
   const name = useSelector((state) => state.persisted.auth.name);
 
   const {
     data: venueData,
     isLoading: isVenueDataLoading,
-    // isError: isVenueDataError,
+
     refetch: refetchVenueData,
   } = useGetVenueByIdQuery(id);
 
   const [showModal, setShowModal] = useState(false);
-  console.log(venueData?.id);
 
-  // const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [deleteVenue] = useDeleteVenueByIdMutation();
 

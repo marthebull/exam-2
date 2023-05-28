@@ -39,14 +39,12 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
     } else {
       setAvatarPreview("/images/placeholder-avatar.svg");
     }
-    console.log(avatarPreview);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
-    // TODO: Have a closer look at this, might be related to the need for avatar: avatar in request
     try {
       // handle success
       await UpdateAvatarSchema.validate(
@@ -58,7 +56,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
         avatar: avatarUrl,
       });
       dispatch(setAvatar(avatarUrl));
-      //console.log({ avatar: avatarUrl });
+
       console.log(response);
     } catch (error) {
       console.error(error);

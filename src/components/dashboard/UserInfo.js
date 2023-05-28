@@ -18,7 +18,6 @@ const UserInfo = ({ username }) => {
     isLoading: isUserLoading,
     isError: isUserError,
   } = useGetProfileByNameQuery(username);
-  console.log("🚀 ~ file: UserInfo.js:21 ~ UserInfo ~ user:", user);
 
   const currentAvatar = useSelector((state) => state.persisted.auth.avatar);
 

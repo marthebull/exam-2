@@ -2,8 +2,6 @@ import React from "react";
 import { formatDate } from "../../utils/formatDate";
 
 const BookingsOnVenue = ({ venueData }) => {
-  console.log(venueData);
-
   const sortedBookings = [...venueData.bookings]
     .filter((booking) => new Date(booking.dateFrom) > new Date())
     .sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));

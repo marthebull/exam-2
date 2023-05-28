@@ -23,7 +23,6 @@ const BookingCalendar = ({ venueData, setBookingStart, setBookingEnd }) => {
 
   useEffect(() => {
     if (venueData.bookings) {
-      console.log(venueData.bookings);
       let bookedDates = [];
 
       venueData.bookings.forEach((booking) => {
@@ -100,8 +99,6 @@ const BookingCalendar = ({ venueData, setBookingStart, setBookingEnd }) => {
     } else if (state[0].startDate) {
       setBookingStart(state[0].startDate);
       setBookingEnd(state[0].startDate);
-    } else {
-      console.log("No dates selected");
     }
   }
 

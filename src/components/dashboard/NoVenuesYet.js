@@ -30,7 +30,7 @@ const NoVenuesYet = ({ user }) => {
         username: user.name,
         venuemanager: isVenueManager,
       });
-      console.log(response);
+
       dispatch(setVenueManager());
       setShowModal(false);
       window.location.reload();

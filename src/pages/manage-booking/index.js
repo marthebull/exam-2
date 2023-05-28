@@ -16,8 +16,6 @@ const ManageBooking = () => {
     isError: isBookingDataError,
   } = useGetBookingByIdQuery(id);
 
-  console.log(bookingData);
-
   if (isBookingDataError) {
     return <div>Something wrong!</div>;
   }

@@ -57,7 +57,6 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
 
   const handleConfirm = () => {
     setShowModal(!showModal);
-    console.log(postBookingBody);
   };
 
   useEffect(() => {
@@ -70,11 +69,9 @@ const BookVenue = ({ venueData, venueDataIsLoading }) => {
   const handleAddNewBooking = async () => {
     const response = await postBooking(postBookingBody);
 
-    console.log(response);
     if (!response.error) {
       navigate(`/dashboard`);
     }
-    console.log(response);
   };
 
   return (

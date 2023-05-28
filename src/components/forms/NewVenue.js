@@ -110,14 +110,13 @@ const NewVenueForm = () => {
         },
       });
 
-      console.log("heheheh");
       console.log(response);
       if (!response.error) {
         navigate(`/dashboard`);
       }
     } catch (error) {
       console.error(error);
-      console.log("hjeeeeeeeeelo");
+
       if (error.inner) {
         const formErrors = error.inner.reduce((acc, err) => {
           acc[err.path] = err.message;

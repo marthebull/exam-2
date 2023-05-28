@@ -4,6 +4,8 @@ import { Autocomplete } from "@react-google-maps/api";
 import { useState } from "react";
 // import _ from "lodash";
 
+const libraries = ["places"];
+
 export default function AddressAutoComplete({
   setZip,
   setCity,
@@ -12,7 +14,6 @@ export default function AddressAutoComplete({
   setLongitude,
   setLatitude,
 }) {
-  const libraries = ["places"];
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,

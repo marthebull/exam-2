@@ -125,13 +125,12 @@ const EditVenueForm = ({ currentVenueData }) => {
 
       const response = await data({ editVenueBody, id });
 
-      console.log(response);
       if (!response.error) {
         navigate(`/dashboard`);
       }
     } catch (error) {
       console.error(error);
-      console.log(usePutVenueByIdMutation);
+
       if (error.inner) {
         const formErrors = error.inner.reduce((acc, err) => {
           acc[err.path] = err.message;
@@ -142,7 +141,6 @@ const EditVenueForm = ({ currentVenueData }) => {
         console.log(formErrors);
         console.log(error.inner);
         console.log(data);
-        console.log(newVenueDetails);
       }
       // handle error
     } finally {

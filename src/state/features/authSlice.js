@@ -39,22 +39,20 @@ const authSlice = createSlice({
     login(state, action) {
       state.accessToken = action.payload.accessToken;
       state.name = action.payload.name;
-      //state.email = action.payload;
+
       state.avatar = action.payload.avatar
         ? action.payload.avatar
         : "/images/placeholder-avatar.svg";
-      //state.isVenueManager = action.payload;
+
       state.loginErrorMessage = "";
     },
     clearLoginErrorMessage(state) {
       state.loginErrorMessage = "";
     },
     setAvatar(state, action) {
-      //state.avatar = action.payload;
       state.avatar = action.payload
         ? action.payload
         : "/images/placeholder-avatar.svg";
-      //console.log("this is the payload:" + action.payload);
     },
     setVenueManager(state) {
       state.isVenueManager = true;

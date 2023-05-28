@@ -11,23 +11,16 @@ import ModalBody from "../modal/ModalBody";
 import { useDeleteBookingByIdMutation } from "../../state/api/api";
 
 const HeroManageBooking = ({ bookingData, isBookingDataLoading }) => {
-  //console.log(venueData.venueData);
   let navigate = useNavigate();
-
-  // const name = useSelector((state) => state.persisted.auth.name);
 
   const [showModal, setShowModal] = useState(false);
 
-  console.log(bookingData);
-
-  // const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [deleteBooking] = useDeleteBookingByIdMutation();
 
   const handleCancelBooking = async () => {
     setIsLoading(true);
     try {
-      // Call the deleteVenue mutation with the venue ID
       await deleteBooking({ id: bookingData?.id });
     } catch (error) {
       console.log("Error cancelling booking:", error);

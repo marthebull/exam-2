@@ -3,8 +3,6 @@ import { formatDate, getDateDifference } from "../../utils/formatDate";
 import MapWithMarker from "./MapWithMarker";
 
 const BookingDetails = ({ bookingData, isBookingDataLoading }) => {
-  console.log(bookingData);
-
   const numberOfDays = getDateDifference(
     bookingData?.dateFrom,
     bookingData?.dateTo
