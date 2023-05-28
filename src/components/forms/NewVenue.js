@@ -196,7 +196,7 @@ const NewVenueForm = () => {
           )}
         </div>
       ))}
-
+      {errors.media && <div className="text-red-700">{errors.media}</div>}
       <p
         className="text-end cursor-pointer label mb-3 hover:text-gray-400"
         onClick={handleAddImage}
