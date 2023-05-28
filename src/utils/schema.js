@@ -18,7 +18,7 @@ export const RegisterSchema = yup.object().shape({
     .url("Invalid URL")
     .test("is-image-url", "Avatar must be a valid image URL", (value) => {
       if (!value) {
-        return true; // allowing empty value
+        return true;
       }
       return /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(value);
     }),

@@ -25,7 +25,6 @@ const MapWithMarker = ({ lat, lng }) => {
     >
       <Marker position={defaultCenter} />
     </GoogleMap>
-    // </LoadScript>
   );
 };
 export default MapWithMarker;

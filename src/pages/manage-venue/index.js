@@ -14,7 +14,6 @@ const ManageVenue = () => {
     data: venueData,
     isLoading: isVenueDataLoading,
     isError: isVenueDataError,
-    // refetch: refetchVenueData,
   } = useGetVenueByIdQuery(id);
 
   if (isVenueDataLoading) {

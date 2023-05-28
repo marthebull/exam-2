@@ -17,7 +17,7 @@ const BookingCard = ({ user }) => {
         const isDatePassed = currentDate > new Date(booking.dateTo);
 
         if (isDatePassed) {
-          return null; // Skip rendering the card if the date has passed
+          return null;
         }
 
         return (

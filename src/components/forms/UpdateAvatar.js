@@ -46,7 +46,6 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
     setIsLoading(true);
 
     try {
-      // handle success
       await UpdateAvatarSchema.validate(
         { avatar: avatarUrl },
         { abortEarly: false }
@@ -68,10 +67,8 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
         }, {});
         setErrors(formErrors);
       }
-      // handle error
     } finally {
       setIsLoading(false);
-      // setShowModal(!showModal);
     }
   };
 

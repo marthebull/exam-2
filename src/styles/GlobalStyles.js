@@ -227,7 +227,7 @@ height: 80px;
   z-index: 1100;
 }
 
-// todo: style cal
+
 #calendar {
   margin: 30px 0 10px;
   padding: 20px;

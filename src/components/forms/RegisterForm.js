@@ -31,7 +31,6 @@ const RegisterForm = () => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      // handle success
       await RegisterSchema.validate(registerCredentials, { abortEarly: false });
       const response = await register(registerCredentials);
       console.log(response);
@@ -45,7 +44,6 @@ const RegisterForm = () => {
         }, {});
         setErrors(formErrors);
       }
-      // handle error
     } finally {
       setIsLoading(false);
     }

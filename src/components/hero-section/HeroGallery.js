@@ -122,36 +122,7 @@ const HeroGallery = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
           >
             &times;
           </div>
-          {/* <button
-            className="absolute top-1/2 left-2 text-white text-2xl"
-            onClick={showPrevImage}
-          >
-            &lt;
-          </button>
 
-          <div
-            onClick={showNextImage}
-            className="absolute top-1/2 right-2 text-white rounded-full cursor-pointer hover:text-gray-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4"
-              viewBox="0 0 24 24"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </div> */}
-          {/* <button
-            className="absolute top-1/2 right-2 text-white text-2xl"
-            onClick={showNextImage}
-          >
-            &gt;
-          </button> */}
           <img
             src={venueData?.media[currentImageIndex]}
             alt={` ${venueData?.media[currentImageIndex]}`}

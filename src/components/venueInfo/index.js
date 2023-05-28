@@ -13,12 +13,6 @@ const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
   }
   return (
     <InfoContainer className=" pb-8 my-10 w-100 md:max-w-lg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
-      {/* {data.owner.name === name ? (
-        <div className="mb-6">This your own venue:</div>
-      ) : (
-        ""
-      )} */}
-
       <h1 className="h1 mb-1">{venueData.name}</h1>
       {venueData.location.city === "Unknown" ? (
         ""
@@ -28,9 +22,6 @@ const VenueInfo = ({ venueData, isVenueDataLoading, isVenueDataError }) => {
         </h2>
       )}
 
-      {/* <h2 className="h5 mb-8">
-        {venueData.location.city}, {venueData.location.country}
-      </h2> */}
       <p className="h3 mb-8">{venueData.price} NOK / night</p>
       <h3 className="h5 mb-1">Description</h3>
       <p className="p mb-10">{venueData.description}</p>

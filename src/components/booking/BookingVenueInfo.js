@@ -30,12 +30,6 @@ const BookingVenueInfo = ({
 
   return (
     <InfoContainer className=" pb-8 my-10 w-100 md:max-w-lg md:mx-0 md:px-8 md:pb-0 lg:pe-14 md:w-1/2">
-      {/* {data.owner.name === name ? (
-    <div className="mb-6">This your own venue:</div>
-  ) : (
-    ""
-  )} */}
-
       <h1 className="h1 mb-1">{bookingData?.venue.name}</h1>
 
       {bookingData.venue?.location.city === "Unknown" ? (

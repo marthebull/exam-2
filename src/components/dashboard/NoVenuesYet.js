@@ -11,8 +11,6 @@ const NoVenuesYet = ({ user }) => {
   const [isVenueManager, setIsVenueManager] = useState(false);
 
   const dispatch = useDispatch();
-  // const [errors, setErrors] = useState({});
-  // const [isLoading, setIsLoading] = useState(false);
   const [updateVenueManager] = usePutVenueManagerMutation();
 
   const handleChange = (event) => {

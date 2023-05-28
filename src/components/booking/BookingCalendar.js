@@ -46,18 +46,16 @@ const BookingCalendar = ({ venueData, setBookingStart, setBookingEnd }) => {
           return bookingEndDate > lastDate ? bookingEndDate : lastDate;
         },
         new Date(0)
-      ); // 0 initializes a very early date
+      );
 
-      // Iterate from today to the last booking end date to find the earliest available date
       let earliestAvailableDate = new Date();
       while (earliestAvailableDate <= lastBookingEndDate) {
-        // Check if the date is booked
         if (
           !disabledDates.find(
             (date) => date.getTime() === earliestAvailableDate.getTime()
           )
         ) {
-          break; // Found an available date
+          break;
         }
         earliestAvailableDate = addDays(earliestAvailableDate, 1);
       }
@@ -115,8 +113,8 @@ const BookingCalendar = ({ venueData, setBookingStart, setBookingEnd }) => {
         disabledDates={disabledDates}
         showSelectionPreview={false}
         showMonthAndYearPickers={true}
-        weekStartsOn={1} // Start week on Monday
-        editableDateInputs={false} // Hide date input fields
+        weekStartsOn={1}
+        editableDateInputs={false}
         minDate={new Date()}
       />
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { formatDate, getDateDifference } from "../../utils/formatDate";
 import MapWithMarker from "./MapWithMarker";
 
-const BookingDetails = ({ bookingData, isBookingDataLoading }) => {
+const BookingDetails = ({ bookingData }) => {
   const numberOfDays = getDateDifference(
     bookingData?.dateFrom,
     bookingData?.dateTo
