@@ -1,7 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/664fdbcf-26ab-41d9-aad5-654d1f22daca/deploy-status)](https://app.netlify.com/sites/holidaze-exam2-marthebull/deploys)
 # Holidaze - exam 2 - spring 2023
 
-## Links and resources
+### Links and resources
 
 🌐 [Live site at netlify: https://holidaze-exam2-marthebull.netlify.app/](https://holidaze-exam2-marthebull.netlify.app/)
 
@@ -18,22 +18,22 @@
 
 image of site
 
-## Description of project
+### Description of project
 
 The project at hand involved developing a brand new front-end application for Holidaze, a recently launched accommodation booking site. The objective was to create a modern and visually appealing user interface while incorporating the required features outlined in the client's specifications. The project primarily focused on two aspects: the customer-facing side of the website, allowing users to book holidays at various venues, and the admin-facing side, enabling venue managers to register, manage venues, and bookings.
 
-### Goal
+#### Goal
 
 To take the skills learned over the last two years and take on an extensive project where the finished product should reflect the candidate’s general development capabilities, in addition to visual and technical skills.
 
 
-### Brief
+#### Brief
 
 A newly launched accommodation booking site called Holidaze has approached the student to develop a brand new front end for their application. While they have a list of required features, the design and user experience has not been specified. Working with the official API documentation, plan, design and build a modern front end accommodation booking application.
 
 There are two aspects to this brief: the customer-facing side of the website where users can book holidays at a venue, and an admin-facing side of the website where users can register and manage venues and bookings at those venues.
 
-### API 
+#### API 
 
 All API functionality is managed by an existing application. This project only covers the front-end application for the API.
 The API used for this project can be found under Holidaze in the Noroff API documentation.
@@ -41,7 +41,7 @@ The API used for this project can be found under Holidaze in the Noroff API docu
 [noroff API guide](https://docs.noroff.dev/)
 
 
-### User stories
+#### User stories
 
 The client has specified the following requirements in the form of User Stories:
 
@@ -61,7 +61,7 @@ The client has specified the following requirements in the form of User Stories:
 - A registered user may update their avatar
 - A registered user may logout
 
-### Technical restrictions
+#### Technical restrictions
 
 The company CTO has set the following technical restrictions:
 
@@ -72,7 +72,7 @@ The company CTO has set the following technical restrictions:
 - Must use an approved Planning Application
 
 
-### Required Links
+#### Required Links
 
 The Product Owner has requested links to the following:
 
@@ -86,15 +86,15 @@ The Product Owner has requested links to the following:
 
 
 
-## Run this project locally
+### Run this project locally
 
 After downloading repo install node modules with 
 
-### `npm install`
+#### `npm install`
 
 In the project directory, you can run:
 
-### `npm start`
+#### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -103,7 +103,7 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 
-### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
