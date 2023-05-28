@@ -24,6 +24,9 @@ image of site
 
 The project at hand involved developing a brand new front-end application for Holidaze, a recently launched accommodation booking site. The objective was to create a modern and visually appealing user interface while incorporating the required features outlined in the client's specifications. The project primarily focused on two aspects: the customer-facing side of the website, allowing users to book holidays at various venues, and the admin-facing side, enabling venue managers to register, manage venues, and bookings.
 
+The website was built using React as the primary framework, along with styled-components, Tailwind CSS, and vanilla CSS to achieve a visually appealing and user-friendly interface. Redux was implemented for efficient state management, ensuring seamless data synchronization and enhanced user interactions throughout the application.
+
+All the required features, including user stories such as viewing venues, searching for specific venues, creating bookings, and managing venues and bookings, were successfully implemented and fully functional on the website. In addition to the specified requirements, extra functionality was incorporated to enhance the user experience. Notably, Google Maps integration was implemented to provide users with an interactive and visually rich experience while browsing and selecting venues.
 
 
 #### Goal
