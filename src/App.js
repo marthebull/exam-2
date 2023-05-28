@@ -10,22 +10,18 @@ import ManageBooking from "./pages/manage-booking";
 import ManageVenue from "./pages/manage-venue";
 import PageNotFound from "./pages/page-not-found";
 import Layout from "./components/layout";
-// import { useLocation } from "react-router-dom";
-// import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import EditVenue from "./pages/edit-venue";
 import { LoadScript } from "@react-google-maps/api";
 
-// function ScrollToTop() {
-//   const { pathname } = useLocation();
-
-//   useEffect(() => {
-//     window.scrollTo(0, 0);
-//   }, [pathname]);
-
-//   return null;
-// }
-
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
