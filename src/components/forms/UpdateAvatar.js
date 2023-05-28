@@ -58,6 +58,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
       dispatch(setAvatar(avatarUrl));
 
       console.log(response);
+      setShowModal(!showModal);
     } catch (error) {
       console.error(error);
       if (error.inner) {
@@ -70,7 +71,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
       // handle error
     } finally {
       setIsLoading(false);
-      setShowModal(!showModal);
+      // setShowModal(!showModal);
     }
   };
 
@@ -98,7 +99,7 @@ const UpdateAvatar = ({ username, showModal, setShowModal }) => {
           placeholder="example.url.gif"
           className="mb-2"
         />
-        {errors.avatar && <div>{errors.avatar}</div>}
+        {errors.avatar && <div className="text-red-700">{errors.avatar}</div>}
       </div>
 
       <ButtonSolidDark type="submit" disabled={isLoading}>
