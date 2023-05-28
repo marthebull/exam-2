@@ -46,7 +46,9 @@ There are two aspects to this brief: the customer-facing side of the website whe
 
 All API functionality is managed by an existing application. This project only covers the front-end application for the API.
 The API used for this project can be found under Holidaze in the Noroff API documentation.
+
 [noroff API documentation](https://nf-api.onrender.com/docs/static/index.html#/)
+
 [noroff API guide](https://docs.noroff.dev/)
 
 
