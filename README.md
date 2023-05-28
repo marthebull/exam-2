@@ -21,10 +21,9 @@
 
 #### NOTE: For testing the live site you have to register with a @noroff.no or @stud.noroff.no email.
 <br />
+<br />
 
 ![Site preview](https://github.com/marthebull/exam-2/blob/main/public/images/holidaze-display.png?raw=true)
-
-<br />
 
 ### Description of project
 
