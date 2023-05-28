@@ -10,7 +10,6 @@ const NoVenuesYet = ({ user }) => {
   const [showModal, setShowModal] = useState(false);
   const [isVenueManager, setIsVenueManager] = useState(false);
 
-  // let navigate = useNavigate();
   const dispatch = useDispatch();
   // const [errors, setErrors] = useState({});
   // const [isLoading, setIsLoading] = useState(false);
@@ -21,16 +20,12 @@ const NoVenuesYet = ({ user }) => {
   };
 
   const handleRegisterHost = async () => {
-    // const requestData = {
-    //   venuemanager: isVenueManager,
-    // };
-
     try {
       const response = await updateVenueManager({
         username: user.name,
         venuemanager: isVenueManager,
       });
-
+      console.log(response);
       dispatch(setVenueManager());
       setShowModal(false);
       window.location.reload();
