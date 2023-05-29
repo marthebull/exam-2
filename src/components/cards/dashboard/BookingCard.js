@@ -20,8 +20,6 @@ const BookingCard = ({ user }) => {
           return null;
         }
 
-        console.log(booking);
-
         return (
           <div key={booking?.id}>
             <div className="w-full rounded overflow-hidden shadow-md ">
