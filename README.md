@@ -10,7 +10,7 @@
 
 🌐  [Live site at netlify: https://holidaze-exam2-marthebull.netlify.app/](https://holidaze-exam2-marthebull.netlify.app/)
 
-🎨  [Figma - all design, style guides and prottypes ](https://www.figma.com/file/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=105-9944&t=1n8x341Ph2Ro5c59-0)
+🎨  [Figma - all design files, style guides and prottypes ](https://www.figma.com/file/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=105-9944&t=1n8x341Ph2Ro5c59-0)
 
 💻  [Figma protoype desktop](https://www.figma.com/proto/Ni3F6q6WPG0vyp5yeZKXgS/Holidaze?type=design&node-id=27-222&scaling=min-zoom&page-id=23%3A328&starting-point-node-id=27%3A222)
 
