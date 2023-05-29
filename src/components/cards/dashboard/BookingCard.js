@@ -66,7 +66,7 @@ const BookingCard = ({ user }) => {
                     alt="Night icon"
                   ></img>
                   <p className="a">
-                    {getDateDifference(booking?.dateFrom, booking?.dateTo)} x
+                    {getDateDifference(booking?.dateFrom, booking?.dateTo)}
                     nights
                   </p>
                 </div>
