@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ButtonOutlineWhite } from "../../../styles/GlobalStyles";
-import { formatDate } from "../../../utils/formatDate";
+import { formatDate, getDateDifference } from "../../../utils/formatDate";
 
 const BookingCard = ({ user }) => {
   const sortedBookings = [...user.bookings].sort((a, b) => {
@@ -19,6 +19,8 @@ const BookingCard = ({ user }) => {
         if (isDatePassed) {
           return null;
         }
+
+        console.log(booking);
 
         return (
           <div key={booking?.id}>
@@ -63,7 +65,10 @@ const BookingCard = ({ user }) => {
                     src="/images/moon-sea-icon.svg"
                     alt="Night icon"
                   ></img>
-                  <p className="a">{booking.venue?.price} NOK</p>
+                  <p className="a">
+                    {getDateDifference(booking?.dateFrom, booking?.dateTo)} x
+                    nights
+                  </p>
                 </div>
 
                 <div className="flex flex-row gap-3">
@@ -72,7 +77,14 @@ const BookingCard = ({ user }) => {
                     src="/images/people-icon.svg"
                     alt="Guests"
                   ></img>
-                  <p className="a">max {booking.venue?.maxGuests} guests</p>
+                  <p className="a">
+                    {booking?.guests} {""}
+                    {booking?.guests !== 1 ? (
+                      <span>guests</span>
+                    ) : (
+                      <span>guest</span>
+                    )}
+                  </p>
                 </div>
 
                 <div className="flex flex-row md:pt-8 lg:pt-1 justify-end">
