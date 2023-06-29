@@ -3,10 +3,12 @@
 
 <br />
 
+
 ### Links and resources
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/664fdbcf-26ab-41d9-aad5-654d1f22daca/deploy-status)](https://app.netlify.com/sites/holidaze-exam2-marthebull/deploys)
 
+<img src="https://marthebull.no/wp-content/uploads/2023/06/holidaze.svg" alt="Image description" style="width:100px; height:100px;">
 
 🌐  [Live site at netlify: https://holidaze-exam2-marthebull.netlify.app/](https://holidaze-exam2-marthebull.netlify.app/)
 
